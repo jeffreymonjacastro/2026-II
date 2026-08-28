@@ -1,0 +1,93 @@
+- ## **Trabajo/Hackaton 2: Robustez en visión por computadora: el poder del preprocesamiento y la ingeniería de características**
+- **Profa. Dra. Aurea Soriano-Vargas**
+- En grupos de hasta 4 personas:
+- El objetivo de este trabajo es que los estudiantes diseñen e implementen estrategias de **preprocesamiento y/o ingeniería de características** para mejorar el desempeño de un modelo de clasificación de imágenes en condiciones realistas.
+- Se espera que el estudiante:
+    - comprenda el impacto crítico de la calidad de datos
+    - diseñe soluciones robustas frente a ruido y corrupción
+    - evalúe el comportamiento del sistema en escenarios realistas
+- ## **Contexto**
+- En aplicaciones reales de visión por computadora, los datos rara vez son ideales. Las imágenes pueden presentar ruido, blu, cambios de iluminación, distorsiones y degradación por compresión.
+- Para simular este escenario, se utilizará el dataset:  CIFAR-10-C. Este dataset introduce diferentes tipos de corrupción (ruido, blur, distorsión, entre otros), generando un entorno donde los modelos estándar pierden desempeño.
+- El modelo base proporcionado tendrá un desempeño limitado frente a estas condiciones.
+- ## **Recursos proporcionados**
+- Se entregará a cada grupo:
+    - Un **Jupyter Notebook con el baseline implementado**
+    - Pipeline completo de entrenamiento y evaluación
+    - Métricas base en test limpio y test corrupto
+- El baseline está diseñado para ser **intencionalmente simple**, con el fin de centrar el trabajo en los datos.
+- El modelo utiliza **Hu Moments** como representación de las imágenes. Los Hu Moments constituyen un conjunto de siete descriptores invariantes que capturan propiedades geométricas fundamentales, permitiendo representar la “estructura” de una imagen sin depender de su posición u orientación. Gracias a su invariancia frente a la traslación, la escala y la rotación, estos descriptores ofrecen un resumen global de la forma, lo que los convierte en una herramienta clásica y ampliamente utilizada en visión por computadora.
+- Para la etapa de clasificación se emplea XGBoost, un algoritmo basado en técnicas de   *gradient boosting*   que combina múltiples árboles de decisión para construir un modelo robusto. Este enfoque es especialmente adecuado en este contexto debido a su capacidad para manejar ruido moderado en los datos, su eficiencia computacional y su sólido desempeño como baseline en problemas con representaciones tabulares derivadas de características.
+- 
+- ## **Restricción fundamental**
+- **NO está permitido modificar el modelo**
+    - ❌ No cambiar XGBoost
+- **El único espacio de mejora es:**
+    - podemos reemplazar Hu Moments o introducir más procesamientos.
+    - preprocesamiento de imágenes
+    - transformación de datos
+    - ingeniería de características (sobre la imagen)
+- Esto obliga a trabajar en la representación, no en la arquitectura.
+- ## **Pasos de la actividad**
+- ### **1. Análisis inicial:**
+    - Ejecutar el baseline
+    - Analizar desempeño en el test limpio y el test corrupto
+    - Identificar debilidades del sistema
+- ### **2. Diseño de estrategia**
+- Cada grupo deberá proponer mejoras basadas en:
+    - reducción de ruido
+    - mejora de contraste
+    - normalización
+    - transformación geométrica
+    - extracción de nuevas características complementarias
+    - etc.
+- ### **3. Implementación**
+    - Modificar el pipeline sin alterar el modelo
+    - Integrar preprocesamiento antes de la extracción de features
+    - Evaluar impacto de cada decisión
+- ### **4. Evaluación**
+    - Se evaluará el desempeño en Test limpio y Test corrupto
+- ## **Modalidad Hackathon**
+    - El trabajo se desarrollará como una **hackathon académica**.
+    - Los grupos con mejor desempeño combinado en test limpio y test corrupto obtendrán **20 puntos en la rúbrica.**
+- ## **Sugerencias**
+- Los grupos pueden explorar:
+    - filtros (Gaussian, median, bilateral)
+    - histogram equalization / CLAHE
+    - reducción de ruido adaptativa
+    - edge detection
+    - descriptores adicionales:
+        - HOG
+        - LBP
+        - histogramas de color
+    - Combinaciones
+- Cada técnica debe estar **justificada técnicamente**.
+- ## **Presentación grupal (obligatoria)**
+- Cada grupo deberá realizar una presentación de **10–12 minutos**, donde:
+    - expliquen su diseño de forma clara y estructurada
+    - justifiquen decisiones técnicas y estratégicas
+    - presenten resultados comparativos
+    - respondan preguntas críticas de la profesora
+- # **Rúbrica de Evaluación (20 puntos)**
+- 
+- --------------------- Portal ---------------------
+    -  #
+        - [](hack%202/Untitled/Untitled/Untitled.md)―**Criterio**
+        - [](hack%202/Untitled/Untitled/Untitled.md)―**Descripción**
+        - [](hack%202/Untitled/Untitled/Untitled.md)―**Puntaje**
+    -  #
+        - [](hack%202/Untitled/Untitled/Untitled.md)―Diseño de estrategia
+        - [](hack%202/Untitled/Untitled/Untitled.md)―Coherencia y justificación de las técnicas de preprocesamiento / features
+        - [](hack%202/Untitled/Untitled/Untitled.md)―6
+    -  #
+        - [](hack%202/Untitled/Untitled/Untitled.md)―Implementación técnica
+        - [](hack%202/Untitled/Untitled/Untitled.md)―Correcta integración en el pipeline, código funcional y reproducible
+        - [](hack%202/Untitled/Untitled/Untitled.md)―6
+    -  #
+        - [](hack%202/Untitled/Untitled/Untitled.md)―Desempeño (clean + corrupt)
+        - [](hack%202/Untitled/Untitled/Untitled.md)―Mejora del modelo en test limpio y corrupto, con enfoque en robustez
+        - [](hack%202/Untitled/Untitled/Untitled.md)―6
+    -  #
+        - [](hack%202/Untitled/Untitled/Untitled.md)―Presentación y defensa
+        - [](hack%202/Untitled/Untitled/Untitled.md)―Claridad, estructura, y capacidad de responder preguntas
+        - [](hack%202/Untitled/Untitled/Untitled.md)―2

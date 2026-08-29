@@ -1,0 +1,10 @@
+{
+  "title": "CIFAR-10 clean and Gaussian noise severities 1-5",
+  "id": "jeffreyamc/cifar10-clean-gaussian-noise-s1-s5",
+  "licenses": [
+    {
+      "name": "other"
+    }
+  ],
+  "description": "Private academic subset containing 10000 CIFAR-10 training images, 3000 clean test images, and the same 3000 test examples corrupted with Gaussian noise at severities 1 through 5. Labels are included for every split. The five severities are evaluated as Nivel 1 through Nivel 5."
+}

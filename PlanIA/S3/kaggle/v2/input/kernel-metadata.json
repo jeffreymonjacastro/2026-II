@@ -1,0 +1,17 @@
+{
+  "id": "jeffreyamc/cifar-10-gaussian-xgboost-preprocessing-v2",
+  "title": "CIFAR-10 Gaussian XGBoost preprocessing v2",
+  "code_file": "cifar10-gaussian-xgboost-preprocessing.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "enable_internet": true,
+  "dataset_sources": [
+    "jeffreyamc/cifar10-clean-gaussian-noise-s1-s5"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

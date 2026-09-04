@@ -1,0 +1,11 @@
+{
+  "title": "Telco Churn S4",
+  "id": "jeffreyamc/telco-churn-s4",
+  "licenses": [
+    {
+      "name": "other"
+    }
+  ],
+  "subtitle": "IBM Telco Customer Churn data for PlanIA Hackathon 3",
+  "description": "Private course dataset copied from the public IBM Telco Customer Churn sample distributed on Kaggle. Contains one row per customer and the Churn target."
+}

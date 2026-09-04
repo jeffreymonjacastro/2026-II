@@ -1,0 +1,17 @@
+{
+  "id": "jeffreyamc/churn-budget-ranking-s4-v2",
+  "title": "Churn Budget Ranking S4 V2",
+  "code_file": "churn_decision_hackathon_v2.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "jeffreyamc/telco-churn-s4"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

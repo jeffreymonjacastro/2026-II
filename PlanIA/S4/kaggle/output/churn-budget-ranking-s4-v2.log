@@ -1,0 +1,247 @@
+[{"stream_name":"stderr","time":7.401033685,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.401100076,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.401104793,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.401107633,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":8.018507129,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.0185386,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.018544821,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.018549182,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":22.657085655,"data":"{'gpu': 'Tesla T4\\nTesla T4', 'torch_cuda': True, 'device': 'cuda:0'}\n"}
+,{"stream_name":"stdout","time":22.778018435,"data":"{'train': (5634, 19), 'test': (1409, 19), 'churn_train': np.float64(0.2653532126375577), 'churn_test': np.float64(0.2654364797728886)}\n"}
+,{"stream_name":"stderr","time":41.824740875,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.008462859,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.027033462,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.027076124,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.027081941,"data":"\n"}
+,{"stream_name":"stderr","time":42.027086969,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.027091744,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.167255717,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.252379187,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.368591029,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.370700715,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.370721427,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.370737954,"data":"\n"}
+,{"stream_name":"stderr","time":42.370743438,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.370749047,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.451074399,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.568951254,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.571329022,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.571354492,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.571360181,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.571393524,"data":"\n"}
+,{"stream_name":"stderr","time":42.571400605,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.571405472,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.5714102,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.678582501,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.796297977,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.881624573,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.881659546,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.88166575,"data":"\n"}
+,{"stream_name":"stderr","time":42.881676528,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.881717377,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":42.911174928,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.032035279,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.113884289,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.113929267,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.113933279,"data":"\n"}
+,{"stream_name":"stderr","time":43.113936025,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.113938609,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.139320497,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.260607834,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.34154233,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.341575873,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.3415814,"data":"\n"}
+,{"stream_name":"stderr","time":43.341596874,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.341601005,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.371955229,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.502804227,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.574845841,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.574889523,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.574895093,"data":"\n"}
+,{"stream_name":"stderr","time":43.574899245,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.574903145,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.616726975,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.733923871,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.819825058,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.819863335,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.819868997,"data":"\n"}
+,{"stream_name":"stderr","time":43.819873047,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.819877174,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.846780439,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":43.978992741,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.049758049,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.049790705,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.049796154,"data":"\n"}
+,{"stream_name":"stderr","time":44.049800514,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.049804899,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.099752641,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.231232816,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.302661542,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.302694265,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.302699072,"data":"\n"}
+,{"stream_name":"stderr","time":44.302702645,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.302706389,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.344601748,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.46949034,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.547566165,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.54761898,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.547623379,"data":"\n"}
+,{"stream_name":"stderr","time":44.547625857,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.54762823,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.581588833,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.702230975,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.784538243,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.784575847,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.784579779,"data":"\n"}
+,{"stream_name":"stderr","time":44.784582418,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.784585067,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.815809294,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":44.938696002,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.018525578,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.018591433,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.018597692,"data":"\n"}
+,{"stream_name":"stderr","time":45.018602437,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.01860657,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.057647229,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.17944567,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.260329613,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.26036387,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.260370047,"data":"\n"}
+,{"stream_name":"stderr","time":45.260376893,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.260380067,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.29189197,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.417396413,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.494509145,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.494547357,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.494551909,"data":"\n"}
+,{"stream_name":"stderr","time":45.494555469,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.494558074,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.591719534,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.713222148,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.794573538,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.794626368,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.794632533,"data":"\n"}
+,{"stream_name":"stderr","time":45.794636828,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":45.794641268,"data":"1 warning generated.\n"}
+,{"stream_name":"stderr","time":47.553883825,"data":"/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":47.553921477,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":47.553925971,"data":"\n"}
+,{"stream_name":"stderr","time":47.553929393,"data":"/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":47.553933312,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":49.903021777,"data":"/usr/local/lib/python3.12/dist-packages/xgboost/core.py:751: UserWarning: [21:12:53] WARNING: /__w/xgboost/xgboost/src/common/error_msg.cc:62: Falling back to prediction using DMatrix due to mismatched devices. This might lead to higher memory usage and slower performance. XGBoost is running on: cuda:0, while the input data is on: cpu.\n"}
+,{"stream_name":"stderr","time":49.903082367,"data":"Potential solutions:\n"}
+,{"stream_name":"stderr","time":49.903088695,"data":"- Use a data structure that matches the device ordinal in the booster.\n"}
+,{"stream_name":"stderr","time":49.903093289,"data":"- Set the device for booster before call to inplace_predict.\n"}
+,{"stream_name":"stderr","time":49.903097879,"data":"\n"}
+,{"stream_name":"stderr","time":49.903101603,"data":"This warning will only be shown once.\n"}
+,{"stream_name":"stderr","time":49.903105151,"data":"\n"}
+,{"stream_name":"stderr","time":49.903108477,"data":"  return func(**kwargs)\n"}
+,{"stream_name":"stderr","time":49.903112263,"data":"\n"}
+,{"stream_name":"stderr","time":49.903115983,"data":"/usr/local/lib/python3.12/dist-packages/xgboost/core.py:751: UserWarning: [21:12:53] WARNING: /__w/xgboost/xgboost/src/common/error_msg.cc:62: Falling back to prediction using DMatrix due to mismatched devices. This might lead to higher memory usage and slower performance. XGBoost is running on: cuda:0, while the input data is on: cpu.\n"}
+,{"stream_name":"stderr","time":49.903121726,"data":"Potential solutions:\n"}
+,{"stream_name":"stderr","time":49.903125386,"data":"- Use a data structure that matches the device ordinal in the booster.\n"}
+,{"stream_name":"stderr","time":49.9031292,"data":"- Set the device for booster before call to inplace_predict.\n"}
+,{"stream_name":"stderr","time":49.903132918,"data":"\n"}
+,{"stream_name":"stderr","time":49.903136473,"data":"This warning will only be shown once.\n"}
+,{"stream_name":"stderr","time":49.903140708,"data":"\n"}
+,{"stream_name":"stderr","time":49.903181308,"data":"  return func(**kwargs)\n"}
+,{"stream_name":"stdout","time":49.94177837,"data":"fold=1/5 mlp_best_epoch=13\n"}
+,{"stream_name":"stderr","time":63.14136921,"data":"/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":63.141401181,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":63.141406434,"data":"\n"}
+,{"stream_name":"stderr","time":63.141410119,"data":"/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":63.141414105,"data":"  warnings.warn(\n"}
+,{"stream_name":"stdout","time":65.308459569,"data":"fold=2/5 mlp_best_epoch=41\n"}
+,{"stream_name":"stderr","time":80.908977779,"data":"/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":80.909048179,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":80.909054006,"data":"\n"}
+,{"stream_name":"stderr","time":80.909057555,"data":"/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":80.909061349,"data":"  warnings.warn(\n"}
+,{"stream_name":"stdout","time":83.063956271,"data":"fold=3/5 mlp_best_epoch=25\n"}
+,{"stream_name":"stderr","time":101.486597953,"data":"/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":101.486628648,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":101.486650604,"data":"\n"}
+,{"stream_name":"stderr","time":101.486655823,"data":"/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":101.486661591,"data":"  warnings.warn(\n"}
+,{"stream_name":"stdout","time":103.646030253,"data":"fold=4/5 mlp_best_epoch=23\n"}
+,{"stream_name":"stderr","time":122.340677129,"data":"/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":122.340731224,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":122.340738428,"data":"\n"}
+,{"stream_name":"stderr","time":122.34075669,"data":"/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":122.340761737,"data":"  warnings.warn(\n"}
+,{"stream_name":"stdout","time":124.285044884,"data":"fold=5/5 mlp_best_epoch=21\n"}
+,{"stream_name":"stdout","time":124.285104669,"data":"{'median_mlp_epoch': 23, 'models': ['MLP', 'CatBoost', 'LightGBM', 'Logistic Regression', 'Random Forest', 'XGBoost']}\n"}
+,{"stream_name":"stdout","time":124.801490528,"data":"              model   selection_source calibrator  roc_auc_oof  pr_auc_oof  brier_oof  profit_oof  planned_interventions_oof  executed_interventions_oof\n"}
+,{"stream_name":"stdout","time":124.801530382,"data":"           CatBoost OOF train (valido)   isotonic       0.8528      0.6620     0.1308      106410                       3679                        3679\n"}
+,{"stream_name":"stdout","time":124.801536632,"data":"                MLP OOF train (valido)   isotonic       0.8480      0.6489     0.1336      106400                       3400                        3400\n"}
+,{"stream_name":"stdout","time":124.801542241,"data":"            XGBoost OOF train (valido)   isotonic       0.8461      0.6521     0.1341      106370                       3843                        3843\n"}
+,{"stream_name":"stdout","time":124.801547734,"data":"Logistic Regression OOF train (valido)   isotonic       0.8484      0.6502     0.1334      106240                       3246                        3246\n"}
+,{"stream_name":"stdout","time":124.801553015,"data":"      Random Forest OOF train (valido)   isotonic       0.8471      0.6483     0.1337      105750                       3525                        3525\n"}
+,{"stream_name":"stdout","time":124.801558292,"data":"           LightGBM OOF train (valido)   isotonic       0.8381      0.6336     0.1375      104970                       3983                        3983\n"}
+,{"stream_name":"stdout","time":124.801563612,"data":"Modelo oficial elegido sin mirar test: CatBoost\n"}
+,{"stream_name":"stderr","time":146.139327472,"data":"/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":146.139389864,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":146.139396063,"data":"\n"}
+,{"stream_name":"stderr","time":146.139399487,"data":"/usr/local/lib/python3.12/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":146.139418815,"data":"  warnings.warn(\n"}
+,{"stream_name":"stdout","time":150.170083508,"data":"              model   selection_source calibrator  roc_auc_oof  pr_auc_oof  brier_oof  profit_oof  planned_interventions_oof  executed_interventions_oof                           test_analysis  roc_auc_test  pr_auc_test  brier_test  profit_test  planned_interventions_test  executed_interventions_test  final_budget_test  stopped_for_budget\n"}
+,{"stream_name":"stdout","time":150.170130357,"data":"           CatBoost OOF train (valido)   isotonic       0.8528      0.6620     0.1308      106410                       3679                        3679 retrospectivo, no valido para seleccion        0.8440       0.6388      0.1362        26660                         914                          914              27660               False\n"}
+,{"stream_name":"stdout","time":150.170167234,"data":"                MLP OOF train (valido)   isotonic       0.8480      0.6489     0.1336      106400                       3400                        3400 retrospectivo, no valido para seleccion        0.8419       0.6079      0.1388        26550                         875                          875              27550               False\n"}
+,{"stream_name":"stdout","time":150.170174199,"data":"            XGBoost OOF train (valido)   isotonic       0.8461      0.6521     0.1341      106370                       3843                        3843 retrospectivo, no valido para seleccion        0.8411       0.6367      0.1378        26340                         966                          966              27340               False\n"}
+,{"stream_name":"stdout","time":150.170179919,"data":"Logistic Regression OOF train (valido)   isotonic       0.8484      0.6502     0.1334      106240                       3246                        3246 retrospectivo, no valido para seleccion        0.8416       0.6179      0.1379        26520                         798                          798              27520               False\n"}
+,{"stream_name":"stdout","time":150.170185547,"data":"      Random Forest OOF train (valido)   isotonic       0.8471      0.6483     0.1337      105750                       3525                        3525 retrospectivo, no valido para seleccion        0.8403       0.6407      0.1370        26180                         882                          882              27180               False\n"}
+,{"stream_name":"stdout","time":150.170192962,"data":"           LightGBM OOF train (valido)   isotonic       0.8381      0.6336     0.1375      104970                       3983                        3983 retrospectivo, no valido para seleccion        0.8311       0.6214      0.1403        25910                        1019                         1019              26910               False\n"}
+,{"stream_name":"stdout","time":150.17019814,"data":"                           strategy  profit  interventions                     comparison_note\n"}
+,{"stream_name":"stdout","time":150.170202561,"data":"    Modelo oficial CatBoost, p\u003e0.10 26660.0            914            seleccion valida por OOF\n"}
+,{"stream_name":"stdout","time":150.170207461,"data":"                   CatBoost Top-20% 16380.0            282     regla anterior con modelo nuevo\n"}
+,{"stream_name":"stdout","time":150.170211714,"data":"Aleatorio (media 1000 repeticiones) 15121.1            914             misma cantidad planeada\n"}
+,{"stream_name":"stdout","time":150.170216011,"data":"             Aleatorio percentil 95 16260.0            914             misma cantidad planeada\n"}
+,{"stream_name":"stdout","time":150.170220088,"data":"                            Oraculo 33660.0            374        techo teorico, usa etiquetas\n"}
+,{"stream_name":"stdout","time":150.170224416,"data":"          Historico XGBoost Top-20% 16080.0            282 no comparable: restriccion anterior\n"}
+,{"stream_name":"stdout","time":150.872028406,"data":"{\n"}
+,{"stream_name":"stdout","time":150.872066233,"data":"  \"status\": \"complete\",\n"}
+,{"stream_name":"stdout","time":150.872085419,"data":"  \"stage\": \"done\",\n"}
+,{"stream_name":"stdout","time":150.872090394,"data":"  \"seed\": 42,\n"}
+,{"stream_name":"stdout","time":150.872095093,"data":"  \"gpu\": \"Tesla T4\\nTesla T4\",\n"}
+,{"stream_name":"stdout","time":150.872099061,"data":"  \"cuda_available\": true,\n"}
+,{"stream_name":"stdout","time":150.872102973,"data":"  \"artifacts\": [\n"}
+,{"stream_name":"stdout","time":150.872107491,"data":"    \"intervention_ledger.csv\",\n"}
+,{"stream_name":"stdout","time":150.872110921,"data":"    \"model_metrics.csv\",\n"}
+,{"stream_name":"stdout","time":150.87211433,"data":"    \"strategy_comparison.csv\",\n"}
+,{"stream_name":"stdout","time":150.872117373,"data":"    \"calibration_metrics.csv\",\n"}
+,{"stream_name":"stdout","time":150.872120621,"data":"    \"training_times.csv\",\n"}
+,{"stream_name":"stdout","time":150.872123865,"data":"    \"profit_curve.png\",\n"}
+,{"stream_name":"stdout","time":150.872127361,"data":"    \"calibration_curve.png\",\n"}
+,{"stream_name":"stdout","time":150.872130821,"data":"    \"run_summary.json\",\n"}
+,{"stream_name":"stdout","time":150.872134699,"data":"    \"second_iteration.md\"\n"}
+,{"stream_name":"stdout","time":150.872139486,"data":"  ],\n"}
+,{"stream_name":"stdout","time":150.872162256,"data":"  \"dataset_path\": \"/kaggle/input/datasets/jeffreyamc/telco-churn-s4/telco.csv\",\n"}
+,{"stream_name":"stdout","time":150.872166962,"data":"  \"rows\": 7043,\n"}
+,{"stream_name":"stdout","time":150.872170528,"data":"  \"train_rows\": 5634,\n"}
+,{"stream_name":"stdout","time":150.87217384,"data":"  \"test_rows\": 1409,\n"}
+,{"stream_name":"stdout","time":150.872177133,"data":"  \"official_model\": \"CatBoost\",\n"}
+,{"stream_name":"stdout","time":150.872180481,"data":"  \"selection_basis\": \"OOF train sequential profit\",\n"}
+,{"stream_name":"stdout","time":150.872184633,"data":"  \"retrospective_test_winner\": \"CatBoost\",\n"}
+,{"stream_name":"stdout","time":150.872188332,"data":"  \"retrospective_warning\": \"retrospectivo, no valido para seleccion\",\n"}
+,{"stream_name":"stdout","time":150.872192329,"data":"  \"calibrator\": \"isotonic\",\n"}
+,{"stream_name":"stdout","time":150.872196769,"data":"  \"mlp_final_epochs\": 23,\n"}
+,{"stream_name":"stdout","time":150.872200348,"data":"  \"initial_budget\": 1000,\n"}
+,{"stream_name":"stdout","time":150.872203764,"data":"  \"final_budget\": 27660,\n"}
+,{"stream_name":"stdout","time":150.872207708,"data":"  \"profit\": 26660,\n"}
+,{"stream_name":"stdout","time":150.872211924,"data":"  \"planned_interventions\": 914,\n"}
+,{"stream_name":"stdout","time":150.872215597,"data":"  \"executed_interventions\": 914,\n"}
+,{"stream_name":"stdout","time":150.872220021,"data":"  \"stopped_for_budget\": false,\n"}
+,{"stream_name":"stdout","time":150.872223968,"data":"  \"improved_vs_historical_16080\": true\n"}
+,{"stream_name":"stdout","time":150.87222786,"data":"}\n"}
+,{"stream_name":"stderr","time":156.87899555,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":156.879060027,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":157.040782459,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":157.040839811,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":157.643192785,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":157.981463459,"data":"[NbConvertApp] Writing 180376 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":160.446334947,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":161.458350829,"data":"[NbConvertApp] Support files will be in __results___files/\n"}
+,{"stream_name":"stderr","time":161.45837872,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":161.458734909,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":161.458999403,"data":"[NbConvertApp] Writing 422319 bytes to __results__.html\n"}
+]

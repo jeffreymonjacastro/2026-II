@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "model": "CatBoost",
+  "gpu": "Tesla T4\nTesla T4",
+  "seed": 42,
+  "calibration": "isotonic sobre scores OOF",
+  "initial_budget": 1000,
+  "minimum_expected_budget": 27660,
+  "final_budget": 27700,
+  "profit": 26700,
+  "planned_interventions": 920,
+  "executed_interventions": 920,
+  "successes": 359,
+  "failures": 561,
+  "stopped_for_budget": false,
+  "roc_auc_test": 0.8439381022501228,
+  "pr_auc_test": 0.633600128934224,
+  "brier_test": 0.13653561055449098
+}

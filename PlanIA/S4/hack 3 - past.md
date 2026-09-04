@@ -1,0 +1,176 @@
+- ## **Trabajo/Hackathon 3: Modelado de Churn: del modelo a la decisión óptima**
+- **Profa. Dra. Aurea Soriano-Vargas**
+- En grupos de hasta 4 personas:
+- El objetivo de este trabajo es que los estudiantes diseñen e implementen **un sistema completo de modelado de churn**, desde el entendimiento del problema hasta la toma de decisiones bajo restricciones reales.
+- Se espera que el estudiante:
+    - comprenda el impacto crítico del planteamiento del problema
+    - diseñe modelos adecuados para clasificación en contextos reales
+    - evalúe métricas más allá de accuracy
+    - desarrolle estrategias de decisión bajo restricciones
+    - entienda la relación entre modelo, datos y negocio
+- ## **Contexto**
+- En aplicaciones reales de inteligencia artificial, el mayor desafío no es entrenar un modelo, sino **definir correctamente el problema y tomar decisiones útiles a partir de él**.
+- En este trabajo, se abordará un problema clásico de negocio: **la predicción de abandono de clientes (churn)**.
+- Se utilizará el dataset público: **Telco Customer Churn (IBM)**
+- [https://www.kaggle.com/datasets/blastchar/telco-customer-churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
+- Este dataset contiene información de clientes de telecomunicaciones, incluyendo variables demográficas, servicios contratados y comportamiento de facturación.
+- El objetivo no es únicamente predecir churn, sino responder:
+- **¿A qué clientes debería intervenir la empresa para maximizar la retención?**
+- ## **Restricción fundamental**
+- El problema no es únicamente predecir churn.
+- La empresa tiene recursos limitados:
+    - Solo puede intervenir sobre el **20% de los clientes**
+    - Cada intervención tiene un costo
+    - Intervenir cuesta: 10
+    - Retener un cliente vale: 100
+- Por lo tanto:
+- ❗ El objetivo NO es maximizar accuracy
+- ❗ El objetivo es tomar la mejor decisión posible
+- Cada grupo debe:
+    - definir su propio pipeline
+    - seleccionar su(s) modelo(s)
+    - justificar todas las decisiones
+- No se aceptarán soluciones sin justificación técnica.
+    - ## **Pasos de la actividad**
+- ### **1. Planteamiento del problema**
+- Cada grupo deberá:
+    - definir claramente el problema de ML
+    - decidir:
+        - variable objetivo
+        - tipo de modelo
+        - métricas relevantes
+- ### **2. Análisis de datos**
+    - exploración del dataset
+    - análisis de distribución de variables
+    - detección de desbalance
+    - identificación de problemas en los datos
+- ### **3. Diseño de pipeline**
+- Cada grupo deberá construir desde cero:
+    - preprocesamiento
+    - transformación de variables
+    - encoding
+    - selección de features
+    - división de datos
+- ### **4. Modelado**
+- Dividir el dataset en 80% para entrenamiento y 20% para test.
+- Los grupos pueden explorar:
+    - Regresión logística
+    - Árboles de decisión
+    - Random Forest / XGBoost
+    - SVM
+    - Redes neuronales
+    - etc.
+- Se deberá justificar:
+    - por qué ese modelo
+    - qué ventajas ofrece
+    - qué limitaciones tiene
+- ### **5. Evaluación**
+- Se espera el uso de métricas adecuadas.
+- ### **6. Toma de decisión (parte central)**
+- Cada grupo deberá responder:
+- **¿A qué clientes intervenir para maximizar la retención?**
+- Se debe definir:
+    - estrategia de selección (Top-K o threshold)
+    - función de costo/beneficio
+    - análisis de trade-offs
+- 
+- **EXPLICACIÓN: ¿Cómo tomar una decisión?**
+    - ## El modelo **NO debe decir que “este cliente se va o no”**. Debe decir algo mucho más útil:   *“Este cliente tiene 0.82 de probabilidad de irse”*     *“Este otro tiene 0.15”* 
+    - O sea, darnos un **ranking de riesgo**.
+    - La empresa no puede actuar sobre todos. Tiene una restricción: Solo puede intervenir sobre el **20% de clientes**
+    - Entonces la pregunta cambia completamente: Ya no es “¿quién se va?” Es **“¿en quién vale la pena intervenir?”**
+    - **Pasos sugeridos:**
+    - Paso 1: Predecir probabilidades: Cada cliente tiene un score de churn
+    - Paso 2: Ordenar clientes por riesgo
+- Ejemplo:
+    - ### Paso 3: Aplicar restricción (Top-K). Si tienen 1000 clientes: Solo pueden intervenir en 20%→**200 clientes.**  Entonces seleccionan: Los **200 clientes con mayor probabilidad de churn.**
+    - ### Paso 4: Evaluar si esa decisión fue buena
+    - Intervenir cuesta: **10**
+    - Retener un cliente vale: **100**
+    - Entonces calculan:  Profit = (clientes correctamente retenidos × 100)− (clientes intervenidos × 10)
+        - # clientes en el top
+- --------------------- Portal ---------------------
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―**Cliente**
+        - [](hack%203/Untitled/Untitled/Untitled.md)―**Probabilidad churn**
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―A
+        - [](hack%203/Untitled/Untitled/Untitled.md)―0.92
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―B
+        - [](hack%203/Untitled/Untitled/Untitled.md)―0.85
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―C
+        - [](hack%203/Untitled/Untitled/Untitled.md)―0.80
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―...
+        - [](hack%203/Untitled/Untitled/Untitled.md)―...
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Z
+        - [](hack%203/Untitled/Untitled/Untitled.md)―0.03
+- 
+- --------------------- Portal ---------------------
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―**Probabilidad churn**
+        - [](hack%203/Untitled/Untitled/Untitled.md)―**Real (¿se iba?)**
+        - [](hack%203/Untitled/Untitled/Untitled.md)―**¿Intervenido?**
+        - [](hack%203/Untitled/Untitled/Untitled.md)―**Resultado**
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―0.9
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Sí (1)
+        - [](hack%203/Untitled/Untitled/Untitled.md)―✅
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Retenido ✅
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―0.8 
+        - [](hack%203/Untitled/Untitled/Untitled.md)―No (0)
+        - [](hack%203/Untitled/Untitled/Untitled.md)―✅
+        - [](hack%203/Untitled/Untitled/Untitled.md)―No hacía falta ❌
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―0.2
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Sí (1)
+        - [](hack%203/Untitled/Untitled/Untitled.md)―❌
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Perdido ❌
+- Retenidos: 1, Intervenidos: 2
+- Retuviste alguien que se iba→+100
+- Gastaste dinero en 2 intervenciones→-20
+- Profit total = 80/2 (2 estaban en el top)
+    - ## **Otra variante:** En lugar de usar Top-K, pueden usar **threshold**:
+        - ## Ejemplo: intervenir si probabilidad > 0.7 Pero eso puede dar: 10% de clientes o 50%
+        - ## Entonces deben ajustar el threshold para cumplir el 20%
+    - El modelo ≠ decisión
+    - Probabilidad ≠ acción
+    - Métrica ≠ negocio
+- ## **Presentación grupal (obligatoria)**
+- Cada grupo deberá realizar una presentación de 10–12 minutos, donde:
+    - expliquen su enfoque desde el problema
+    - justifiquen decisiones técnicas
+    - presenten resultados
+    - expliquen su estrategia de decisión
+    - respondan preguntas críticas
+- # **Rúbrica de Evaluación (20 puntos)**
+- 
+- --------------------- Portal ---------------------
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―**Criterio**
+        - [](hack%203/Untitled/Untitled/Untitled.md)―**Descripción**
+        - [](hack%203/Untitled/Untitled/Untitled.md)―**Pts**
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Planteamiento del problema
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Claridad y correcta formulación del problema de ML
+        - [](hack%203/Untitled/Untitled/Untitled.md)―4
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Diseño de pipeline
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Coherencia y calidad del pipeline construido
+        - [](hack%203/Untitled/Untitled/Untitled.md)―6
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Modelado y evaluación
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Uso adecuado de modelos y métricas
+        - [](hack%203/Untitled/Untitled/Untitled.md)―4
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Estrategia de decisión
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Calidad y justificación de la decisión final
+        - [](hack%203/Untitled/Untitled/Untitled.md)―4
+    -  #
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Presentación y defensa
+        - [](hack%203/Untitled/Untitled/Untitled.md)―Claridad y capacidad crítica
+        - [](hack%203/Untitled/Untitled/Untitled.md)―2

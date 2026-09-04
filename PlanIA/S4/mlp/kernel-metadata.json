@@ -1,0 +1,15 @@
+{
+  "id": "jeffreyamc/churn-mlp-final-s4",
+  "title": "Churn MLP Final S4",
+  "code_file": "churn_mlp_final.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": false,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": ["jeffreyamc/telco-churn-s4"],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

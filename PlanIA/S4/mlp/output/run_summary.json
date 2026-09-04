@@ -1,0 +1,21 @@
+{
+  "status": "complete",
+  "model": "MLP",
+  "gpu": "Tesla T4\nTesla T4",
+  "seed": 42,
+  "architecture": "Dense(64)-ReLU-Dropout(0.2)-Dense(32)-ReLU-Dropout(0.1)-Dense(1)",
+  "calibration": "isotonic sobre scores OOF",
+  "final_epochs": 23,
+  "initial_budget": 1000,
+  "minimum_expected_budget": 27550,
+  "final_budget": 27550,
+  "profit": 26550,
+  "planned_interventions": 875,
+  "executed_interventions": 875,
+  "successes": 353,
+  "failures": 522,
+  "stopped_for_budget": false,
+  "roc_auc_test": 0.8418985248908523,
+  "pr_auc_test": 0.6079390497871416,
+  "brier_test": 0.13875124137258407
+}

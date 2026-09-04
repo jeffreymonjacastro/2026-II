@@ -1,0 +1,44 @@
+[{"stream_name":"stderr","time":6.495261599,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.495328077,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.495332813,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.495335427,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":7.079523761,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.079559315,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.079565173,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.079569419,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":11.663794739,"data":"{'gpu': 'Tesla T4\\nTesla T4', 'train': (5634, 19), 'test': (1409, 19)}\n"}
+,{"stream_name":"stdout","time":22.001773197,"data":"fold=1/5\n"}
+,{"stream_name":"stdout","time":30.005674088,"data":"fold=2/5\n"}
+,{"stream_name":"stdout","time":41.497494188,"data":"fold=3/5\n"}
+,{"stream_name":"stdout","time":55.435028736,"data":"fold=4/5\n"}
+,{"stream_name":"stdout","time":68.406515863,"data":"fold=5/5\n"}
+,{"stream_name":"stdout","time":68.406561266,"data":"{'roc_auc_oof': np.float64(0.8528), 'pr_auc_oof': np.float64(0.6627), 'brier_oof': np.float64(0.131)}\n"}
+,{"stream_name":"stdout","time":85.85924298,"data":"{'planned_interventions': 920, 'minimum_score': 0.10309278350515463}\n"}
+,{"stream_name":"stdout","time":85.901261388,"data":"{\n"}
+,{"stream_name":"stdout","time":85.901322939,"data":"  \"status\": \"complete\",\n"}
+,{"stream_name":"stdout","time":85.901328865,"data":"  \"model\": \"CatBoost\",\n"}
+,{"stream_name":"stdout","time":85.901333728,"data":"  \"gpu\": \"Tesla T4\\nTesla T4\",\n"}
+,{"stream_name":"stdout","time":85.901338732,"data":"  \"seed\": 42,\n"}
+,{"stream_name":"stdout","time":85.901343975,"data":"  \"calibration\": \"isotonic sobre scores OOF\",\n"}
+,{"stream_name":"stdout","time":85.901348959,"data":"  \"initial_budget\": 1000,\n"}
+,{"stream_name":"stdout","time":85.901353678,"data":"  \"minimum_expected_budget\": 27660,\n"}
+,{"stream_name":"stdout","time":85.901358788,"data":"  \"final_budget\": 27700,\n"}
+,{"stream_name":"stdout","time":85.901363508,"data":"  \"profit\": 26700,\n"}
+,{"stream_name":"stdout","time":85.901368151,"data":"  \"planned_interventions\": 920,\n"}
+,{"stream_name":"stdout","time":85.901372861,"data":"  \"executed_interventions\": 920,\n"}
+,{"stream_name":"stdout","time":85.901377632,"data":"  \"successes\": 359,\n"}
+,{"stream_name":"stdout","time":85.901382359,"data":"  \"failures\": 561,\n"}
+,{"stream_name":"stdout","time":85.901387001,"data":"  \"stopped_for_budget\": false,\n"}
+,{"stream_name":"stdout","time":85.901391879,"data":"  \"roc_auc_test\": 0.8439381022501228,\n"}
+,{"stream_name":"stdout","time":85.901396687,"data":"  \"pr_auc_test\": 0.633600128934224,\n"}
+,{"stream_name":"stdout","time":85.90140146,"data":"  \"brier_test\": 0.13653561055449098\n"}
+,{"stream_name":"stdout","time":85.901406194,"data":"}\n"}
+,{"stream_name":"stderr","time":88.718507709,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":88.718536733,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":88.865315633,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":88.865347109,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":89.452087483,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":89.761808226,"data":"[NbConvertApp] Writing 16307 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":92.16782221,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":92.994499992,"data":"[NbConvertApp] Writing 313128 bytes to __results__.html\n"}
+]

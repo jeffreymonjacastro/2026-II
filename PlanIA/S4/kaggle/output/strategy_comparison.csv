@@ -1,0 +1,7 @@
+strategy,profit,interventions,comparison_note
+"Modelo oficial CatBoost, p>0.10",26660.0,914,seleccion valida por OOF
+CatBoost Top-20%,16380.0,282,regla anterior con modelo nuevo
+Aleatorio (media 1000 repeticiones),15121.1,914,misma cantidad planeada
+Aleatorio percentil 95,16260.0,914,misma cantidad planeada
+Oraculo,33660.0,374,"techo teorico, usa etiquetas"
+Historico XGBoost Top-20%,16080.0,282,no comparable: restriccion anterior

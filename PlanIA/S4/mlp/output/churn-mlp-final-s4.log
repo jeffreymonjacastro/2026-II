@@ -1,0 +1,45 @@
+[{"stream_name":"stderr","time":6.312173572,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.312238331,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.312245223,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.312248548,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":6.877985027,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.878014412,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.878018102,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.878020772,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":14.942293635,"data":"{'gpu': 'Tesla T4\\nTesla T4', 'train': (5634, 19), 'test': (1409, 19)}\n"}
+,{"stream_name":"stdout","time":22.836332397,"data":"fold=1/5 best_epoch=13\n"}
+,{"stream_name":"stdout","time":26.042288687,"data":"fold=2/5 best_epoch=41\n"}
+,{"stream_name":"stdout","time":28.377023158,"data":"fold=3/5 best_epoch=25\n"}
+,{"stream_name":"stdout","time":30.753842726,"data":"fold=4/5 best_epoch=23\n"}
+,{"stream_name":"stdout","time":32.712976749,"data":"fold=5/5 best_epoch=21\n"}
+,{"stream_name":"stdout","time":32.713018751999996,"data":"{'final_epochs': 23, 'roc_auc_oof': np.float64(0.848), 'pr_auc_oof': np.float64(0.6489), 'brier_oof': np.float64(0.1336)}\n"}
+,{"stream_name":"stdout","time":34.442356374,"data":"{\n"}
+,{"stream_name":"stdout","time":34.442393638,"data":"  \"status\": \"complete\",\n"}
+,{"stream_name":"stdout","time":34.442408795,"data":"  \"model\": \"MLP\",\n"}
+,{"stream_name":"stdout","time":34.44241435,"data":"  \"gpu\": \"Tesla T4\\nTesla T4\",\n"}
+,{"stream_name":"stdout","time":34.442421696,"data":"  \"seed\": 42,\n"}
+,{"stream_name":"stdout","time":34.442430325,"data":"  \"architecture\": \"Dense(64)-ReLU-Dropout(0.2)-Dense(32)-ReLU-Dropout(0.1)-Dense(1)\",\n"}
+,{"stream_name":"stdout","time":34.442434563,"data":"  \"calibration\": \"isotonic sobre scores OOF\",\n"}
+,{"stream_name":"stdout","time":34.442456524,"data":"  \"final_epochs\": 23,\n"}
+,{"stream_name":"stdout","time":34.442462616,"data":"  \"initial_budget\": 1000,\n"}
+,{"stream_name":"stdout","time":34.442468403,"data":"  \"minimum_expected_budget\": 27550,\n"}
+,{"stream_name":"stdout","time":34.442473657,"data":"  \"final_budget\": 27550,\n"}
+,{"stream_name":"stdout","time":34.442479644,"data":"  \"profit\": 26550,\n"}
+,{"stream_name":"stdout","time":34.442485262,"data":"  \"planned_interventions\": 875,\n"}
+,{"stream_name":"stdout","time":34.442490468,"data":"  \"executed_interventions\": 875,\n"}
+,{"stream_name":"stdout","time":34.44249553,"data":"  \"successes\": 353,\n"}
+,{"stream_name":"stdout","time":34.442500519,"data":"  \"failures\": 522,\n"}
+,{"stream_name":"stdout","time":34.442505364,"data":"  \"stopped_for_budget\": false,\n"}
+,{"stream_name":"stdout","time":34.442510383,"data":"  \"roc_auc_test\": 0.8418985248908523,\n"}
+,{"stream_name":"stdout","time":34.442515397,"data":"  \"pr_auc_test\": 0.6079390497871416,\n"}
+,{"stream_name":"stdout","time":34.442520394,"data":"  \"brier_test\": 0.13875124137258407\n"}
+,{"stream_name":"stdout","time":34.442525314,"data":"}\n"}
+,{"stream_name":"stderr","time":39.58998503,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":39.590037392,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":39.73293062,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":39.732958485,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":40.312773616,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":40.60604315,"data":"[NbConvertApp] Writing 19495 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":42.997006736,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":43.83014855,"data":"[NbConvertApp] Writing 329031 bytes to __results__.html\n"}
+]

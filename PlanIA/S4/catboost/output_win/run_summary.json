@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "model": "CatBoost",
+  "runtime": "Windows CPU",
+  "seed": 42,
+  "calibration": "isotonic sobre scores OOF",
+  "initial_budget": 1000,
+  "minimum_expected_budget": 27420,
+  "final_budget": 27420,
+  "profit": 26420,
+  "planned_interventions": 898,
+  "executed_interventions": 898,
+  "successes": 354,
+  "failures": 544,
+  "stopped_for_budget": false,
+  "roc_auc_test": 0.8441486476013329,
+  "pr_auc_test": 0.6448143495601628,
+  "brier_test": 0.13583062561598225
+}

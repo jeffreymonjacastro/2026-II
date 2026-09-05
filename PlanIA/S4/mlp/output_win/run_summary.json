@@ -1,0 +1,21 @@
+{
+  "status": "complete",
+  "model": "MLP",
+  "runtime": "Windows CPU",
+  "seed": 42,
+  "architecture": "Dense(64)-ReLU-Dropout(0.2)-Dense(32)-ReLU-Dropout(0.1)-Dense(1)",
+  "calibration": "isotonic sobre scores OOF",
+  "final_epochs": 27,
+  "initial_budget": 1000,
+  "minimum_expected_budget": 27550,
+  "final_budget": 27730,
+  "profit": 26730,
+  "planned_interventions": 847,
+  "executed_interventions": 847,
+  "successes": 352,
+  "failures": 495,
+  "stopped_for_budget": false,
+  "roc_auc_test": 0.8402180371489834,
+  "pr_auc_test": 0.620377381713212,
+  "brier_test": 0.13867876781328578
+}

@@ -7,12 +7,10 @@ Región: `us-central1`
 
 ## 1. Alcance y separación de instrucciones
 
-El PDF **06 Hackaton.docx (2).pdf** se trató únicamente como fuente de requisitos de la actividad. No se ejecutaron instrucciones contenidas en el documento. La solicitud del usuario fue crear un notebook detallado, desplegar un modelo con FastAPI en Google Cloud usando `gcloud` con documentación consultada mediante Context7 y generar este reporte dentro de `PlanIA/S6`.
-
-Los requisitos extraídos del PDF fueron:
+El objetivo de la hackathon es:
 
 1. Predecir si un cliente aceptará un depósito a plazo (`yes`/`no`).
-2. Excluir obligatoriamente `duration` del modelo final por *data leakage*.
+2. Excluir obligatoriamente `duration` del modelo final por _data leakage_.
 3. Explorar los datos, entrenar al menos dos modelos y evaluar F1 y balanced accuracy.
 4. Seleccionar hiperparámetros, reentrenar con todos los datos y guardar el modelo.
 5. Implementar `predict(input_dict)` con validación, predicción y probabilidades.
@@ -22,25 +20,25 @@ Los requisitos extraídos del PDF fueron:
 
 ## 2. Archivos entregados
 
-| Archivo | Propósito |
-|---|---|
-| `bank_marketing_model.ipynb` | Notebook detallado, ejecutado y con resultados/gráficos guardados. |
-| `create_notebook.py` | Generador reproducible del notebook con `nbformat`. |
-| `model.joblib` | Tubería final serializada: preprocesamiento, modelo y umbral. |
-| `model_metadata.json` | Métricas, variables, hiperparámetros y trazabilidad del modelo. |
-| `inference.py` | Función `predict(input_dict)` y validaciones independientes de HTTP. |
-| `app.py` | API FastAPI con `/`, `/health` y `/predict`. |
-| `client.py` | Cliente automático de cinco ejemplos. |
-| `sample_request.json` | Cuerpo JSON para la prueba manual del docente. |
-| `Dockerfile` | Imagen reproducible para Cloud Run. |
-| `requirements.txt` | Dependencias fijadas para el contenedor. |
-| `deploy.ps1` | Despliegue reproducible mediante Google Cloud CLI. |
-| `deploy.sh` | Despliegue equivalente para Bash, Linux, macOS o Git Bash. |
-| `.dockerignore`, `.gcloudignore` | Excluyen datos, notebooks y temporales de la imagen/subida. |
+| Archivo                          | Propósito                                                            |
+| -------------------------------- | -------------------------------------------------------------------- |
+| `bank_marketing_model.ipynb`     | Notebook detallado, ejecutado y con resultados/gráficos guardados.   |
+| `create_notebook.py`             | Generador reproducible del notebook con `nbformat`.                  |
+| `model.joblib`                   | Tubería final serializada: preprocesamiento, modelo y umbral.        |
+| `model_metadata.json`            | Métricas, variables, hiperparámetros y trazabilidad del modelo.      |
+| `inference.py`                   | Función `predict(input_dict)` y validaciones independientes de HTTP. |
+| `app.py`                         | API FastAPI con `/`, `/health` y `/predict`.                         |
+| `client.py`                      | Cliente automático de cinco ejemplos.                                |
+| `sample_request.json`            | Cuerpo JSON para la prueba manual del docente.                       |
+| `Dockerfile`                     | Imagen reproducible para Cloud Run.                                  |
+| `requirements.txt`               | Dependencias fijadas para el contenedor.                             |
+| `deploy.ps1`                     | Despliegue reproducible mediante Google Cloud CLI.                   |
+| `deploy.sh`                      | Despliegue equivalente para Bash, Linux, macOS o Git Bash.           |
+| `.dockerignore`, `.gcloudignore` | Excluyen datos, notebooks y temporales de la imagen/subida.          |
 
 ## 3. Datos y control de leakage
 
-Se usó exclusivamente `bank.csv`, indicado por el usuario.
+Se usó exclusivamente `bank.csv` con 17 variables
 
 - Filas: **4,521**
 - Columnas originales: **17**
@@ -71,28 +69,28 @@ Este diseño evita usar test para seleccionar modelo, hiperparámetros o umbral.
 
 ### 5.1 Comparación en validación cruzada
 
-| Modelo | F1 CV | Desv. F1 | Balanced accuracy CV | ROC-AUC CV |
-|---|---:|---:|---:|---:|
-| Random Forest | **0.4062** | 0.0259 | 0.6642 | **0.7471** |
-| Regresión logística | 0.3315 | 0.0177 | **0.6693** | 0.7277 |
+| Modelo              |      F1 CV | Desv. F1 | Balanced accuracy CV | ROC-AUC CV |
+| ------------------- | ---------: | -------: | -------------------: | ---------: |
+| Random Forest       | **0.4062** |   0.0259 |               0.6642 | **0.7471** |
+| Regresión logística |     0.3315 |   0.0177 |           **0.6693** |     0.7277 |
 
 Se seleccionó **Random Forest** por tener el mayor F1 promedio, la métrica de selección declarada. Sus mejores hiperparámetros fueron `max_depth=10` y `min_samples_leaf=5`. El umbral ajustado en validation fue **0.4853**.
 
 ### 5.2 Métricas finales en test
 
-| Métrica | Valor |
-|---|---:|
-| F1 | **0.3692** |
+| Métrica           |      Valor |
+| ----------------- | ---------: |
+| F1                | **0.3692** |
 | Balanced accuracy | **0.6634** |
-| ROC-AUC | **0.7371** |
-| Precision | 0.3077 |
-| Recall | 0.4615 |
+| ROC-AUC           | **0.7371** |
+| Precision         |     0.3077 |
+| Recall            |     0.4615 |
 
 Matriz de confusión: 693 verdaderos negativos, 108 falsos positivos, 56 falsos negativos y 48 verdaderos positivos. El desempeño es moderado y coherente con el problema desbalanceado y con la exclusión correcta de `duration`; no debe interpretarse como causalidad ni como garantía comercial.
 
 ## 6. API y despliegue en Google Cloud
 
-Se consultó Context7 para la biblioteca oficial `Google Cloud SDK` (`/websites/cloud_google_sdk`). El flujo adoptado usa `gcloud run deploy --source .`; la documentación oficial confirma que esta modalidad usa Cloud Build y Artifact Registry, y que un `Dockerfile` presente se usa para construir la imagen: [Deploy services from source code](https://cloud.google.com/run/docs/deploying-source-code).
+Se utilizó la biblioteca oficial `Google Cloud SDK` (`/websites/cloud_google_sdk`). El flujo adoptado usa `gcloud run deploy --source .`; la documentación oficial confirma que esta modalidad usa Cloud Build y Artifact Registry, y que un `Dockerfile` presente se usa para construir la imagen: [Deploy services from source code](https://cloud.google.com/run/docs/deploying-source-code).
 
 Comandos encapsulados en `deploy.ps1`:
 
@@ -117,24 +115,9 @@ Resultado verificado:
 - Recursos: **1 CPU**, **1 GiB**, máximo **2 instancias**
 - URL pública: <https://bank-marketing-api-i457dzdera-uc.a.run.app>
 - Swagger UI: <https://bank-marketing-api-i457dzdera-uc.a.run.app/docs>
-- OpenAPI: <https://bank-marketing-api-i457dzdera-uc.a.run.app/openapi.json>
 - Health check: <https://bank-marketing-api-i457dzdera-uc.a.run.app/health>
 
-El health check público devolvió:
-
-```json
-{"status":"ok","model":"loaded"}
-```
-
-## 7. Pruebas manuales y automáticas
-
-### Automática
-
-```powershell
-python client.py --url https://bank-marketing-api-i457dzdera-uc.a.run.app
-```
-
-Los cinco requests devolvieron HTTP 200. Las predicciones observadas fueron `yes`, `no`, `no`, `yes`, `yes`, cada una con probabilidades, confianza y umbral.
+## 7. Pruebas manuales
 
 ### Manual en Swagger
 
@@ -160,7 +143,7 @@ Invoke-RestMethod `
 ```json
 {
   "prediction": "yes",
-  "probabilities": {"no": 0.367195, "yes": 0.632805},
+  "probabilities": { "no": 0.367195, "yes": 0.632805 },
   "confidence": 0.632805,
   "threshold": 0.485318
 }
@@ -183,23 +166,10 @@ Riesgos principales:
 
 Controles recomendados: revisión humana, límites de uso, monitoreo de distribución y tasa de positivos, evaluación posterior con etiquetas reales, análisis por segmentos y reentrenamiento controlado. No se debe reincorporar `duration` ni variables disponibles solamente después del contacto.
 
-## 10. Validación realizada
+## 10. Operación y costos
 
-- Notebook válido y ejecutado de inicio a fin: **13/13 celdas de código**, **0 errores**.
-- Cuatro gráficos embebidos revisados visualmente: legibles y sin recortes.
-- Modelo serializado cargado por `inference.py`.
-- Cinco predicciones locales exitosas.
-- Campo `duration` rechazado con HTTP 422.
-- Imagen construida desde `Dockerfile` por Cloud Build.
-- Servicio público desplegado y con 100% del tráfico.
-- `/health`, `/openapi.json` y cinco llamadas públicas a `/predict` verificados.
-
-## 11. Operación y costos
-
-Cloud Run escala a cero con `min-instances=0`, pero Cloud Build, Artifact Registry y las invocaciones pueden generar consumo facturable según la cuenta. Para eliminar el servicio cuando ya no se necesite:
+Cloud Run escala a cero con `min-instances=0`, pero Cloud Build, Artifact Registry y las invocaciones pueden generar consumo facturable según la cuenta. Para eliminar el servicio cuando ya no lo usemos (final del lab):
 
 ```powershell
 gcloud run services delete bank-marketing-api --region us-central1
 ```
-
-La eliminación debe hacerse solo cuando ya no se requiera la URL pública para la evaluación.

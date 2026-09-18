@@ -1,0 +1,167 @@
+  Trabajo/Hackathon 6: implementación y despliegue usando Bank Marketing
+                               Dataset (UCI)
+
+
+
+En equipos de hasta 5 personas:
+
+Desarrollar un sistema de Machine Learning que no solo entrene un modelo, sino
+que:
+
+   ●​ lo prepare para producción
+   ●​ lo exponga mediante una API
+   ●​ permita su uso en un entorno realista
+   ●​ Desplegar el modelo
+
+Contexto
+
+Se utilizará el dataset:
+
+Bank                     Marketing               Dataset                 (UCI)
+https://archive.ics.uci.edu/ml/datasets/bank+marketing
+
+Problema: Predecir si un cliente aceptará un depósito a plazo (y ∈ {yes, no})
+
+Restricción obligatoria (crítica)
+
+La variable: duration
+
+❌ NO puede ser utilizada para entrenar el modelo final
+Justificación: Esta variable solo se conoce después de la interacción con el
+cliente, por lo que su uso constituye data leakage en producción.
+
+El uso de esta variable en el modelo final será penalizado.
+
+Pasos de la actividad
+
+Parte 1 — Análisis y modelado
+   ●​ Exploración del dataset
+   ●​ Selección de variables
+   ●​ Entrenamiento de al menos 2 modelos
+   ●​ Evaluación con métricas adecuadas (F1, balanced accuracy, etc.)
+   ●​ Selección del mejor modelo
+
+Debe incluir:
+
+   ●​ explicación de decisiones
+   ●​ análisis de posibles fuentes de leakage
+
+Parte 2 — Entrenamiento final
+
+   ●​ Reentrenar el modelo usando todos los datos disponibles
+   ●​ Usar los mejores hiperparámetros encontrados
+   ●​ Guardar el modelo (.joblib o .pkl)
+
+Debe incluir:
+
+   ●​ métricas de referencia
+   ●​ documentación del modelo final
+
+Parte 3 — Pipeline reproducible
+
+Implementar una función:
+
+predict(input_dict)
+
+Que:
+
+   ●​ reciba datos en formato diccionario
+   ●​ valide inputs
+   ●​ retorne predicción y probabilidades
+Parte 4 — API de despliegue
+
+Implementar una API REST usando:
+
+   ●​ FastAPI (recomendado) o Flask
+
+Endpoint obligatorio:
+
+POST /predict
+
+Input:
+
+JSON con features
+
+Output:
+
+   ●​ predicción
+   ●​ probabilidades
+   ●​ (opcional) nivel de confianza
+
+Parte 5 — Cliente de prueba
+
+Desarrollar un script que:
+
+   ●​ envíe requests a la API
+   ●​ pruebe al menos 5 ejemplos distintos
+   ●​ muestre resultados
+
+Parte 6 — Nivel de implementación
+
+Clasificar el sistema en uno de los siguientes niveles:
+
+   1.​ Predicción
+   2.​ Recomendación
+   3.​ Acción parcial
+   4.​ Acción automática
+
+Justificar:
+
+   ●​ nivel elegido
+   ●​ implicaciones de riesgo
+Entregables
+
+Un archivo comprimido que contenga:
+
+   ●​ notebook o scripts de entrenamiento muy bien documentado, modelo
+      serializado, código de API, script cliente (todo el codigo que se utilizó,
+      bien documentado y comentado).
+   ●​ repositorio que se usó para el despliegue (se debe comprimir para canvas
+      y se muestra el día viernes)
+   ●​ Link de API pública (prueba el día viernes)
+
+
+Rúbrica de Evaluación (20 puntos)
+Entrega puntual (20 puntos)
+
+
+        Descripción             No evidencia     Regular          Excelente
+
+  Preparación del modelo         0 puntos       2 puntos          4 puntos
+ (Parte 1, Parte 2 y Parte 3)
+
+  Despliegue del modelo          0 puntos       6 puntos          10 puntos
+         (Parte 4)                             Despliegue     Despliegue en GCP
+                                                  local
+
+  Pruebas del despliegue         O puntos       2 puntos       4 puntos (script
+        (Parte 5)                                (script     automático y manual
+                                               automático)   para que el docente
+                                                               realice pruebas)
+
+ Nivel del sistema (Parte 6)     0 puntos       1 puntos           2 puntos
+                                                              (adecuadamente
+                                                                 justificado)
+
+
+
+
+Entrega con tardanza (15 puntos)
+       Descripción             No evidencia     Regular          Excelente
+
+ Preparación del modelo         0 puntos      1.5 puntos         3 puntos
+(Parte 1, Parte 2 y Parte 3)
+
+ Despliegue del modelo          0 puntos       5 puntos          8 puntos
+        (Parte 4)                             Despliegue     Despliegue en GCP
+                                                 local
+
+ Pruebas del despliegue         O puntos       1.5 puntos     3 puntos (script
+       (Parte 5)                                 (script    automático y manual
+                                              automático)   para que el docente
+                                                              realice pruebas)
+
+Nivel del sistema (Parte 6)     0 puntos      0.5 puntos          1 puntos
+                                                             (adecuadamente
+                                                                justificado)
+

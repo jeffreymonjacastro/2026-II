@@ -1,0 +1,9 @@
+bank*.csv
+*.zip
+*.ipynb
+*.md
+tmp/
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+.git/

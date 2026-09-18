@@ -1,0 +1,64 @@
+{
+  "created_at_utc": "2026-09-18T18:28:10.923252+00:00",
+  "dataset": "bank.csv",
+  "rows": 4521,
+  "selected_model": "random_forest",
+  "best_params": {
+    "model__max_depth": 10,
+    "model__min_samples_leaf": 5
+  },
+  "threshold": 0.4853176468395834,
+  "test_metrics": {
+    "f1": 0.36923076923076925,
+    "balanced_accuracy": 0.6633535004321521,
+    "roc_auc": 0.7370834533755881,
+    "precision": 0.3076923076923077,
+    "recall": 0.46153846153846156
+  },
+  "cv_comparison": [
+    {
+      "modelo": "random_forest",
+      "cv_f1_mean": 0.4062252671,
+      "cv_f1_std": 0.0258590499,
+      "cv_balanced_accuracy": 0.6642019578,
+      "cv_roc_auc": 0.7471267862,
+      "best_params": {
+        "model__max_depth": 10,
+        "model__min_samples_leaf": 5
+      }
+    },
+    {
+      "modelo": "logistic_regression",
+      "cv_f1_mean": 0.3315100593,
+      "cv_f1_std": 0.0176848076,
+      "cv_balanced_accuracy": 0.6693349847,
+      "cv_roc_auc": 0.7277447065,
+      "best_params": {
+        "model__C": 0.1
+      }
+    }
+  ],
+  "feature_names": [
+    "age",
+    "job",
+    "marital",
+    "education",
+    "default",
+    "balance",
+    "housing",
+    "loan",
+    "contact",
+    "day",
+    "month",
+    "campaign",
+    "pdays",
+    "previous",
+    "poutcome"
+  ],
+  "excluded_features": [
+    "duration"
+  ],
+  "random_state": 42,
+  "sklearn_version": "1.8.0",
+  "system_level": "1 - Predicción"
+}

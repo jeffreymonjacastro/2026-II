@@ -1,0 +1,19 @@
+\section{Target Networks (DQN)}
+Con transiciones del buffer~\eqref{eq:replay}, DQN minimiza~\cite{mnih2015}
+\begin{equation}\label{eq:dqn-loss}
+\begin{aligned}
+    y_i&=r+\gamma(1-d)\max_{a'}Q(s',a';\boldsymbol{\theta}_i^{-}),\\
+    L(\boldsymbol{\theta}_i)&=
+    \mathbb{E}_{(s,a,r,s',d)\sim\operatorname{Unif}(\mathcal{D})}
+    \left[(y_i-Q(s,a;\boldsymbol{\theta}_i))^2\right].
+\end{aligned}
+\end{equation}
+\begin{itemize}
+    \item $\boldsymbol{\theta}_i$: pesos de la red en entrenamiento en la actualización $i$.
+    \item $\boldsymbol{\theta}_i^{-}$: pesos congelados de la red objetivo, copiados periódicamente desde la red en entrenamiento.
+    \item $y_i$ y $L$: objetivo TD y pérdida cuadrática; $a'$ recorre las acciones del siguiente estado. El indicador terminal $d$ elimina el valor futuro.
+\end{itemize}
+
+\textbf{Blanco móvil.} Usar los mismos pesos en objetivo y predicción hace que una actualización modifique ambos lados del error. Aumentar la predicción puede aumentar también el objetivo, generando realimentación y oscilaciones.
+
+Congelar $\boldsymbol{\theta}_i^{-}$ fija $y_i$ para cada transición durante ese intervalo. Se deriva solo la predicción al minimizar~\eqref{eq:dqn-loss}. El objetivo cambia al copiar nuevamente los pesos; este desfase mejora la estabilidad sin garantizar convergencia.

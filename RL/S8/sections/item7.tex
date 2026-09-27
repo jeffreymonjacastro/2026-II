@@ -1,0 +1,16 @@
+\section{Diferencia Temporal TD(0)}
+TD(0) actualiza después de observar una transición~\cite[secc.~6.1]{sutton}:
+\begin{equation}\label{eq:td-zero}
+    V(S_t)\leftarrow V(S_t)+\alpha
+    [R_{t+1}+\gamma V(S_{t+1})-V(S_t)].
+\end{equation}
+\begin{itemize}
+    \item $\alpha$: tasa de aprendizaje; el término entre corchetes es el error TD.
+    \item $R_{t+1}+\gamma V(S_{t+1})$: objetivo de un paso; se fija $V(\text{Terminal})=0$.
+\end{itemize}
+En el primer paso, $S_A\xrightarrow{+2}S_B$, con $\alpha=0.5$, $\gamma=1$ y valores iniciales cero:
+\begin{equation}\label{eq:td-example}
+    V(S_A)=0+0.5[2+1\cdot0-0]=1.
+\end{equation}
+
+\textbf{Sesgo y varianza.} TD suele tener menor varianza porque usa una sola recompensa, pero su objetivo es sesgado mientras $V(S_{t+1})$ sea inexacta. Monte Carlo usa el retorno completo: el retorno de primera visita es un objetivo insesgado para una política fija, aunque suele tener mayor varianza. En este caso TD obtiene $1$ antes de conocer el $-4$ posterior; First-Visit MC obtiene $-1$ al terminar. Estas diferencias no implican que TD tabular mantenga sesgo asintótico bajo las condiciones usuales de convergencia.

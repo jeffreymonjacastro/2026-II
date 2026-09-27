@@ -1,0 +1,10 @@
+\section{La Tríada Mortal}
+Los tres elementos son~\cite[secc.~11.3]{sutton}:
+\begin{itemize}
+    \item \textbf{Aproximación de funciones:} varios estados comparten parámetros; corregir uno puede alterar los valores de otros.
+    \item \textbf{Bootstrapping:} el objetivo incorpora estimaciones actuales, como en~\eqref{eq:td-zero} y~\eqref{eq:q-learning}.
+    \item \textbf{Aprendizaje off-policy:} la distribución de entrenamiento proviene de una política distinta de la que se evalúa.
+\end{itemize}
+La aproximación propaga errores entre estados, el bootstrapping los realimenta y la distribución off-policy puede amplificarlos en estados mal representados. La composición de Bellman con la proyección al espacio aproximado puede dejar de ser una contracción bajo la distribución de entrenamiento; el semi-gradiente tampoco es un descenso del MSVE. Por eso se pierden las garantías generales de convergencia, incluso con aproximadores lineales. La combinación \emph{puede} divergir; no implica divergencia en todos los problemas.
+
+\textit{Precisión del hint:} la sección 9.3 introduce el semi-gradiente; la tríada se desarrolla explícitamente en la sección 11.3.

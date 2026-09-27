@@ -1,0 +1,37 @@
+\section{Double DQN}
+
+\textbf{Sobreestimación por el máximo.} Supongamos estimaciones insesgadas con ruido:
+\begin{equation}\label{eq:max-bias}
+\begin{aligned}
+    \hat Q(s',a)&=Q_*(s',a)+\epsilon_a,\qquad\mathbb{E}[\epsilon_a]=0,\\
+    \mathbb{E}\left[\max_a\hat Q(s',a)\right]
+    &\geq\max_a\mathbb{E}[\hat Q(s',a)]
+    =\max_a Q_*(s',a).
+\end{aligned}
+\end{equation}
+\begin{itemize}
+    \item $Q_*(s',a)$: valor óptimo verdadero; $\epsilon_a$: error aleatorio de estimación para la acción $a$.
+\end{itemize}
+La desigualdad de Jensen aplica porque el máximo es convexo. El sesgo es no negativo y puede ser estrictamente positivo: para dos acciones de valor verdadero cero y errores independientes que valen $+c$ o $-c$ con igual probabilidad,
+\begin{equation}\label{eq:max-bias-example}
+    \mathbb{E}[\max(\epsilon_1,\epsilon_2)]
+    =\tfrac34c+\tfrac14(-c)=\tfrac12c>0,\qquad c>0.
+\end{equation}
+\begin{itemize}
+    \item $c$: magnitud del error; ambas estimaciones son individualmente insesgadas.
+\end{itemize}
+
+\textbf{Double DQN.} La red en entrenamiento selecciona y la red objetivo evalúa~\cite{vanhasselt2016}:
+\begin{equation}\label{eq:double-dqn}
+\begin{aligned}
+    a^*&=\arg\max_{a'}Q(s',a';\boldsymbol{\theta}_i),\\
+    y_i^{\mathrm{DDQN}}&=r+\gamma(1-d)Q(s',a^*;\boldsymbol{\theta}_i^{-}),\\
+    L_{\mathrm{DDQN}}(\boldsymbol{\theta}_i)&=
+    \mathbb{E}_{\mathcal{D}}[(y_i^{\mathrm{DDQN}}-Q(s,a;\boldsymbol{\theta}_i))^2].
+\end{aligned}
+\end{equation}
+\begin{itemize}
+    \item $a^*$: acción voraz elegida por la red en entrenamiento; $y_i^{\mathrm{DDQN}}$: objetivo que reemplaza $y_i$ de~\eqref{eq:dqn-loss}.
+    \item $\mathbb{E}_{\mathcal{D}}$: mismo muestreo uniforme de transiciones usado en~\eqref{eq:dqn-loss}.
+\end{itemize}
+Separar ambas operaciones reduce la selección de errores positivos de la misma estimación. Con errores de evaluación independientes e insesgados no hay ese sesgo de selección; en DDQN las redes están relacionadas, por lo que se reduce sin garantizar su eliminación y puede aparecer subestimación.

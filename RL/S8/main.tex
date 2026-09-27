@@ -1,0 +1,67 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla,es-noquoting]{babel}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\setstretch{1.15}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{backcolour}{rgb}{0.96,0.96,0.96}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegray},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    keepspaces=true,
+    numbers=none,
+    showstringspaces=false
+}
+\lstset{style=mystyle}
+
+\begin{document}
+
+\input{sections/header.tex}
+
+\vspace{-0.2cm}
+\noindent\rule{\textwidth}{0.8pt}
+
+\vspace{0.3cm}
+
+\input{sections/title.tex}
+
+\vspace{0.2cm}
+\noindent\rule{\textwidth}{0.4pt}
+
+\input{sections/item1.tex}
+\input{sections/item2.tex}
+\input{sections/item3.tex}
+\input{sections/item4.tex}
+\input{sections/item5.tex}
+\input{sections/item6.tex}
+\input{sections/item7.tex}
+\input{sections/item8.tex}
+\input{sections/item9.tex}
+\input{sections/item10.tex}
+\input{sections/item11.tex}
+\input{sections/item12.tex}
+\input{sections/item13.tex}
+\input{sections/item14.tex}
+
+\clearpage
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}

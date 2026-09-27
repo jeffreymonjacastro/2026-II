@@ -1,0 +1,18 @@
+\section{Métodos de Monte Carlo}
+Interpretamos las recompensas del enunciado como recibidas al salir de cada estado: $S_A\xrightarrow{+2}S_B\xrightarrow{+1}S_A\xrightarrow{-4}\text{Terminal}$. Con $\gamma=1$, usando~\eqref{eq:return},
+\begin{equation}\label{eq:mc-returns}
+    G_0=2+1-4=-1,\qquad G_1=1-4=-3,\qquad G_2=-4.
+\end{equation}
+\begin{itemize}
+    \item $G_0$ y $G_2$: retornos de la primera y segunda visita a $S_A$; $G_1$: retorno desde $S_B$.
+\end{itemize}
+
+\textbf{First-Visit MC} usa solo la primera visita de cada episodio; \textbf{Every-Visit MC} usa todas~\cite[secc.~5.1]{sutton}:
+\begin{equation}\label{eq:mc-estimates}
+    V_{\mathrm{FV}}(S_A)=G_0=-1,\qquad
+    V_{\mathrm{EV}}(S_A)=\frac{G_0+G_2}{2}=\frac{-1-4}{2}=-2.5.
+\end{equation}
+\begin{itemize}
+    \item $V_{\mathrm{FV}}$ y $V_{\mathrm{EV}}$: medias empíricas First-Visit y Every-Visit, respectivamente.
+\end{itemize}
+Every-Visit es menor en este episodio porque también incorpora la visita cuyo único retorno es $-4$. Son estimaciones de una muestra, no valores verdaderos de la política.

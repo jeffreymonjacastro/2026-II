@@ -1,0 +1,35 @@
+\section{Procesos de Decisión de Markov (MDP)}
+Un MDP finito describe decisiones secuenciales mediante la tupla
+\begin{equation}\label{eq:mdp}
+    \mathcal{M}=(\mathcal{S},\mathcal{A},\mathcal{P},\mathcal{R},\gamma).
+\end{equation}
+\begin{itemize}
+    \item \textbf{Estados ($\mathcal{S}$):} conjunto finito de situaciones del entorno.
+    \item \textbf{Acciones ($\mathcal{A}$):} conjunto finito; $\mathcal{A}(s)$ contiene las acciones disponibles en $s$.
+    \item \textbf{Transiciones ($\mathcal{P}$):} $P(s'\mid s,a)$ es la probabilidad del siguiente estado $s'$ al ejecutar $a$ en $s$.
+    \item \textbf{Recompensa ($\mathcal{R}$):} $\mathcal{R}(s,a)=\mathbb{E}[R_{t+1}\mid S_t=s,A_t=a]$ es la recompensa inmediata esperada.
+    \item \textbf{Descuento ($\gamma$):} pondera las recompensas futuras; $0\leq\gamma<1$ en tareas continuas con recompensas acotadas. Puede usarse $\gamma=1$ en episodios con retorno finito.
+\end{itemize}
+Para incluir recompensas aleatorias, Sutton y Barto usan la dinámica conjunta~\cite[seccs.~3.1--3.3]{sutton}:
+\begin{equation}\label{eq:dynamics}
+\begin{aligned}
+    p(s',r\mid s,a)&=\Pr(S_{t+1}=s',R_{t+1}=r\mid S_t=s,A_t=a),\\
+    \sum_{s',r}p(s',r\mid s,a)&=1,\quad
+    P(s'\mid s,a)=\sum_r p(s',r\mid s,a),\\
+    \mathcal{R}(s,a)&=\sum_{s',r}r\,p(s',r\mid s,a).
+\end{aligned}
+\end{equation}
+\begin{itemize}
+    \item $S_t$, $A_t$ y $R_{t+1}$: estado, acción y recompensa recibida tras actuar en el instante $t$.
+    \item $s'$, $r$ y $p$: siguiente estado, recompensa posible y su probabilidad conjunta. Las sumas recorren sus valores posibles.
+\end{itemize}
+
+\textbf{Propiedad de Markov.} El estado actual contiene toda la información del pasado necesaria para predecir la siguiente transición:
+\begin{equation}\label{eq:markov}
+    \Pr(S_{t+1}=s',R_{t+1}=r\mid H_t,A_t=a)
+    =p(s',r\mid S_t,a).
+\end{equation}
+\begin{itemize}
+    \item $H_t=(S_0,A_0,R_1,\ldots,S_t)$: historial completo hasta el estado actual.
+\end{itemize}
+Esta propiedad permite aprender valores y políticas dependientes del estado y aplicar Bellman. Si el estado omite información relevante, dos historiales con la misma observación pueden tener futuros distintos y esa observación no define un MDP.

@@ -1,0 +1,45 @@
+\section{Aproximación de Funciones de Valor}
+Para una política fija, la aproximación lineal y el error cuadrático medio de valor son~\cite[secc.~9.3]{sutton}:
+\begin{equation}\label{eq:msve}
+    \hat v(s;\mathbf{w})=\mathbf{w}^{\top}\mathbf{x}(s),\qquad
+    \operatorname{MSVE}(\mathbf{w})=
+    \sum_s\mu(s)[v_\pi(s)-\mathbf{w}^{\top}\mathbf{x}(s)]^2.
+\end{equation}
+\begin{itemize}
+    \item $\mathbf{w}\in\mathbb{R}^d$: vector de pesos; $\mathbf{x}(s)\in\mathbb{R}^d$: características del estado; $d$: número de características.
+    \item $\hat v$: valor aproximado; $\mu(s)$: distribución que pondera los estados, con suma uno.
+    \item $\operatorname{MSVE}$: error respecto del valor verdadero $v_\pi$.
+\end{itemize}
+
+\textbf{1. Gradiente ideal.} Si se conociera $v_\pi$, el gradiente sería
+\begin{equation}\label{eq:msve-gradient}
+    \nabla_{\mathbf{w}}\operatorname{MSVE}
+    =-2\sum_s\mu(s)[v_\pi(s)-\mathbf{w}^{\top}\mathbf{x}(s)]\mathbf{x}(s).
+\end{equation}
+\begin{itemize}
+    \item $\nabla_{\mathbf{w}}$: vector de derivadas respecto de los pesos.
+\end{itemize}
+
+\textbf{2. Sustituir el valor desconocido por el objetivo TD.}
+\begin{equation}\label{eq:td-target-linear}
+    U_t=R_{t+1}+\gamma\mathbf{w}_t^{\top}\mathbf{x}(S_{t+1}),\qquad
+    \ell_t(\mathbf{w})=\tfrac12[U_t-\mathbf{w}^{\top}\mathbf{x}(S_t)]^2.
+\end{equation}
+\begin{itemize}
+    \item $U_t$: objetivo calculado con los pesos actuales y tratado como constante durante la derivación.
+    \item $\ell_t$: pérdida de una muestra; el factor $1/2$ cancela el $2$ del gradiente.
+\end{itemize}
+
+\textbf{3. Aplicar SGD solo a la predicción.} Como $\nabla_{\mathbf{w}}\hat v=\mathbf{x}(S_t)$,
+\begin{equation}\label{eq:semi-gradient-td}
+\begin{aligned}
+    \delta_t&=R_{t+1}+\gamma\mathbf{w}_t^{\top}\mathbf{x}(S_{t+1})
+                         -\mathbf{w}_t^{\top}\mathbf{x}(S_t),\\
+    \mathbf{w}_{t+1}&=\mathbf{w}_t-\alpha\nabla_{\mathbf{w}}\ell_t\big|_{\mathbf{w}_t}
+                   =\mathbf{w}_t+\alpha\delta_t\mathbf{x}(S_t).
+\end{aligned}
+\end{equation}
+\begin{itemize}
+    \item $\delta_t$: error TD para la aproximación lineal. En terminal, las características del valor futuro se toman como cero.
+\end{itemize}
+Es \textbf{semi-gradiente} porque ignora la dependencia de $U_t$ respecto de $\mathbf{w}_t$. Por ello, no es el gradiente exacto del MSVE ni garantiza minimizarlo: en el caso lineal on-policy converge, bajo condiciones usuales, a un punto fijo TD~\cite[secc.~9.4]{sutton}.

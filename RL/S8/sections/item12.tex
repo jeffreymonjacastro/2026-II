@@ -1,0 +1,26 @@
+\section{Experience Replay (DQN)}
+Los datos consecutivos de un MDP son generalmente dependientes. Para una política fija,
+\begin{equation}\label{eq:sequential-dependence}
+\begin{aligned}
+    P_\pi(s'\mid s)&=\sum_a\pi(a\mid s)P(s'\mid s,a),\\
+    \Pr(S_t=s,S_{t+1}=s')&=\Pr(S_t=s)P_\pi(s'\mid s)
+    \neq\Pr(S_t=s)\Pr(S_{t+1}=s')\quad\text{en general}.
+\end{aligned}
+\end{equation}
+\begin{itemize}
+    \item $P_\pi$: transición inducida por la política; la desigualdad expresa dependencia estadística.
+\end{itemize}
+La propiedad de Markov elimina la dependencia del historial dado el estado; no hace independientes los estados consecutivos. Además, mientras cambia la política, cambia la distribución de visitas: tampoco hay una distribución idéntica fija~\cite{mnih2013}.
+
+El buffer almacena transiciones y permite muestrearlas aleatoriamente:
+\begin{equation}\label{eq:replay}
+    \mathcal{D}=\{e_j\}_{j=1}^{N},\qquad
+    e_j=(s_j,a_j,r_j,s'_j,d_j),\qquad
+    I_1,\ldots,I_m\overset{\mathrm{iid}}{\sim}\operatorname{Unif}\{1,\ldots,N\}.
+\end{equation}
+\begin{itemize}
+    \item $\mathcal{D}$ y $N$: memoria y número de transiciones almacenadas.
+    \item $e_j$: experiencia; $d_j=1$ si la transición termina el episodio y cero en otro caso.
+    \item $I_1,\ldots,I_m$: índices de un minibatch de tamaño $m$, muestreados con reemplazo de un buffer fijo.
+\end{itemize}
+Esto reduce la correlación temporal de los minibatches, mezcla experiencias de políticas anteriores y reutiliza datos~\cite{mnih2015}. Condicionado a un buffer fijo, el muestreo con reemplazo es i.i.d. de su distribución empírica; el buffer sigue evolucionando y las experiencias originales siguen relacionadas. Por tanto, replay mejora la optimización, sin garantizar independencia del proceso original ni convergencia. El entrenamiento neuronal también puede usar datos dependientes; i.i.d. es una hipótesis habitual de análisis.

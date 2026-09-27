@@ -1,0 +1,22 @@
+\section{Q-Learning vs. SARSA}
+Las actualizaciones tabulares son~\cite[seccs.~6.4--6.5]{sutton}:
+\begin{equation}\label{eq:q-learning}
+    Q(S_t,A_t)\leftarrow Q(S_t,A_t)+\alpha\left[
+    R_{t+1}+\gamma\max_a Q(S_{t+1},a)-Q(S_t,A_t)\right].
+\end{equation}
+\begin{equation}\label{eq:sarsa}
+    Q(S_t,A_t)\leftarrow Q(S_t,A_t)+\alpha\left[
+    R_{t+1}+\gamma Q(S_{t+1},A_{t+1})-Q(S_t,A_t)\right].
+\end{equation}
+\begin{itemize}
+    \item $Q(s,a)$: estimación del valor de un par estado--acción.
+    \item $A_{t+1}$: siguiente acción realmente seleccionada por la política de comportamiento, por ejemplo $\varepsilon$-greedy.
+    \item $\varepsilon$: probabilidad de explorar. En terminal, el valor futuro es cero en ambas reglas.
+\end{itemize}
+
+\textbf{Off-policy vs. on-policy.} Q-Learning usa $\max_a Q$, equivalente a evaluar una política objetivo voraz, aunque el agente explore con otra política. SARSA usa una acción de la misma política que genera la experiencia; su valor futuro esperado es
+\begin{equation}\label{eq:sarsa-expectation}
+    \mathbb{E}_{A_{t+1}\sim\pi(\cdot\mid s')}
+    [Q(s',A_{t+1})]=\sum_a\pi(a\mid s')Q(s',a).
+\end{equation}
+Así, SARSA incluye el riesgo de futuras acciones exploratorias. En \textit{Cliff Walking}, con exploración persistente, suele aprender una ruta más conservadora y alejada del precipicio; Q-Learning aprende la ruta voraz cercana al borde, aunque explorar allí cause penalizaciones extremas.

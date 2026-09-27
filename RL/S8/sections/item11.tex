@@ -1,0 +1,69 @@
+\section{Robot Futbolista}
+
+\textbf{a. SARSA aproximado con descuento.} Se extiende~\eqref{eq:sarsa} mediante un semi-gradiente~\cite[seccs.~9.1 y 10.1]{sutton}:
+\begin{equation}\label{eq:approximate-sarsa}
+\begin{aligned}
+    \delta_t&=R_{t+1}+\gamma\hat Q(S_{t+1},A_{t+1};\boldsymbol{\theta}_t)
+                         -\hat Q(S_t,A_t;\boldsymbol{\theta}_t),\\
+    \boldsymbol{\theta}_{t+1}&=\boldsymbol{\theta}_t+
+        \alpha\delta_t\nabla_{\boldsymbol{\theta}}\hat Q(S_t,A_t;\boldsymbol{\theta}_t).
+\end{aligned}
+\end{equation}
+\begin{itemize}
+    \item $\boldsymbol{\theta}$: parámetros del aproximador; $\hat Q$: valor aproximado estado--acción.
+    \item $\nabla_{\boldsymbol{\theta}}\hat Q$: gradiente de la predicción actual; no se deriva el objetivo. Aquí $\gamma=0.8$.
+\end{itemize}
+
+\textbf{b. Caso lineal.} Sustituyendo todas las predicciones y el gradiente,
+\begin{equation}\label{eq:linear-sarsa}
+\begin{aligned}
+    \hat Q(s,a;\boldsymbol{\theta})&=\boldsymbol{\theta}^{\top}\boldsymbol{\phi}(s,a),
+    \qquad\nabla_{\boldsymbol{\theta}}\hat Q(s,a;\boldsymbol{\theta})=\boldsymbol{\phi}(s,a),\\
+    \boldsymbol{\theta}_{t+1}&=\boldsymbol{\theta}_t+
+    \alpha\left[R_{t+1}+0.8\boldsymbol{\theta}_t^{\top}\boldsymbol{\phi}(S_{t+1},A_{t+1})
+    -\boldsymbol{\theta}_t^{\top}\boldsymbol{\phi}(S_t,A_t)\right]\boldsymbol{\phi}(S_t,A_t).
+\end{aligned}
+\end{equation}
+\begin{itemize}
+    \item $\boldsymbol{\phi}(s,a)$: vector de características del par estado--acción.
+\end{itemize}
+
+\textbf{c. Inicialización optimista.} Con las características dadas,
+\begin{equation}\label{eq:robot-features}
+    \boldsymbol{\phi}(s,a)=
+    [1,d_{\mathrm{ball}}(s),d_{\mathrm{goal}}(s),\mathbf{1}_{\{a=\mathrm{patear}\}}]^{\top},
+    \qquad \boldsymbol{\theta}_0=[1,0,0,0]^{\top}.
+\end{equation}
+\begin{itemize}
+    \item $d_{\mathrm{ball}}$ y $d_{\mathrm{goal}}$: distancias robot--balón y balón--portería.
+    \item $\mathbf{1}_{\{a=\mathrm{patear}\}}$: indicador, uno al patear y cero al moverse; la primera característica es el término constante.
+\end{itemize}
+Así, $\hat Q(s,a;\boldsymbol{\theta}_0)=1$ para cualquier estado y acción.
+
+\textbf{d. Una actualización.} Para moverse desde $[0.5,1]^{\top}$ y luego patear en $[0,1]^{\top}$:
+\begin{equation}\label{eq:robot-update}
+\begin{aligned}
+    \boldsymbol{\phi}(S_t,A_t)&=[1,0.5,1,0]^{\top},\qquad
+    \boldsymbol{\phi}(S_{t+1},A_{t+1})=[1,0,1,1]^{\top},\\
+    \delta_t&=0+0.8(1)-1=-0.2,\\
+    \boldsymbol{\theta}_1&=[1,0,0,0]^{\top}+0.5(-0.2)[1,0.5,1,0]^{\top}
+                         =[0.9,-0.05,-0.1,0]^{\top}.
+\end{aligned}
+\end{equation}
+Ambas predicciones del error se calculan con $\boldsymbol{\theta}_0$; patear es la siguiente acción, no una segunda transición ya observada.
+
+\textbf{e. Valor del siguiente par con los pesos nuevos.}
+\begin{equation}\label{eq:robot-next-value}
+    \hat Q([0,1]^{\top},\mathrm{patear};\boldsymbol{\theta}_1)
+    =[0.9,-0.05,-0.1,0][1,0,1,1]^{\top}=0.8.
+\end{equation}
+
+\textbf{f. Espacio representable.} Es el espacio generado por las cuatro características:
+\begin{equation}\label{eq:robot-function-space}
+    \hat Q(s,a)=\theta_0+\theta_1d_{\mathrm{ball}}(s)
+    +\theta_2d_{\mathrm{goal}}(s)+\theta_3\mathbf{1}_{\{a=\mathrm{patear}\}}.
+\end{equation}
+\begin{itemize}
+    \item $\theta_0,\ldots,\theta_3$: componentes del vector de parámetros, sin subíndice temporal en esta expresión.
+\end{itemize}
+Representa funciones afines en las distancias con pendientes compartidas por ambas acciones y una diferencia constante al patear. Se amplía con interacciones distancia--acción, términos cuadráticos, bases radiales, tile coding o redes neuronales.

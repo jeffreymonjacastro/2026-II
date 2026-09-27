@@ -1,0 +1,34 @@
+\section{Ecuación de Bellman (MDP)}
+
+\textbf{1. Separar la primera recompensa.} Del retorno descontado se obtiene
+\begin{equation}\label{eq:return}
+    G_t=\sum_{k=0}^{\infty}\gamma^kR_{t+k+1}
+    =R_{t+1}+\gamma\sum_{k=0}^{\infty}\gamma^kR_{t+k+2}
+    =R_{t+1}+\gamma G_{t+1}.
+\end{equation}
+\begin{itemize}
+    \item $G_t$: retorno desde $t$; $k$: número de pasos futuros. En un episodio, la suma termina y el retorno del estado terminal es cero.
+\end{itemize}
+
+\textbf{2. Tomar la esperanza bajo la política.}
+\begin{equation}\label{eq:state-value}
+    v_\pi(s)=\mathbb{E}_\pi[G_t\mid S_t=s]
+    =\mathbb{E}_\pi[R_{t+1}+\gamma G_{t+1}\mid S_t=s].
+\end{equation}
+\begin{itemize}
+    \item $\pi(a\mid s)$: probabilidad de elegir $a$ en $s$; $\mathbb{E}_\pi$: esperanza al seguir esa política.
+    \item $v_\pi(s)$: valor verdadero del estado bajo $\pi$; $V(s)$ denotará una estimación.
+\end{itemize}
+
+\textbf{3. Condicionar por acción, transición y recompensa.} Por la ley de la esperanza total y la propiedad de Markov~\eqref{eq:markov},
+\begin{equation}\label{eq:bellman-conditioning}
+    v_\pi(s)=\sum_a\pi(a\mid s)\sum_{s',r}p(s',r\mid s,a)
+    \left[r+\gamma\mathbb{E}_\pi[G_{t+1}\mid S_{t+1}=s']\right].
+\end{equation}
+
+\textbf{4. Reconocer el valor del siguiente estado.} Sustituyendo la definición~\eqref{eq:state-value} resulta la ecuación de Bellman~\cite[secc.~3.5]{sutton}:
+\begin{equation}\label{eq:bellman}
+    v_\pi(s)=\sum_a\pi(a\mid s)\sum_{s',r}p(s',r\mid s,a)
+    \left[r+\gamma v_\pi(s')\right].
+\end{equation}
+El valor actual es la recompensa inmediata esperada más el valor descontado de los estados siguientes. Todas las variables ya se definieron en~\eqref{eq:dynamics} y~\eqref{eq:state-value}.

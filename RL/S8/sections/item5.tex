@@ -1,0 +1,30 @@
+\section{Policy Iteration}
+El valor de actuar una vez y luego seguir $\pi$ es
+\begin{equation}\label{eq:action-value}
+    q_\pi(s,a)=\sum_{s',r}p(s',r\mid s,a)[r+\gamma v_\pi(s')].
+\end{equation}
+\begin{itemize}
+    \item $q_\pi(s,a)$: retorno esperado al ejecutar $a$ en $s$ y seguir después $\pi$.
+    \item $\pi'(s)$: acción elegida por la nueva política determinista.
+\end{itemize}
+
+\textbf{Demostración.} Por la hipótesis del ejercicio y~\eqref{eq:action-value},
+\begin{equation}\label{eq:improvement-chain}
+\begin{aligned}
+    v_\pi(s)&\leq q_\pi(s,\pi'(s))
+      =\mathbb{E}_{\pi'}[R_{t+1}+\gamma v_\pi(S_{t+1})\mid S_t=s]\\
+    &\leq\mathbb{E}_{\pi'}[R_{t+1}+\gamma R_{t+2}
+                   +\gamma^2v_\pi(S_{t+2})\mid S_t=s]\\
+    &\leq\mathbb{E}_{\pi'}\left[
+        \sum_{k=0}^{n-1}\gamma^kR_{t+k+1}
+        +\gamma^nv_\pi(S_{t+n})\mid S_t=s\right].
+\end{aligned}
+\end{equation}
+\begin{itemize}
+    \item $n$: número de veces que se expande el futuro y se reaplica la hipótesis.
+\end{itemize}
+Cada desigualdad reemplaza $v_\pi$ por una cantidad mayor o igual en el siguiente estado. Con $\gamma<1$ y recompensas acotadas, $v_\pi$ es acotada y el término residual tiende a cero. Por~\eqref{eq:return},
+\begin{equation}\label{eq:policy-improvement}
+    v_\pi(s)\leq\mathbb{E}_{\pi'}[G_t\mid S_t=s]=v_{\pi'}(s).
+\end{equation}
+En episodios con $\gamma=1$, el argumento requiere terminación y retornos integrables, para que el residual también desaparezca. Por tanto, $\pi'$ es al menos tan buena como $\pi$ en todos los estados~\cite[seccs.~4.2--4.3]{sutton}.

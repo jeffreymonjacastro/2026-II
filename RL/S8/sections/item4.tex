@@ -1,0 +1,85 @@
+\section{Proceso de Decisión Markoviano (DP)}
+
+\textbf{a. Bellman.} Se aplica~\eqref{eq:bellman} con $\gamma=1$. La Figura 1 del enunciado tiene estas transiciones:
+\begin{center}
+\begin{tabular}{cccl}
+\toprule
+Estado & Acción & Siguiente estado & Probabilidad (recompensa)\\
+\midrule
+$A$ & $b$ & $B$ & $1\;(-2)$\\
+$A$ & $c$ & $C$ & $1\;(-2)$\\
+$B$ & $a$ & $A$ o $B$ & $0.5\;(4)$ o $0.5\;(-2)$\\
+$B$ & $c$ & $C$ & $1\;(1)$\\
+$C$ & $a$ & $A$ & $1\;(-1)$\\
+$C$ & $b$ & $B$ & $1\;(-2)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Para la política uniforme, cada acción disponible tiene probabilidad $1/2$:
+\begin{equation}\label{eq:bellman-figure}
+\begin{aligned}
+    v_{\pi_1}(A)&=\tfrac12[-2+v_{\pi_1}(B)]+\tfrac12[-2+v_{\pi_1}(C)],\\
+    v_{\pi_1}(B)&=\tfrac12\{\tfrac12[4+v_{\pi_1}(A)]+\tfrac12[-2+v_{\pi_1}(B)]\}
+                   +\tfrac12[1+v_{\pi_1}(C)],\\
+    v_{\pi_1}(C)&=\tfrac12[-1+v_{\pi_1}(A)]+\tfrac12[-2+v_{\pi_1}(B)].
+\end{aligned}
+\end{equation}
+Estas relaciones son formales si se supone un valor finito; el inciso e precisa la limitación del caso sin descuento.
+
+\textbf{b. Una evaluación síncrona desde cero.} Usando exclusivamente $V_0=0$ en el lado derecho de~\eqref{eq:bellman-figure}:
+\begin{equation}\label{eq:first-sweep}
+\begin{aligned}
+    V^{\pi_1}_1(A)&=\tfrac12(-2)+\tfrac12(-2)=-2,\\
+    V^{\pi_1}_1(B)&=\tfrac12[\tfrac12(4)+\tfrac12(-2)]+\tfrac12(1)=1,\\
+    V^{\pi_1}_1(C)&=\tfrac12(-1)+\tfrac12(-2)=-1.5.
+\end{aligned}
+\end{equation}
+\begin{itemize}
+    \item $V^{\pi_1}_1$: estimación tras un barrido; no es la evaluación exacta de $\pi_1$.
+\end{itemize}
+
+\textbf{c. Mejora voraz.} Se compara el retorno de un paso más $V^{\pi_1}_1$:
+\begin{equation}\label{eq:one-step-action}
+    Q_1(s,a)=\sum_{s',r}p(s',r\mid s,a)[r+V^{\pi_1}_1(s')].
+\end{equation}
+\begin{itemize}
+    \item $Q_1(s,a)$: valor de ejecutar $a$ y usar la estimación del primer barrido para el futuro.
+\end{itemize}
+\begin{center}
+\begin{tabular}{clc}
+\toprule
+Estado & Comparación & Acción voraz\\
+\midrule
+$A$ & $Q_1(A,b)=-1$, $Q_1(A,c)=-3.5$ & $b$\\
+$B$ & $Q_1(B,a)=0.5$, $Q_1(B,c)=-0.5$ & $a$\\
+$C$ & $Q_1(C,a)=-3$, $Q_1(C,b)=-1$ & $b$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{equation}\label{eq:greedy-policy}
+    \pi_2(A)=b,\qquad \pi_2(B)=a,\qquad \pi_2(C)=b.
+\end{equation}
+\begin{itemize}
+    \item $\pi_2$: política determinista voraz respecto de $V^{\pi_1}_1$.
+\end{itemize}
+
+\textbf{d. Optimalidad de Bellman.} Para un retorno bien definido,
+\begin{equation}\label{eq:bellman-optimal}
+    v_*(s)=\max_{a\in\mathcal{A}(s)}\sum_{s',r}p(s',r\mid s,a)
+    [r+\gamma v_*(s')].
+\end{equation}
+\begin{itemize}
+    \item $v_*(s)$: máximo valor alcanzable desde $s$ entre todas las políticas.
+\end{itemize}
+
+\textbf{e. Optimalidad de $\pi_2$.} Una sola evaluación parcial no garantiza optimalidad~\cite[seccs.~4.2--4.3]{sutton}. Además, este MDP es continuo, sin terminal y con $\gamma=1$: sus recompensas nunca tienden a cero, por lo que la suma infinita del retorno no converge. No existe aquí un $v_*$ finito definido como~\eqref{eq:state-value}.
+
+\emph{Si se adopta el criterio de recompensa media}, $\pi_2$ sí es óptima. Un certificado es
+\begin{equation}\label{eq:average-certificate}
+    g_*+h(s)=\max_a\sum_{s',r}p(s',r\mid s,a)[r+h(s')],
+    \qquad g_*=0,\quad (h(A),h(B),h(C))=(-2,0,-2).
+\end{equation}
+\begin{itemize}
+    \item $g_*$: recompensa media óptima por paso; $h(s)$: valor relativo, no el retorno infinito.
+\end{itemize}
+Los máximos son $-2$, $0$ y $-2$, alcanzados por $b$, $a$ y $b$. La desigualdad para cualquier acción se suma en el tiempo y acota la recompensa media por cero; $\pi_2$ alcanza esa cota. Esta conclusión usa recompensa media, una precisión necesaria del enunciado~\cite[seccs.~3.3 y 10.3]{sutton}.

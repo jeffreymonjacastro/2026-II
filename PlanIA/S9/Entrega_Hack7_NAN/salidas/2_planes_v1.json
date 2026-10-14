@@ -1,0 +1,228 @@
+{
+  "planes": [
+    {
+      "nombre": "Urgencia primero",
+      "enfoque": "Atender evaluaciones más cercanas y concentrar cursos difíciles al final de la semana.",
+      "sesiones": [
+        {
+          "dia": "Lunes",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Machine Learning",
+          "actividad": "Resolver ejercicios sobre regresión logística y clasificación."
+        },
+        {
+          "dia": "Lunes",
+          "inicio": "16:00",
+          "fin": "17:00",
+          "curso": "Estadística Inferencial",
+          "actividad": "Realizar simulaciones estadísticas y resumir resultados."
+        },
+        {
+          "dia": "Lunes",
+          "inicio": "20:00",
+          "fin": "22:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudiar modelos de aprendizaje automático avanzados."
+        },
+        {
+          "dia": "Martes",
+          "inicio": "07:00",
+          "fin": "09:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Preparar y optimizar consultas SQL para el laboratorio."
+        },
+        {
+          "dia": "Martes",
+          "inicio": "19:00",
+          "fin": "21:00",
+          "curso": "Estadística Inferencial",
+          "actividad": "Revisar hipótesis y tests estadísticos importantes."
+        },
+        {
+          "dia": "Martes",
+          "inicio": "21:00",
+          "fin": "22:00",
+          "curso": "Machine Learning",
+          "actividad": "Realizar un proyecto de clasificación con datos reales."
+        },
+        {
+          "dia": "Miércoles",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Estudiar diseño y normalización de bases de datos."
+        },
+        {
+          "dia": "Miércoles",
+          "inicio": "20:00",
+          "fin": "22:00",
+          "curso": "Machine Learning",
+          "actividad": "Preparar un resumen sobre algoritmos de aprendizaje profundo."
+        },
+        {
+          "dia": "Jueves",
+          "inicio": "07:00",
+          "fin": "09:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Estudiar índices y particiones en bases de datos para optimización."
+        },
+        {
+          "dia": "Sábado",
+          "inicio": "09:00",
+          "fin": "11:00",
+          "curso": "Machine Learning",
+          "actividad": "Resolver ejercicios sobre algoritmos de regresión lineal y no lineal."
+        }
+      ],
+      "justificacion": "Este plan prioriza los cursos con evaluaciones más cercanas, asegurando que Machine Learning y Estadística Inferencial reciban la mayor cantidad de horas. Se concentra el estudio de estos cursos en las primeras franjas del lunes para cumplir con sus fechas límite. Bases de Datos II se estudió durante la semana para preparar su laboratorio, y Ética en IA y Comunicación Efectiva se dejaron para el fin de semana, manteniendo un equilibrio entre trabajo y descanso."
+    },
+    {
+      "nombre": "Carga balanceada",
+      "enfoque": "Reparte el esfuerzo de forma pareja, entre 2 y 4 horas cada día, alternando cursos difíciles con ligeros y evitando picos de carga.",
+      "sesiones": [
+        {
+          "dia": "Lunes",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Machine Learning",
+          "actividad": "Resolver 5 ejercicios de regresión logística"
+        },
+        {
+          "dia": "Lunes",
+          "inicio": "16:00",
+          "fin": "17:00",
+          "curso": "Estadística Inferencial",
+          "actividad": "Análisis de datos para proyecto"
+        },
+        {
+          "dia": "Lunes",
+          "inicio": "20:00",
+          "fin": "22:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Realizar 4 consultas SQL complejas"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "07:00",
+          "fin": "09:00",
+          "curso": "Ética en IA",
+          "actividad": "Leer y analizar 2 artículos sobre ética en IA"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "19:00",
+          "fin": "21:00",
+          "curso": "Machine Learning",
+          "actividad": "Implementar un modelo de clasificación lineal binario"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "21:00",
+          "fin": "22:00",
+          "curso": "Estadística Inferencial",
+          "actividad": "Realizar 3 simulaciones estadísticas"
+        },
+        {
+          "dia": "Miércoles",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Desarrollar un esquema de base de datos para proyecto final"
+        },
+        {
+          "dia": "Miércoles",
+          "inicio": "20:00",
+          "fin": "22:00",
+          "curso": "Ética en IA",
+          "actividad": "Escribir un ensayo sobre impacto ético en algoritmos de IA"
+        },
+        {
+          "dia": "Jueves",
+          "inicio": "07:00",
+          "fin": "09:00",
+          "curso": "Machine Learning",
+          "actividad": "Implementar un modelo de regresión lineal múltiple"
+        },
+        {
+          "dia": "Jueves",
+          "inicio": "19:00",
+          "fin": "21:00",
+          "curso": "Estadística Inferencial",
+          "actividad": "Realizar 2 análisis de varianza ANOVA"
+        },
+        {
+          "dia": "Viernes",
+          "inicio": "15:00",
+          "fin": "17:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Desarrollar una base de datos para un proyecto real"
+        }
+      ],
+      "justificacion": "Este plan reparte el estudio equitativamente entre los cursos, asegurando que cada asignatura reciba sus horas mínimas y objetivos. Se alternan cursos difíciles con ligeros para mantener la motivación y evitar picos de carga."
+    },
+    {
+      "nombre": "Foco en riesgo",
+      "enfoque": "Maximiza el estudio de los cursos con mayor riesgo de desaprobar, priorizando la mañana y respetando las fechas límite.",
+      "sesiones": [
+        {
+          "dia": "Lunes",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Machine Learning",
+          "actividad": "Resolver 5 ejercicios de regresión logística"
+        },
+        {
+          "dia": "Lunes",
+          "inicio": "20:00",
+          "fin": "22:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudiar teoría de algoritmos de aprendizaje automático"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "07:00",
+          "fin": "09:00",
+          "curso": "Estadística Inferencial",
+          "actividad": "Realizar 15 problemas de inferencia estadística"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "21:00",
+          "fin": "22:00",
+          "curso": "Machine Learning",
+          "actividad": "Revisar y entender los algoritmos de optimización en aprendizaje automático"
+        },
+        {
+          "dia": "Miércoles",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Estudiar diseño de bases de datos relacionales"
+        },
+        {
+          "dia": "Jueves",
+          "inicio": "07:00",
+          "fin": "09:00",
+          "curso": "Machine Learning",
+          "actividad": "Resolver 10 ejercicios de clasificación y predicción"
+        },
+        {
+          "dia": "Sábado",
+          "inicio": "09:00",
+          "fin": "11:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudiar teoría de aprendizaje profundo y redes neuronales"
+        },
+        {
+          "dia": "Sábado",
+          "inicio": "16:00",
+          "fin": "18:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Revisar consulta SQL y normalización de bases de datos"
+        }
+      ],
+      "justificacion": "El plan prioriza el estudio de los cursos con mayor riesgo, Machine Learning y Estadística Inferencial, asegurando que se cumplan al menos sus mínimos obligatorios. Se distribuye la carga de trabajo en la mañana para mejorar rendimiento y se respetan las fechas límite, especialmente para Machine Learning."
+    }
+  ]
+}

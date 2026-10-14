@@ -1,0 +1,33 @@
+{
+  "status": "failed",
+  "started_at": "2026-10-14T03:59:11.147600+00:00",
+  "model": "groq/openai/gpt-oss-20b",
+  "python": "3.13.15",
+  "packages": {
+    "crewai": "1.15.27",
+    "crewai-tools": "1.15.27",
+    "litellm": "1.89.2",
+    "groq": "0.37.1"
+  },
+  "flows": {
+    "blog": {
+      "status": "complete",
+      "inputs": {
+        "topico": "Aborto"
+      },
+      "tasks_completed": 3,
+      "artifact": "blog.md"
+    },
+    "support": {
+      "status": "failed",
+      "inputs": {
+        "customer": "DeepLearningAI",
+        "person": "Robert",
+        "inquiry": "I need help with setting up a Crew and kicking it off. How can I add memory to my crew? Can you provide guidance?"
+      },
+      "error_type": "RateLimitError",
+      "error": "litellm.RateLimitError: RateLimitError: GroqException - {\"error\":{\"message\":\"Request too large for model `openai/gpt-oss-20b` in organization `org_01m4w78mwvecf8yryp5bjwx0a7` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Requested 14964, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n"
+    }
+  },
+  "finished_at": "2026-10-14T04:02:47.353794+00:00"
+}

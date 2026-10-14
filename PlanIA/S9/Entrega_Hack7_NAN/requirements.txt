@@ -1,0 +1,5 @@
+crewai[litellm]>=1.15
+pandas
+matplotlib
+python-dotenv
+ipykernel

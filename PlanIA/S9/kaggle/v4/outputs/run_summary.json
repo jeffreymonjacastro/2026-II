@@ -1,0 +1,33 @@
+{
+  "status": "complete",
+  "started_at": "2026-10-14T04:10:34.209105+00:00",
+  "model": "groq/openai/gpt-oss-20b",
+  "python": "3.13.15",
+  "packages": {
+    "crewai": "1.15.27",
+    "crewai-tools": "1.15.27",
+    "litellm": "1.89.2",
+    "groq": "0.37.1"
+  },
+  "flows": {
+    "blog": {
+      "status": "complete",
+      "inputs": {
+        "topico": "Aborto"
+      },
+      "tasks_completed": 3,
+      "artifact": "blog.md"
+    },
+    "support": {
+      "status": "complete",
+      "inputs": {
+        "customer": "DeepLearningAI",
+        "person": "Robert",
+        "inquiry": "I need help with setting up a Crew and kicking it off. How can I add memory to my crew? Can you provide guidance?"
+      },
+      "tasks_completed": 2,
+      "artifact": "support.md"
+    }
+  },
+  "finished_at": "2026-10-14T04:11:48.015055+00:00"
+}

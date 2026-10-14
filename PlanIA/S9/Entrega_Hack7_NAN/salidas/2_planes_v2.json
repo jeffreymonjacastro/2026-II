@@ -1,0 +1,214 @@
+{
+  "planes": [
+    {
+      "nombre": "Urgencia primero",
+      "enfoque": "Atender evaluaciones más cercanas y concentrar estudio en cursos con próximas evaluaciones",
+      "sesiones": [
+        {
+          "dia": "Lunes",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Estadística Inferencial",
+          "actividad": "Resolver ejercicios del proyecto"
+        },
+        {
+          "dia": "Lunes",
+          "inicio": "16:00",
+          "fin": "17:00",
+          "curso": "Machine Learning",
+          "actividad": "Revisar y practicar algoritmos de regresión"
+        },
+        {
+          "dia": "Lunes",
+          "inicio": "20:00",
+          "fin": "22:00",
+          "curso": "Machine Learning",
+          "actividad": "Resolver ejercicios de clasificación"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "07:00",
+          "fin": "09:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Realizar práctica del laboratorio calificado"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "19:00",
+          "fin": "21:00",
+          "curso": "Estadística Inferencial",
+          "actividad": "Preparar presentación final del proyecto"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "21:00",
+          "fin": "22:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudiar teoría de redes neuronales"
+        },
+        {
+          "dia": "Miércoles",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Resolver ejercicios del laboratorio calificado"
+        },
+        {
+          "dia": "Miércoles",
+          "inicio": "20:00",
+          "fin": "22:00",
+          "curso": "Machine Learning",
+          "actividad": "Practicar algoritmos de clustering"
+        },
+        {
+          "dia": "Sábado",
+          "inicio": "09:00",
+          "fin": "11:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudiar y resolver problemas de validación cruzada"
+        }
+      ],
+      "justificacion": "Este plan prioriza las evaluaciones más cercanas, asegurando que Estadística Inferencial y Machine Learning cumplan con sus mínimos obligatorios. Se distribuye el estudio de Machine Learning en la mañana para aprovechar el rendimiento del estudiante, mientras se prepara para su examen parcial."
+    },
+    {
+      "nombre": "Carga balanceada",
+      "enfoque": "Reparte el esfuerzo de forma pareja, entre 2 y 4 horas cada día, alternando cursos difíciles con ligeros y evitando picos de carga.",
+      "sesiones": [
+        {
+          "dia": "Lunes",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Machine Learning",
+          "actividad": "Resolver ejercicios de regresión logística"
+        },
+        {
+          "dia": "Lunes",
+          "inicio": "16:00",
+          "fin": "17:00",
+          "curso": "Estadística Inferencial",
+          "actividad": "Realizar análisis estadísticos con R"
+        },
+        {
+          "dia": "Lunes",
+          "inicio": "20:00",
+          "fin": "22:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudiar teoría de algoritmos de aprendizaje automático"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "07:00",
+          "fin": "09:00",
+          "curso": "Ética en IA",
+          "actividad": "Leer y discutir artículos sobre ética en IA"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "19:00",
+          "fin": "21:00",
+          "curso": "Machine Learning",
+          "actividad": "Implementar modelos de aprendizaje automático en Python"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "21:00",
+          "fin": "22:00",
+          "curso": "Estadística Inferencial",
+          "actividad": "Realizar simulaciones estadísticas para comprender conceptos teóricos"
+        },
+        {
+          "dia": "Miércoles",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Ejercicios de diseño y optimización de consultas SQL"
+        },
+        {
+          "dia": "Miércoles",
+          "inicio": "20:00",
+          "fin": "22:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudiar teoría de redes neuronales artificiales"
+        },
+        {
+          "dia": "Viernes",
+          "inicio": "17:00",
+          "fin": "18:00",
+          "curso": "Estadística Inferencial",
+          "actividad": "Resolver problemas de inferencia estadística"
+        }
+      ],
+      "justificacion": "Este plan reparte el esfuerzo equitativamente, asegurando que cada curso reciba al menos su mínimo obligatorio y se prioriza la preparación antes de las evaluaciones. Se evitan picos de carga y se mantiene un balance entre cursos difíciles y ligeros."
+    },
+    {
+      "nombre": "Foco en riesgo",
+      "enfoque": "Maximizar el estudio de cursos con mayor riesgo de desaprobar, cumpliendo mínimos y alternando sesiones largas con cortas.",
+      "sesiones": [
+        {
+          "dia": "Lunes",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Machine Learning",
+          "actividad": "Resolver ejercicios de regresión logística"
+        },
+        {
+          "dia": "Lunes",
+          "inicio": "16:00",
+          "fin": "17:00",
+          "curso": "Estadística Inferencial",
+          "actividad": "Revisar y practicar problemas de inferencia estadística"
+        },
+        {
+          "dia": "Lunes",
+          "inicio": "20:00",
+          "fin": "22:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudiar algoritmos de aprendizaje automático"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "07:00",
+          "fin": "09:00",
+          "curso": "Estadística Inferencial",
+          "actividad": "Realizar simulaciones estadísticas"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "19:00",
+          "fin": "21:00",
+          "curso": "Machine Learning",
+          "actividad": "Preparar para el examen parcial"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "21:00",
+          "fin": "22:00",
+          "curso": "Ética en IA",
+          "actividad": "Estudiar casos éticos de IA"
+        },
+        {
+          "dia": "Miércoles",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Machine Learning",
+          "actividad": "Realizar ejercicios prácticos de aprendizaje supervisado"
+        },
+        {
+          "dia": "Sábado",
+          "inicio": "09:00",
+          "fin": "11:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudiar teoría de redes neuronales"
+        },
+        {
+          "dia": "Sábado",
+          "inicio": "16:00",
+          "fin": "18:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Preparar para el laboratorio calificado"
+        }
+      ],
+      "justificacion": "Este plan prioriza los cursos con mayor riesgo, asegurando que Machine Learning y Estadística Inferencial cumplan con sus horas mínimas. Se alternan sesiones largas con cortas para mantener la concentración y se respetan las restricciones de tiempo."
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "evaluaciones": [
+    {
+      "plan": "Urgencia primero",
+      "prioridad_academica": 3,
+      "factibilidad": 2,
+      "balance_carga": 1,
+      "bienestar": 2,
+      "preferencias": 4,
+      "ventajas": [
+        "Prioriza las evaluaciones más cercanas, asegurando que Machine Learning y Estadística Inferencial cumplan con sus fechas límite.",
+        "Mantiene un enfoque claro y directo para los cursos críticos."
+      ],
+      "desventajas": [
+        "No dedica suficientes horas a todos los cursos, especialmente Bases de Datos II, Ética en IA y Comunicación Efectiva.",
+        "Violaciones duras con estudio posterior a la evaluación y poca dedicación a Estadística Inferencial."
+      ]
+    },
+    {
+      "plan": "Carga balanceada",
+      "prioridad_academica": 3,
+      "factibilidad": 2,
+      "balance_carga": 4,
+      "bienestar": 3,
+      "preferencias": 1,
+      "ventajas": [
+        "Equilibra la carga de estudio durante toda la semana, garantizando que todos los cursos reciban atención.",
+        "Respeto a las fechas límite más cercanas."
+      ],
+      "desventajas": [
+        "Violaciones duras con estudio posterior a la evaluación y poca dedicación a Estadística Inferencial.",
+        "No dedica suficientes horas a Machine Learning, Ética en IA y Comunicación Efectiva."
+      ]
+    },
+    {
+      "plan": "Foco en riesgo",
+      "prioridad_academica": 3,
+      "factibilidad": 2,
+      "balance_carga": 4,
+      "bienestar": 3,
+      "preferencias": 1,
+      "ventajas": [
+        "Enfatiza Machine Learning, el curso con mayor riesgo de desaprobar.",
+        "Mantiene un enfoque claro y directo para los cursos críticos."
+      ],
+      "desventajas": [
+        "Violaciones duras con estudio posterior a la evaluación y poca dedicación a Estadística Inferencial.",
+        "No dedica suficientes horas a todos los cursos, especialmente Ética en IA y Comunicación Efectiva."
+      ]
+    }
+  ],
+  "comentario_general": "Todos los planes presentan problemas similares: no cumplen con las horas mínimas recomendadas para varios cursos, tienen violaciones duras y no respetan preferencias. El equilibrio entre prioridad académica y factibilidad es un desafío en todos ellos."
+}

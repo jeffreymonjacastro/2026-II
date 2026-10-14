@@ -1,0 +1,33 @@
+{
+  "status": "failed",
+  "started_at": "2026-10-14T03:55:12.928479+00:00",
+  "model": "groq/openai/gpt-oss-20b",
+  "python": "3.13.15",
+  "packages": {
+    "crewai": "1.15.27",
+    "crewai-tools": "1.15.27",
+    "litellm": "1.89.2",
+    "groq": "0.37.1"
+  },
+  "flows": {
+    "blog": {
+      "status": "complete",
+      "inputs": {
+        "topico": "Aborto"
+      },
+      "tasks_completed": 3,
+      "artifact": "blog.md"
+    },
+    "support": {
+      "status": "failed",
+      "inputs": {
+        "customer": "DeepLearningAI",
+        "person": "Robert",
+        "inquiry": "I need help with setting up a Crew and kicking it off. How can I add memory to my crew? Can you provide guidance?"
+      },
+      "error_type": "BadRequestError",
+      "error": "litellm.BadRequestError: GroqException - {\"error\":{\"message\":\"invalid JSON schema for tool read_website_content, tools[0].function.parameters: 'required' present but 'properties' is missing\",\"type\":\"invalid_request_error\",\"param\":\"tool read_website_content, tools[0].function.parameters\"}}\n"
+    }
+  },
+  "finished_at": "2026-10-14T03:55:43.565982+00:00"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "jeffreyamc/sem9-multiagent-crewai-kaggle",
+  "title": "Sem9 MultiAgent CrewAI Kaggle",
+  "code_file": "Sem9_Course_MultiAgent_CrewAI_Kaggle.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

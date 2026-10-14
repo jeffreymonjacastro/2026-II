@@ -1,0 +1,130 @@
+{
+  "planes": [
+    {
+      "nombre": "Urgencia primero",
+      "enfoque": "Prioriza las evaluaciones más cercanas.",
+      "sesiones": [
+        {
+          "dia": "Lunes",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudio para examen parcial"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "07:00",
+          "fin": "09:00",
+          "curso": "Estadística Inferencial",
+          "actividad": "Estudio para proyecto final"
+        },
+        {
+          "dia": "Miércoles",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudio para examen parcial"
+        },
+        {
+          "dia": "Jueves",
+          "inicio": "19:00",
+          "fin": "21:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Estudio para laboratorio calificado"
+        },
+        {
+          "dia": "Viernes",
+          "inicio": "15:00",
+          "fin": "18:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudio para examen parcial"
+        }
+      ],
+      "justificacion": "Este plan prioriza las evaluaciones más cercanas, asegurando que Machine Learning y Estadística Inferencial cumplan con sus fechas límite. Se reparte el tiempo restante entre los demás cursos."
+    },
+    {
+      "nombre": "Carga balanceada",
+      "enfoque": "Equilibra la carga de estudio durante toda la semana.",
+      "sesiones": [
+        {
+          "dia": "Lunes",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudio para examen parcial"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "07:00",
+          "fin": "09:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Estudio para laboratorio calificado"
+        },
+        {
+          "dia": "Miércoles",
+          "inicio": "20:00",
+          "fin": "22:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudio para examen parcial"
+        },
+        {
+          "dia": "Jueves",
+          "inicio": "19:00",
+          "fin": "21:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Estudio para laboratorio calificado"
+        },
+        {
+          "dia": "Viernes",
+          "inicio": "15:30",
+          "fin": "14:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudio para examen parcial"
+        }
+      ],
+      "justificacion": "Este plan reparte el estudio de manera equitativa durante la semana, garantizando que todos los cursos reciban atención y respetando las fechas límite más cercanas."
+    },
+    {
+      "nombre": "Foco en riesgo",
+      "enfoque": "Maximiza las horas del curso con mayor riesgo de desaprobar.",
+      "sesiones": [
+        {
+          "dia": "Lunes",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudio para examen parcial"
+        },
+        {
+          "dia": "Martes",
+          "inicio": "07:00",
+          "fin": "09:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Estudio para laboratorio calificado"
+        },
+        {
+          "dia": "Miércoles",
+          "inicio": "14:00",
+          "fin": "16:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudio para examen parcial"
+        },
+        {
+          "dia": "Jueves",
+          "inicio": "19:00",
+          "fin": "21:00",
+          "curso": "Bases de Datos II",
+          "actividad": "Estudio para laboratorio calificado"
+        },
+        {
+          "dia": "Viernes",
+          "inicio": "15:00",
+          "fin": "18:00",
+          "curso": "Machine Learning",
+          "actividad": "Estudio para examen parcial"
+        }
+      ],
+      "justificacion": "Este plan enfatiza Machine Learning, el curso con mayor riesgo de desaprobar, asegurando que reciba la mayor cantidad de horas. Esto permite a Andrea subir su nota y cumplir con su objetivo personal."
+    }
+  ]
+}

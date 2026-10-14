@@ -1,0 +1,53 @@
+{
+  "evaluaciones": [
+    {
+      "plan": "Urgencia primero",
+      "prioridad_academica": 4,
+      "factibilidad": 2,
+      "balance_carga": 3,
+      "bienestar": 3,
+      "preferencias": 3,
+      "ventajas": [
+        "Prioriza evaluaciones más cercanas, asegurando cumplimiento de mínimos obligatorios.",
+        "Distribuye el estudio en la mañana para cursos difíciles."
+      ],
+      "desventajas": [
+        "Violaciones duras: Estadística Inferencial y Ética en IA no cumplen con sus mínimos obligatorios.",
+        "Cobertura baja de horas sugeridas, especialmente para Estadística Inferencial."
+      ]
+    },
+    {
+      "plan": "Carga balanceada",
+      "prioridad_academica": 3,
+      "factibilidad": 4,
+      "balance_carga": 5,
+      "bienestar": 4,
+      "preferencias": 2,
+      "ventajas": [
+        "Cumple con todas las restricciones duras.",
+        "Distribución equitativa de horas entre los días."
+      ],
+      "desventajas": [
+        "Cobertura baja para Machine Learning, Bases de Datos II y Comunicación Efectiva.",
+        "Ningún curso tiene horas en la mañana, lo que podría afectar el rendimiento."
+      ]
+    },
+    {
+      "plan": "Foco en riesgo",
+      "prioridad_academica": 3,
+      "factibilidad": 2,
+      "balance_carga": 3,
+      "bienestar": 3,
+      "preferencias": 3,
+      "ventajas": [
+        "Prioriza cursos con mayor riesgo de desaprobar, asegurando cumplimiento de mínimos obligatorios.",
+        "Distribución equitativa entre los días."
+      ],
+      "desventajas": [
+        "Violaciones duras: Estadística Inferencial y Ética en IA no cumplen con sus mínimos obligatorios.",
+        "Cobertura baja para Machine Learning, Bases de Datos II y Comunicación Efectiva."
+      ]
+    }
+  ],
+  "comentario_general": "Los planes 'Urgencia primero' y 'Foco en riesgo' priorizan los cursos con mayor riesgo de desaprobar, pero no cumplen con todas las restricciones duras. El plan 'Carga balanceada' cumple con las restricciones duras, pero requiere ajustes para mejorar la cobertura de horas y distribución matutina. Todos los planes podrían beneficiarse de una mayor flexibilidad en el horario y mejor distribución de horas para los cursos más difíciles."
+}

@@ -1,0 +1,4 @@
+{
+  "conclusion": "Se recomienda LoRA para este prototipo. LoRA y DoRA empataron en validación y en prueba (F1 macro de 0.876), pero LoRA necesitó menos tiempo y memoria. La recuperación de tareas críticas fue del 87,5 %; ambas condiciones omitieron 2 de los 16 casos críticos.",
+  "best_test": "lora"
+}

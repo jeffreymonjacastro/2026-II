@@ -1,0 +1,17 @@
+# Entorno Linux/CUDA para Khipu; requirements-lock.txt registra la versión ejecutada.
+torch==2.14.1
+transformers==5.20.2
+peft==0.21.2
+accelerate==1.15.0
+bitsandbytes==0.50.2
+datasets==5.1.0
+scikit-learn
+scipy
+pandas
+matplotlib
+nbformat
+nbclient
+ipykernel
+huggingface_hub
+safetensors
+flash-linear-attention==0.5.2

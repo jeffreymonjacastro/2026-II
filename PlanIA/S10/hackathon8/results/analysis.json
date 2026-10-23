@@ -1,0 +1,128 @@
+{
+  "best_validation": "lora",
+  "test_bootstrap_ci": {
+    "base": [
+      0.6680943386535492,
+      0.848983081583888
+    ],
+    "lora": [
+      0.7987103034078047,
+      0.9382956371276727
+    ],
+    "dora": [
+      0.7987103034078047,
+      0.9382956371276727
+    ],
+    "lora_replica": [
+      0.7354912035740372,
+      0.9080973147514187
+    ]
+  },
+  "paired_f1_difference_ci": {
+    "lora": [
+      0.037849851714603595,
+      0.20266835711487663
+    ],
+    "dora": [
+      0.037849851714603595,
+      0.20266835711487663
+    ],
+    "lora_replica": [
+      -0.01828956201622687,
+      0.1599988983712892
+    ]
+  },
+  "bootstrap_repetitions": 1000,
+  "bootstrap_seed": 20261023,
+  "summary": [
+    {
+      "method": "base",
+      "label": "Base",
+      "seed": 42,
+      "macro_f1": 0.7595635369532429,
+      "ci_low": 0.6680943386535492,
+      "ci_high": 0.848983081583888,
+      "json_rate": 0.984375,
+      "schema_rate": 0.90625,
+      "exact_match": 0.53125,
+      "critical_recall": 0.875,
+      "ordinal_mae": 0.453125,
+      "train_min": 0.0,
+      "train_vram_gb": 0,
+      "latency_s": 1.1410643899289425,
+      "stress_f1": 0.75,
+      "priority_only_f1": 0.7497596153846154,
+      "duplicate_key_cases": 5,
+      "mean_generated_tokens": 29.796875,
+      "generated_tokens_per_second": 26.113228370798197,
+      "train_cost_usd": 0
+    },
+    {
+      "method": "lora",
+      "label": "LoRA",
+      "seed": 42,
+      "macro_f1": 0.8756912084498292,
+      "ci_low": 0.7987103034078047,
+      "ci_high": 0.9382956371276727,
+      "json_rate": 1.0,
+      "schema_rate": 1.0,
+      "exact_match": 0.78125,
+      "critical_recall": 0.875,
+      "ordinal_mae": 0.140625,
+      "train_min": 2.7616583105797567,
+      "train_vram_gb": 3.23530912399292,
+      "latency_s": 1.4390567594964523,
+      "stress_f1": 0.9365079365079365,
+      "priority_only_f1": 0.8756912084498292,
+      "duplicate_key_cases": 0,
+      "mean_generated_tokens": 31.46875,
+      "generated_tokens_per_second": 21.867622518941776,
+      "train_cost_usd": 0.04602763850966261
+    },
+    {
+      "method": "dora",
+      "label": "DoRA",
+      "seed": 42,
+      "macro_f1": 0.8756912084498292,
+      "ci_low": 0.7987103034078047,
+      "ci_high": 0.9382956371276727,
+      "json_rate": 1.0,
+      "schema_rate": 1.0,
+      "exact_match": 0.78125,
+      "critical_recall": 0.875,
+      "ordinal_mae": 0.140625,
+      "train_min": 5.623901717551052,
+      "train_vram_gb": 3.5178074836730957,
+      "latency_s": 6.151329780972446,
+      "stress_f1": 0.8785714285714286,
+      "priority_only_f1": 0.8756912084498292,
+      "duplicate_key_cases": 0,
+      "mean_generated_tokens": 31.46875,
+      "generated_tokens_per_second": 5.115763764989559,
+      "train_cost_usd": 0.09373169529251754
+    },
+    {
+      "method": "lora_replica",
+      "label": "LoRA, réplica",
+      "seed": 43,
+      "macro_f1": 0.8302197802197802,
+      "ci_low": 0.7354912035740372,
+      "ci_high": 0.9080973147514187,
+      "json_rate": 1.0,
+      "schema_rate": 1.0,
+      "exact_match": 0.71875,
+      "critical_recall": 0.875,
+      "ordinal_mae": 0.1875,
+      "train_min": 2.7502136455383153,
+      "train_vram_gb": 3.235783100128174,
+      "latency_s": 1.4334529828483937,
+      "stress_f1": 0.75,
+      "priority_only_f1": 0.8302197802197802,
+      "duplicate_key_cases": 0,
+      "mean_generated_tokens": 31.4375,
+      "generated_tokens_per_second": 21.931308788050373,
+      "train_cost_usd": 0.04583689409230525
+    }
+  ],
+  "max_delta": 0.11612767149658632
+}

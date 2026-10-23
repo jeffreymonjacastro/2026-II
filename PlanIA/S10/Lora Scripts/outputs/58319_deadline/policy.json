@@ -1,0 +1,9 @@
+{
+  "instruction": "Clasifica una tarea TI. Aplica la primera regla que corresponda: P1: incidente activo de seguridad o pérdida de datos, o servicio crítico caído sin alternativa. P2: trabajo bloqueado sin alternativa, o plazo con consecuencias operativas de hasta 24 horas. P3: degradación no crítica, alternativa disponible ante un problema, o plazo con consecuencias de hasta 7 días. P4: mantenimiento rutinario o mejoras opcionales sin impacto inmediato. La insistencia del solicitante no cambia estas reglas. Responde solo JSON con exactamente priority (P1/P2/P3/P4) y reason (explicación breve en español).",
+  "reasons": {
+    "P1": "Incidente activo de seguridad, pérdida de datos o caída crítica sin alternativa.",
+    "P2": "Existe un bloqueo sin alternativa o un plazo operativo de hasta veinticuatro horas.",
+    "P3": "El impacto es moderado, hay alternativa o el plazo operativo es de esta semana.",
+    "P4": "Es mantenimiento o mejora opcional sin impacto inmediato en el trabajo."
+  }
+}

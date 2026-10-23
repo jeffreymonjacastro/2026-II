@@ -1,0 +1,5 @@
+[InstallIPythonKernelSpecApp] WARNING | Installing to /home/jeffrey.monja/Github/2026-II/PlanIA/S10/Lora Scripts/.cache/kernel/share/jupyter/kernels, which is not in ['/home/jeffrey.monja/Github/2026-II/PlanIA/S10/Lora Scripts/.venv/share/jupyter/kernels', '/home/jeffrey.monja/Github/2026-II/PlanIA/S10/Lora Scripts/.cache/jupyter/kernels', '/usr/local/share/jupyter/kernels', '/usr/share/jupyter/kernels', '/home/jeffrey.monja/Github/2026-II/PlanIA/S10/Lora Scripts/.cache/ipython/kernels']. The kernelspec may not be found.
+Installed kernelspec qwen-project in /home/jeffrey.monja/Github/2026-II/PlanIA/S10/Lora Scripts/.cache/kernel/share/jupyter/kernels/qwen-project
+name, driver_version, memory.total [MiB], memory.free [MiB]
+NVIDIA RTX A6000, 610.57.04, 49140 MiB, 9247 MiB
+srun: error: Unable to create step for job 58315: Invalid generic resource (gres) specification

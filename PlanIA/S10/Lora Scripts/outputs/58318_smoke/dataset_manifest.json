@@ -1,0 +1,9 @@
+{
+  "sha256": "59d73a2402dde073ebb0d976efd05f4a6825535e465435658341b7d2762ffe1a",
+  "seed": 42,
+  "counts": {
+    "train": 16,
+    "validation": 8,
+    "test": 8
+  }
+}

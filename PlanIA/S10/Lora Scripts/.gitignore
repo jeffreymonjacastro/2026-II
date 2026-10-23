@@ -1,0 +1,8 @@
+.venv/
+models/
+.cache/
+__pycache__/
+.ipynb_checkpoints/
+outputs/**/checkpoints/
+outputs/**/adapters/
+outputs/**/error_notebook.ipynb

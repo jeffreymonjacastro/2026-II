@@ -1,0 +1,11 @@
+{
+  "train_seconds": 148.50980861205608,
+  "train_peak_allocated_gib": 8.702923774719238,
+  "train_peak_reserved_gib": 9.263671875,
+  "trainable_parameters": 18759680,
+  "best_checkpoint": "outputs/58318_smoke/checkpoints/dora/checkpoint-2",
+  "best_validation_loss": 1.203311800956726,
+  "finite_nonzero_gradients": true,
+  "parameter_updated": true,
+  "optimizer_steps": 2
+}

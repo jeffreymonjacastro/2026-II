@@ -1,0 +1,47 @@
+{
+  "selection": {
+    "rank": 1,
+    "alpha": 32,
+    "validation_f1": 0.8284084574845445,
+    "train_seconds": 224.53879176313058
+  },
+  "frontier": "Al pasar de r=1 a r=2 con alpha=32, la diferencia media en validación fue -0.022. Su límite superior unilateral del 95 % fue 0.017, menor que el margen práctico de 0.02. En este tramo, con los casos y semillas medidos, los resultados no justifican aumentar el rango para buscar una ganancia de 0.02 o más.",
+  "candidate_check": {
+    "rank": 1,
+    "alpha": 32,
+    "predicted_f1": 0.8073407177183417,
+    "observed_f1": 0.8284084574845445,
+    "error": 0.021067739766202798
+  },
+  "frontier_edge": {
+    "delta": -0.022383717329369557,
+    "ci95": [
+      -0.0839792632579569,
+      0.02906367163628527
+    ],
+    "upper_one_sided95": 0.01678354371201496,
+    "n_cases": 48,
+    "n_seeds": 2,
+    "bootstrap": 2000,
+    "seed": 20261023,
+    "caution": "Resampling only two observed training seeds cannot characterize the full seed population.",
+    "alpha": 32,
+    "rank_from": 1,
+    "rank_to": 2,
+    "split": "validation",
+    "rules_out_gain_over_delta": true
+  },
+  "confirmation_base_f1": 0.7942868997128633,
+  "confirmation_lora_f1": 0.8346172066129854,
+  "confirmation_dora_f1": 0.8384577529971982,
+  "confirmation_means": {
+    "base": 0.7942868997128633,
+    "lora": 0.8346172066129854,
+    "dora": 0.8384577529971982,
+    "rslora": 0.8553334892820137,
+    "loraplus": 0.708836322943371
+  },
+  "best_validation_method": "dora",
+  "train_ratio_dora_lora": 2.906802852720519,
+  "vram_ratio_dora_lora": 1.08760213772399
+}

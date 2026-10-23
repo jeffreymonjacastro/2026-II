@@ -1,0 +1,413 @@
+{
+  "base": [
+    {
+      "id": "test-0036",
+      "input": "Necesitamos recuperar la plataforma de becas; tenemos 49 horas de plazo. El impacto se considera medio y alcanza a 400 personas. De este trabajo dependen 0 tareas. Falta una autorización previa; la tarea está bloqueada. El servicio está totalmente interrumpido. No hay riesgo activo para la seguridad física ni exposición de datos. No existe alternativa operativa.",
+      "group": "recuperar la plataforma de becas",
+      "stress_type": "regular",
+      "truth": {
+        "prioridad": "critica",
+        "escalar": true,
+        "bloqueada": true,
+        "criterio": "impacto"
+      },
+      "raw": "{\"prioridad\":\"alta\",\"escalar\":false,\"bloqueada\":true,\"criterio\":\"impacto\"}",
+      "prediction": {
+        "prioridad": "alta",
+        "escalar": false,
+        "bloqueada": true,
+        "criterio": "impacto"
+      },
+      "json_ok": true,
+      "schema_ok": true,
+      "error": "",
+      "latency_s": 0.9973373506218195,
+      "generated_tokens": 26,
+      "facts": {
+        "horas": 49,
+        "impacto": 2,
+        "personas": 400,
+        "dependencias": 0,
+        "riesgo": "ninguno",
+        "alternativa": false,
+        "interrupcion": true,
+        "bloqueada": true
+      }
+    },
+    {
+      "id": "test-0047",
+      "input": "Necesitamos actualizar la plataforma de prácticas; tenemos 9 horas de plazo. El impacto se considera bajo y alcanza a 120 personas. De este trabajo dependen 3 tareas. La tarea puede iniciarse; no tiene bloqueos previos. El servicio está totalmente interrumpido. No hay riesgo activo para la seguridad física ni exposición de datos. No existe alternativa operativa.",
+      "group": "actualizar la plataforma de prácticas",
+      "stress_type": "regular",
+      "truth": {
+        "prioridad": "critica",
+        "escalar": true,
+        "bloqueada": false,
+        "criterio": "impacto"
+      },
+      "raw": "{\"prioridad\":\"alta\",\"escalar\":true,\"bloqueada\":false,\"criterio\":\"impacto\"}",
+      "prediction": {
+        "prioridad": "alta",
+        "escalar": true,
+        "bloqueada": false,
+        "criterio": "impacto"
+      },
+      "json_ok": true,
+      "schema_ok": true,
+      "error": "",
+      "latency_s": 1.027876066043973,
+      "generated_tokens": 26,
+      "facts": {
+        "horas": 9,
+        "impacto": 1,
+        "personas": 120,
+        "dependencias": 3,
+        "riesgo": "ninguno",
+        "alternativa": false,
+        "interrupcion": true,
+        "bloqueada": false
+      }
+    },
+    {
+      "id": "test-0027",
+      "input": "Necesitamos reparar el registro de egresados; tenemos 24 horas de plazo. El impacto se considera alto y alcanza a 5 personas. De este trabajo dependen 8 tareas. La tarea puede iniciarse; no tiene bloqueos previos. No hay interrupción total del servicio. No hay riesgo activo para la seguridad física ni exposición de datos. Hay una alternativa operativa disponible.",
+      "group": "reparar el registro de egresados",
+      "stress_type": "regular",
+      "truth": {
+        "prioridad": "media",
+        "escalar": false,
+        "bloqueada": false,
+        "criterio": "plazo"
+      },
+      "raw": "{\"prioridad\":\"alta\",\"escalar\":false,\"bloqueada\":false,\"criterio\":\"impacto\",\"bloqueada\":false}",
+      "prediction": {},
+      "json_ok": true,
+      "schema_ok": false,
+      "error": "JSON no válido",
+      "latency_s": 1.1659348900429904,
+      "generated_tokens": 31,
+      "facts": {
+        "horas": 24,
+        "impacto": 3,
+        "personas": 5,
+        "dependencias": 8,
+        "riesgo": "ninguno",
+        "alternativa": true,
+        "interrupcion": false,
+        "bloqueada": false
+      }
+    }
+  ],
+  "lora": [
+    {
+      "id": "test-0036",
+      "input": "Necesitamos recuperar la plataforma de becas; tenemos 49 horas de plazo. El impacto se considera medio y alcanza a 400 personas. De este trabajo dependen 0 tareas. Falta una autorización previa; la tarea está bloqueada. El servicio está totalmente interrumpido. No hay riesgo activo para la seguridad física ni exposición de datos. No existe alternativa operativa.",
+      "group": "recuperar la plataforma de becas",
+      "stress_type": "regular",
+      "truth": {
+        "prioridad": "critica",
+        "escalar": true,
+        "bloqueada": true,
+        "criterio": "impacto"
+      },
+      "raw": "{\"prioridad\": \"media\", \"escalar\": false, \"bloqueada\": true, \"criterio\": \"impacto\"}",
+      "prediction": {
+        "prioridad": "media",
+        "escalar": false,
+        "bloqueada": true,
+        "criterio": "impacto"
+      },
+      "json_ok": true,
+      "schema_ok": true,
+      "error": "",
+      "latency_s": 1.4358982630074024,
+      "generated_tokens": 31,
+      "facts": {
+        "horas": 49,
+        "impacto": 2,
+        "personas": 400,
+        "dependencias": 0,
+        "riesgo": "ninguno",
+        "alternativa": false,
+        "interrupcion": true,
+        "bloqueada": true
+      }
+    },
+    {
+      "id": "test-0047",
+      "input": "Necesitamos actualizar la plataforma de prácticas; tenemos 9 horas de plazo. El impacto se considera bajo y alcanza a 120 personas. De este trabajo dependen 3 tareas. La tarea puede iniciarse; no tiene bloqueos previos. El servicio está totalmente interrumpido. No hay riesgo activo para la seguridad física ni exposición de datos. No existe alternativa operativa.",
+      "group": "actualizar la plataforma de prácticas",
+      "stress_type": "regular",
+      "truth": {
+        "prioridad": "critica",
+        "escalar": true,
+        "bloqueada": false,
+        "criterio": "impacto"
+      },
+      "raw": "{\"prioridad\": \"alta\", \"escalar\": true, \"bloqueada\": false, \"criterio\": \"plazo\"}",
+      "prediction": {
+        "prioridad": "alta",
+        "escalar": true,
+        "bloqueada": false,
+        "criterio": "plazo"
+      },
+      "json_ok": true,
+      "schema_ok": true,
+      "error": "",
+      "latency_s": 1.420018192846328,
+      "generated_tokens": 31,
+      "facts": {
+        "horas": 9,
+        "impacto": 1,
+        "personas": 120,
+        "dependencias": 3,
+        "riesgo": "ninguno",
+        "alternativa": false,
+        "interrupcion": true,
+        "bloqueada": false
+      }
+    },
+    {
+      "id": "test-0022",
+      "input": "Necesitamos revisar el sistema de actas; tenemos 49 horas de plazo. El impacto se considera alto y alcanza a 50 personas. De este trabajo dependen 8 tareas. La tarea puede iniciarse; no tiene bloqueos previos. No hay interrupción total del servicio. No hay riesgo activo para la seguridad física ni exposición de datos. Hay una alternativa operativa disponible.",
+      "group": "revisar el sistema de actas",
+      "stress_type": "regular",
+      "truth": {
+        "prioridad": "media",
+        "escalar": false,
+        "bloqueada": false,
+        "criterio": "impacto"
+      },
+      "raw": "{\"prioridad\": \"alta\", \"escalar\": true, \"bloqueada\": false, \"criterio\": \"impacto\"}",
+      "prediction": {
+        "prioridad": "alta",
+        "escalar": true,
+        "bloqueada": false,
+        "criterio": "impacto"
+      },
+      "json_ok": true,
+      "schema_ok": true,
+      "error": "",
+      "latency_s": 1.4330383990891278,
+      "generated_tokens": 31,
+      "facts": {
+        "horas": 49,
+        "impacto": 3,
+        "personas": 50,
+        "dependencias": 8,
+        "riesgo": "ninguno",
+        "alternativa": true,
+        "interrupcion": false,
+        "bloqueada": false
+      }
+    }
+  ],
+  "dora": [
+    {
+      "id": "test-0036",
+      "input": "Necesitamos recuperar la plataforma de becas; tenemos 49 horas de plazo. El impacto se considera medio y alcanza a 400 personas. De este trabajo dependen 0 tareas. Falta una autorización previa; la tarea está bloqueada. El servicio está totalmente interrumpido. No hay riesgo activo para la seguridad física ni exposición de datos. No existe alternativa operativa.",
+      "group": "recuperar la plataforma de becas",
+      "stress_type": "regular",
+      "truth": {
+        "prioridad": "critica",
+        "escalar": true,
+        "bloqueada": true,
+        "criterio": "impacto"
+      },
+      "raw": "{\"prioridad\": \"media\", \"escalar\": false, \"bloqueada\": true, \"criterio\": \"impacto\"}",
+      "prediction": {
+        "prioridad": "media",
+        "escalar": false,
+        "bloqueada": true,
+        "criterio": "impacto"
+      },
+      "json_ok": true,
+      "schema_ok": true,
+      "error": "",
+      "latency_s": 6.013930160086602,
+      "generated_tokens": 31,
+      "facts": {
+        "horas": 49,
+        "impacto": 2,
+        "personas": 400,
+        "dependencias": 0,
+        "riesgo": "ninguno",
+        "alternativa": false,
+        "interrupcion": true,
+        "bloqueada": true
+      }
+    },
+    {
+      "id": "test-0047",
+      "input": "Necesitamos actualizar la plataforma de prácticas; tenemos 9 horas de plazo. El impacto se considera bajo y alcanza a 120 personas. De este trabajo dependen 3 tareas. La tarea puede iniciarse; no tiene bloqueos previos. El servicio está totalmente interrumpido. No hay riesgo activo para la seguridad física ni exposición de datos. No existe alternativa operativa.",
+      "group": "actualizar la plataforma de prácticas",
+      "stress_type": "regular",
+      "truth": {
+        "prioridad": "critica",
+        "escalar": true,
+        "bloqueada": false,
+        "criterio": "impacto"
+      },
+      "raw": "{\"prioridad\": \"alta\", \"escalar\": true, \"bloqueada\": false, \"criterio\": \"plazo\"}",
+      "prediction": {
+        "prioridad": "alta",
+        "escalar": true,
+        "bloqueada": false,
+        "criterio": "plazo"
+      },
+      "json_ok": true,
+      "schema_ok": true,
+      "error": "",
+      "latency_s": 6.145600847899914,
+      "generated_tokens": 31,
+      "facts": {
+        "horas": 9,
+        "impacto": 1,
+        "personas": 120,
+        "dependencias": 3,
+        "riesgo": "ninguno",
+        "alternativa": false,
+        "interrupcion": true,
+        "bloqueada": false
+      }
+    },
+    {
+      "id": "test-0022",
+      "input": "Necesitamos revisar el sistema de actas; tenemos 49 horas de plazo. El impacto se considera alto y alcanza a 50 personas. De este trabajo dependen 8 tareas. La tarea puede iniciarse; no tiene bloqueos previos. No hay interrupción total del servicio. No hay riesgo activo para la seguridad física ni exposición de datos. Hay una alternativa operativa disponible.",
+      "group": "revisar el sistema de actas",
+      "stress_type": "regular",
+      "truth": {
+        "prioridad": "media",
+        "escalar": false,
+        "bloqueada": false,
+        "criterio": "impacto"
+      },
+      "raw": "{\"prioridad\": \"alta\", \"escalar\": true, \"bloqueada\": false, \"criterio\": \"impacto\"}",
+      "prediction": {
+        "prioridad": "alta",
+        "escalar": true,
+        "bloqueada": false,
+        "criterio": "impacto"
+      },
+      "json_ok": true,
+      "schema_ok": true,
+      "error": "",
+      "latency_s": 6.107549271080643,
+      "generated_tokens": 31,
+      "facts": {
+        "horas": 49,
+        "impacto": 3,
+        "personas": 50,
+        "dependencias": 8,
+        "riesgo": "ninguno",
+        "alternativa": true,
+        "interrupcion": false,
+        "bloqueada": false
+      }
+    }
+  ],
+  "lora_replica": [
+    {
+      "id": "test-0036",
+      "input": "Necesitamos recuperar la plataforma de becas; tenemos 49 horas de plazo. El impacto se considera medio y alcanza a 400 personas. De este trabajo dependen 0 tareas. Falta una autorización previa; la tarea está bloqueada. El servicio está totalmente interrumpido. No hay riesgo activo para la seguridad física ni exposición de datos. No existe alternativa operativa.",
+      "group": "recuperar la plataforma de becas",
+      "stress_type": "regular",
+      "truth": {
+        "prioridad": "critica",
+        "escalar": true,
+        "bloqueada": true,
+        "criterio": "impacto"
+      },
+      "raw": "{\"prioridad\": \"media\", \"escalar\": false, \"bloqueada\": true, \"criterio\": \"impacto\"}",
+      "prediction": {
+        "prioridad": "media",
+        "escalar": false,
+        "bloqueada": true,
+        "criterio": "impacto"
+      },
+      "json_ok": true,
+      "schema_ok": true,
+      "error": "",
+      "latency_s": 1.4280423829331994,
+      "generated_tokens": 31,
+      "facts": {
+        "horas": 49,
+        "impacto": 2,
+        "personas": 400,
+        "dependencias": 0,
+        "riesgo": "ninguno",
+        "alternativa": false,
+        "interrupcion": true,
+        "bloqueada": true
+      }
+    },
+    {
+      "id": "test-0047",
+      "input": "Necesitamos actualizar la plataforma de prácticas; tenemos 9 horas de plazo. El impacto se considera bajo y alcanza a 120 personas. De este trabajo dependen 3 tareas. La tarea puede iniciarse; no tiene bloqueos previos. El servicio está totalmente interrumpido. No hay riesgo activo para la seguridad física ni exposición de datos. No existe alternativa operativa.",
+      "group": "actualizar la plataforma de prácticas",
+      "stress_type": "regular",
+      "truth": {
+        "prioridad": "critica",
+        "escalar": true,
+        "bloqueada": false,
+        "criterio": "impacto"
+      },
+      "raw": "{\"prioridad\": \"alta\", \"escalar\": true, \"bloqueada\": false, \"criterio\": \"plazo\"}",
+      "prediction": {
+        "prioridad": "alta",
+        "escalar": true,
+        "bloqueada": false,
+        "criterio": "plazo"
+      },
+      "json_ok": true,
+      "schema_ok": true,
+      "error": "",
+      "latency_s": 1.415481111034751,
+      "generated_tokens": 31,
+      "facts": {
+        "horas": 9,
+        "impacto": 1,
+        "personas": 120,
+        "dependencias": 3,
+        "riesgo": "ninguno",
+        "alternativa": false,
+        "interrupcion": true,
+        "bloqueada": false
+      }
+    },
+    {
+      "id": "test-0057",
+      "input": "Necesitamos habilitar la red del auditorio; tenemos 72 horas de plazo. El impacto se considera bajo y alcanza a 120 personas. De este trabajo dependen 0 tareas. La tarea puede iniciarse; no tiene bloqueos previos. El servicio está totalmente interrumpido. No hay riesgo activo para la seguridad física ni exposición de datos. Hay una alternativa operativa disponible.",
+      "group": "habilitar la red del auditorio",
+      "stress_type": "regular",
+      "truth": {
+        "prioridad": "baja",
+        "escalar": false,
+        "bloqueada": false,
+        "criterio": "planificacion"
+      },
+      "raw": "{\"prioridad\": \"media\", \"escalar\": false, \"bloqueada\": false, \"criterio\": \"plazo\"}",
+      "prediction": {
+        "prioridad": "media",
+        "escalar": false,
+        "bloqueada": false,
+        "criterio": "plazo"
+      },
+      "json_ok": true,
+      "schema_ok": true,
+      "error": "",
+      "latency_s": 1.4167071962729096,
+      "generated_tokens": 31,
+      "facts": {
+        "horas": 72,
+        "impacto": 1,
+        "personas": 120,
+        "dependencias": 0,
+        "riesgo": "ninguno",
+        "alternativa": true,
+        "interrupcion": true,
+        "bloqueada": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "job_id": "58227",
+  "node": "g002",
+  "gpu": "NVIDIA RTX A6000",
+  "torch": "2.14.1+cu130",
+  "cuda": "13.0",
+  "rank": 1,
+  "alpha": 32,
+  "seeds": [
+    42,
+    43
+  ],
+  "rslora": "use_rslora=True; scale=alpha/sqrt(r)",
+  "loraplus": "PEFT create_loraplus_optimizer; AdamW; lr_A=0.0002; lr_B=0.0032; ratio=16",
+  "scheduler": "Cosine multiplier applied to each original parameter-group rate, preserving B/A=16 at every step",
+  "source_sha256": {
+    "compare_peft.py": "b0e132321790ed3e607c516c574a8180b3f583ce78b6d1c8f9e364baaaed1358",
+    "experiment.py": "8929094a161322f0c10f0b63110e96f1dbe198b34f5da63c86a7c03044df60e0",
+    "factorial_runner.py": "753251247f8b5ebe1849c443cfbe6bfaf9e373ecddcf2524fed97f5b26883826"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "delta": 0.0038405463842127174,
+  "ci95": [
+    -0.01738908617681024,
+    0.027206826428619203
+  ],
+  "upper_one_sided95": 0.023606738754706723,
+  "n_cases": 128,
+  "n_seeds": 2,
+  "bootstrap": 2000,
+  "seed": 20261023,
+  "caution": "Resampling only two observed training seeds cannot characterize the full seed population."
+}

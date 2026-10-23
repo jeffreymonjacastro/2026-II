@@ -1,0 +1,86 @@
+{
+  "formula": "F1_validación = b0+b1*x+b2*q+b3*z+b4*x*z+b5*q*z+b6*bloque; x=(log2(r)-3)/2; q=x²-2/3; z=−1/+1",
+  "coefficients": [
+    {
+      "term": "intercepto",
+      "coefficient": 0.7687631406160219,
+      "standard_error": 0.003330938513491954,
+      "p": 2.897922905867996e-11
+    },
+    {
+      "term": "r_lineal",
+      "coefficient": 0.0008626691402018882,
+      "standard_error": 0.0040795498613199945,
+      "p": 0.8408758783357699
+    },
+    {
+      "term": "r_cuadratico",
+      "coefficient": 0.0026491089367936794,
+      "standard_error": 0.007065987631816797,
+      "p": 0.7231037476885221
+    },
+    {
+      "term": "alpha",
+      "coefficient": 0.03504718726477095,
+      "standard_error": 0.003330938513491954,
+      "p": 0.0001338851017865862
+    },
+    {
+      "term": "r_lineal:alpha",
+      "coefficient": -0.003012844052745496,
+      "standard_error": 0.0040795498613199945,
+      "p": 0.4933816102311242
+    },
+    {
+      "term": "r_cuadratico:alpha",
+      "coefficient": -0.0024563968512778863,
+      "standard_error": 0.007065987631816797,
+      "p": 0.7422689608299397
+    },
+    {
+      "term": "bloque_semilla",
+      "coefficient": -0.037931823035463705,
+      "standard_error": 0.003330938513491954,
+      "p": 9.138815193562832e-05
+    }
+  ],
+  "effects": [
+    {
+      "effect": "r",
+      "df": 2,
+      "F": 0.09263678418316178,
+      "p": 0.9130526587968923
+    },
+    {
+      "effect": "alpha",
+      "df": 1,
+      "F": 110.70649629103235,
+      "p": 0.0001338851017865868
+    },
+    {
+      "effect": "r × alpha",
+      "df": 2,
+      "F": 0.33313423943438375,
+      "p": 0.7314457820565031
+    },
+    {
+      "effect": "semilla",
+      "df": 1,
+      "F": 129.68035761109414,
+      "p": 9.138815193562895e-05
+    }
+  ],
+  "df_residual": 5,
+  "residual_rmse": 0.011538709484512029,
+  "r2": 0.9796944746138281,
+  "beta": [
+    0.7687631406160219,
+    0.0008626691402018882,
+    0.0026491089367936794,
+    0.03504718726477095,
+    -0.003012844052745496,
+    -0.0024563968512778863,
+    -0.037931823035463705
+  ],
+  "scope": "Exploratory response surface and partial F tests. Two seeds, bounded F1 and tiny residual df limit inference. Alpha has two levels, so its curvature cannot be estimated."
+}

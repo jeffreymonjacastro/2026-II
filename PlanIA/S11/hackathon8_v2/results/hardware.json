@@ -1,0 +1,28 @@
+{
+  "gpu": "NVIDIA RTX A6000",
+  "total_vram_gb": 47.401123046875,
+  "node": "ds001",
+  "job_id": "58224",
+  "cuda": "13.0",
+  "torch": "2.14.1+cu130",
+  "config": {
+    "model_name": "Qwen/Qwen3.5-4B",
+    "model_path": "/home/fabryzzio.meza/hackathon8_qwen35/model",
+    "seed": 42,
+    "rank": 8,
+    "alpha": 16,
+    "dropout": 0.05,
+    "learning_rate": 0.0002,
+    "max_steps": 32,
+    "gradient_accumulation_steps": 8,
+    "batch_size": 1,
+    "max_sequence_length": 1024,
+    "target_modules": [
+      "q_proj",
+      "v_proj",
+      "in_proj_qkv",
+      "out_proj"
+    ],
+    "simulated_usd_per_gpu_hour": 1.0
+  }
+}

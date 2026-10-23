@@ -1,0 +1,18 @@
+{
+  "reason": "At r=1 the standard and rank-stabilized scaling are identical.",
+  "rank": 32,
+  "alpha": 32,
+  "seeds": [
+    42,
+    43
+  ],
+  "baseline_conditions": [
+    "fx_lora_r32_a32_s42",
+    "fx_lora_r32_a32_s43"
+  ],
+  "control_conditions": [
+    "fx_rslora_r32_a32_s42",
+    "fx_rslora_r32_a32_s43"
+  ],
+  "scope": "Mechanism control on original validation/test/stress only, not a new selection using confirmation."
+}

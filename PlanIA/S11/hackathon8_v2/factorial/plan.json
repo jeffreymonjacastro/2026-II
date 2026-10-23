@@ -1,0 +1,99 @@
+{
+  "ranks": [
+    2,
+    8,
+    32
+  ],
+  "alphas": [
+    8,
+    32
+  ],
+  "seeds": [
+    42,
+    43
+  ],
+  "steps": 32,
+  "effective_batch": 8,
+  "execution_order": [
+    {
+      "rank": 32,
+      "alpha": 32,
+      "seed": 42,
+      "phase": "extremes"
+    },
+    {
+      "rank": 2,
+      "alpha": 8,
+      "seed": 42,
+      "phase": "extremes"
+    },
+    {
+      "rank": 2,
+      "alpha": 32,
+      "seed": 42,
+      "phase": "extremes"
+    },
+    {
+      "rank": 32,
+      "alpha": 8,
+      "seed": 42,
+      "phase": "extremes"
+    },
+    {
+      "rank": 8,
+      "alpha": 32,
+      "seed": 42,
+      "phase": "factorial"
+    },
+    {
+      "rank": 8,
+      "alpha": 8,
+      "seed": 42,
+      "phase": "factorial"
+    },
+    {
+      "rank": 8,
+      "alpha": 8,
+      "seed": 43,
+      "phase": "replica"
+    },
+    {
+      "rank": 32,
+      "alpha": 8,
+      "seed": 43,
+      "phase": "replica"
+    },
+    {
+      "rank": 2,
+      "alpha": 8,
+      "seed": 43,
+      "phase": "replica"
+    },
+    {
+      "rank": 2,
+      "alpha": 32,
+      "seed": 43,
+      "phase": "replica"
+    },
+    {
+      "rank": 32,
+      "alpha": 32,
+      "seed": 43,
+      "phase": "replica"
+    },
+    {
+      "rank": 8,
+      "alpha": 32,
+      "seed": 43,
+      "phase": "replica"
+    }
+  ],
+  "confirmation_rank": 64,
+  "practical_delta": 0.02,
+  "selection": "Mean validation F1 within 0.02 of maximum, smallest rank, then mean training time",
+  "inference": "greedy; batch 1; 96 tokens; adapters unmerged",
+  "warmup": "one forward/backward without optimizer step, excluded from train time",
+  "fixed_hardware": "g002 NVIDIA RTX A6000; 7 typed shards; 4 CPU; 32 GiB RAM",
+  "note": "Only validation determines selection and outside-domain alpha; test, stress and fresh confirmation are reporting sets.",
+  "response_surface": "Polynomial in log2(rank), alpha categorical and interactions, seed block. Search integer ranks 1..64; verify new predicted optimum with both seeds. Always test rank64 at initial selected alpha."
+}

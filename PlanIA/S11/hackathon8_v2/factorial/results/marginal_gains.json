@@ -1,0 +1,114 @@
+{
+  "practical_delta": 0.02,
+  "comparisons": [
+    {
+      "delta": -0.0012299925951241852,
+      "ci95": [
+        -0.048139010713572836,
+        0.04503474988493575
+      ],
+      "upper_one_sided95": 0.03675698883882242,
+      "n_cases": 48,
+      "n_seeds": 2,
+      "bootstrap": 2000,
+      "seed": 20261023,
+      "caution": "Resampling only two observed training seeds cannot characterize the full seed population.",
+      "alpha": 8,
+      "rank_from": 2,
+      "rank_to": 8,
+      "split": "validation",
+      "rules_out_gain_over_delta": false
+    },
+    {
+      "delta": 0.00898101898101894,
+      "ci95": [
+        -0.005410426100081136,
+        0.045457042957042906
+      ],
+      "upper_one_sided95": 0.038917990333226744,
+      "n_cases": 48,
+      "n_seeds": 2,
+      "bootstrap": 2000,
+      "seed": 20261023,
+      "caution": "Resampling only two observed training seeds cannot characterize the full seed population.",
+      "alpha": 8,
+      "rank_from": 8,
+      "rank_to": 32,
+      "split": "validation",
+      "rules_out_gain_over_delta": false
+    },
+    {
+      "delta": -0.022383717329369557,
+      "ci95": [
+        -0.0839792632579569,
+        0.02906367163628527
+      ],
+      "upper_one_sided95": 0.01678354371201496,
+      "n_cases": 48,
+      "n_seeds": 2,
+      "bootstrap": 2000,
+      "seed": 20261023,
+      "caution": "Resampling only two observed training seeds cannot characterize the full seed population.",
+      "alpha": 32,
+      "rank_from": 1,
+      "rank_to": 2,
+      "split": "validation",
+      "rules_out_gain_over_delta": true
+    },
+    {
+      "delta": -0.0023428869980594014,
+      "ci95": [
+        -0.03945396122835426,
+        0.031606113126168116
+      ],
+      "upper_one_sided95": 0.020177655667813845,
+      "n_cases": 48,
+      "n_seeds": 2,
+      "bootstrap": 2000,
+      "seed": 20261023,
+      "caution": "Resampling only two observed training seeds cannot characterize the full seed population.",
+      "alpha": 32,
+      "rank_from": 2,
+      "rank_to": 8,
+      "split": "validation",
+      "rules_out_gain_over_delta": false
+    },
+    {
+      "delta": -0.0019574628270280225,
+      "ci95": [
+        -0.06443790516808685,
+        0.053627195679615214
+      ],
+      "upper_one_sided95": 0.0424469412593771,
+      "n_cases": 48,
+      "n_seeds": 2,
+      "bootstrap": 2000,
+      "seed": 20261023,
+      "caution": "Resampling only two observed training seeds cannot characterize the full seed population.",
+      "alpha": 32,
+      "rank_from": 8,
+      "rank_to": 32,
+      "split": "validation",
+      "rules_out_gain_over_delta": false
+    },
+    {
+      "delta": -0.01617409639336176,
+      "ci95": [
+        -0.06823304865424441,
+        0.03335127830821421
+      ],
+      "upper_one_sided95": 0.023110113819352913,
+      "n_cases": 48,
+      "n_seeds": 2,
+      "bootstrap": 2000,
+      "seed": 20261023,
+      "caution": "Resampling only two observed training seeds cannot characterize the full seed population.",
+      "alpha": 32,
+      "rank_from": 32,
+      "rank_to": 64,
+      "split": "validation",
+      "rules_out_gain_over_delta": false
+    }
+  ],
+  "interpretation": "A nonsignificant p value alone is not evidence of saturation. A one-sided upper bootstrap bound below 0.02 limits meaningful gain conditional on the observed cases and seeds."
+}

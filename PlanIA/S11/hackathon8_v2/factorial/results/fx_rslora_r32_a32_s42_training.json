@@ -1,0 +1,29 @@
+{
+  "train_seconds": 321.437575367745,
+  "train_peak_allocated_gb": 3.4422011375427246,
+  "train_peak_reserved_gb": 3.595703125,
+  "trainable_parameters": 17039360,
+  "seed": 42,
+  "rank": 32,
+  "alpha": 32,
+  "method": "rslora",
+  "steps": 32,
+  "examples_seen": 256,
+  "warmup_seconds": 1.2678238707594573,
+  "sequence_length_min": 398,
+  "sequence_length_max": 417,
+  "final_loss": 0.01010527418111451,
+  "use_rslora": true,
+  "loraplus_lr_ratio": 1.0,
+  "optimizer_groups": [
+    {
+      "index": 0,
+      "parameters": 17039360,
+      "base_lr": 0.0002,
+      "weight_decay": 0.01
+    }
+  ],
+  "simulated_train_cost_usd": 0.08928821537992918,
+  "condition": "fx_rslora_r32_a32_s42",
+  "phase": "rslora_high_rank_control"
+}

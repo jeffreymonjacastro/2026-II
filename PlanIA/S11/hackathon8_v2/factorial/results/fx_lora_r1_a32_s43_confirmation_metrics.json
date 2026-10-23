@@ -1,0 +1,18 @@
+{
+  "n": 128,
+  "macro_f1": 0.8530959368732431,
+  "accuracy": 0.8515625,
+  "json_rate": 1.0,
+  "schema_rate": 1.0,
+  "exact_match": 0.796875,
+  "critical_recall": 0.8125,
+  "ordinal_mae": 0.1640625,
+  "escalation_accuracy": 0.9140625,
+  "blocking_accuracy": 1.0,
+  "criterion_accuracy": 0.90625,
+  "mean_latency_s": 2.302011278239661,
+  "p95_latency_s": 2.4605820348951966,
+  "inference_total_s": 296.5297797410749,
+  "inference_peak_allocated_gb": 3.073519706726074,
+  "inference_peak_reserved_gb": 5.44921875
+}

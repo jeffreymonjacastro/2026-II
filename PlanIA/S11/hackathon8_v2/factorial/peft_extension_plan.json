@@ -1,0 +1,21 @@
+{
+  "methods": [
+    "rslora",
+    "loraplus"
+  ],
+  "seeds": [
+    42,
+    43
+  ],
+  "rank_alpha": "Use final LoRA-selected values without method-specific search",
+  "rslora_scaling": "alpha/sqrt(r)",
+  "loraplus_optimizer": "PEFT create_loraplus_optimizer + torch.optim.AdamW",
+  "loraplus_lr_A": 0.0002,
+  "loraplus_lr_B": 0.0032,
+  "loraplus_ratio": 16,
+  "scheduler": "Same cosine multiplier applied independently to each original rate, ratio preserved",
+  "same_hardware": "g002 RTX A6000,7shards,CPU4,RAM32GiB",
+  "source": "https://huggingface.co/docs/peft/en/package_reference/lora",
+  "scope": "Matched configurations, not separately tuned optima of each method",
+  "conditional_rslora_control": "If final selected rank is1, standard and rsLoRA scales are identical. Add rsLoRA rank32 at same alpha, seeds42/43, compare against existing factorial LoRA rank32. Validation/test/stress diagnostic only; does not alter shared selected configuration or confirmation."
+}

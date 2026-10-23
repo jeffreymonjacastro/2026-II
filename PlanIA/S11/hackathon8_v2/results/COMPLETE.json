@@ -1,0 +1,9 @@
+{
+  "status": "completed",
+  "methods": [
+    "base",
+    "lora",
+    "dora",
+    "lora_replica"
+  ]
+}

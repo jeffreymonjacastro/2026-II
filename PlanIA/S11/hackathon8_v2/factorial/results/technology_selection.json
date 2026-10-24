@@ -1,0 +1,10 @@
+{
+  "criterion": "Maximum mean validation macro F1; no selection using confirmation",
+  "validation_means": {
+    "lora": 0.8284084574845445,
+    "dora": 0.8356289543789543,
+    "rslora": 0.8186288349331827,
+    "loraplus": 0.7040711173520098
+  },
+  "best_validation_method": "dora"
+}

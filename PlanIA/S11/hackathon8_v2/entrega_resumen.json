@@ -1,0 +1,34 @@
+{
+  "status": "complete",
+  "factorial_cells": 6,
+  "replicas": 2,
+  "factorial_training_runs": 12,
+  "total_new_training_runs": 24,
+  "methods": [
+    "LoRA",
+    "DoRA",
+    "rsLoRA",
+    "LoRA+"
+  ],
+  "selected_lora": {
+    "rank": 1,
+    "alpha": 32,
+    "validation_f1": 0.8284084574845445,
+    "train_seconds": 224.53879176313058
+  },
+  "best_validation_method": "dora",
+  "confirmation_cases": 128,
+  "confirmation_evaluations": 9,
+  "jobs": {
+    "58225": "COMPLETED",
+    "58227": "COMPLETED"
+  },
+  "report_pages": 6,
+  "slides": 13,
+  "executed_notebooks": 3,
+  "model_revision": {
+    "model": "Qwen/Qwen3.5-4B",
+    "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+  },
+  "limits": "Synthetic data, two seeds, fixed training budget and shared GPU. Comparison uses LoRA-selected rank/alpha for all methods."
+}

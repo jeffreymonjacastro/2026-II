@@ -1,0 +1,44 @@
+{
+  "comparisons": {
+    "dora": {
+      "delta": 0.0038405463842127174,
+      "ci95": [
+        -0.01738908617681024,
+        0.027206826428619203
+      ],
+      "upper_one_sided95": 0.023606738754706723,
+      "n_cases": 128,
+      "n_seeds": 2,
+      "bootstrap": 2000,
+      "seed": 20261023,
+      "caution": "Resampling only two observed training seeds cannot characterize the full seed population."
+    },
+    "rslora": {
+      "delta": 0.020716282669028308,
+      "ci95": [
+        -0.007547612891690545,
+        0.05309699992552732
+      ],
+      "upper_one_sided95": 0.046094492413336914,
+      "n_cases": 128,
+      "n_seeds": 2,
+      "bootstrap": 2000,
+      "seed": 20261023,
+      "caution": "Resampling only two observed training seeds cannot characterize the full seed population."
+    },
+    "loraplus": {
+      "delta": -0.12578088366961454,
+      "ci95": [
+        -0.20965494427925527,
+        -0.03762988359156259
+      ],
+      "upper_one_sided95": -0.05497088595279524,
+      "n_cases": 128,
+      "n_seeds": 2,
+      "bootstrap": 2000,
+      "seed": 20261023,
+      "caution": "Resampling only two observed training seeds cannot characterize the full seed population."
+    }
+  },
+  "scope": "Exploratory individual 95% intervals, not adjusted for three method comparisons. Hyperparameters shared from LoRA selection, not tuned separately for each method."
+}

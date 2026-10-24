@@ -1,0 +1,15 @@
+{
+  "n": 128,
+  "classes": {
+    "critica": 32,
+    "alta": 32,
+    "media": 32,
+    "baja": 32
+  },
+  "seed": 20261031,
+  "synthetic": true,
+  "group_overlap": 0,
+  "exact_duplicates": 0,
+  "sha256": "fed5c85ccbc7ef8c67997d3d58bd751ca2d682f370b1575ea7da9366563b5046",
+  "purpose": "Independent confirmation after final hyperparameter selection"
+}

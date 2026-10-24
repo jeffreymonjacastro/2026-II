@@ -1,0 +1,15 @@
+{
+  "status": "completed",
+  "methods": [
+    "lora",
+    "dora",
+    "rslora",
+    "loraplus"
+  ],
+  "seeds": [
+    42,
+    43
+  ],
+  "total_training_conditions": 24,
+  "completed_utc": "2026-10-23T15:33:34Z"
+}

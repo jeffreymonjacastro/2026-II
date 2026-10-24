@@ -1,0 +1,19 @@
+{
+  "total": 384,
+  "sizes": {
+    "train": 256,
+    "validation": 48,
+    "test": 64,
+    "stress": 16
+  },
+  "synthetic_fraction": 1.0,
+  "split_seed": 20261023,
+  "group_overlap": 0,
+  "exact_duplicates": 0,
+  "sha256": {
+    "stress.jsonl": "fe8309c4cdf914df25d3192c885b03c81a61b7cb7193c6f5cde5c8f6e2d34819",
+    "test.jsonl": "00456c3731b6d27cb10100fae50feed6e20a27980bb7bc9e73d39a0745b8c31e",
+    "train.jsonl": "117bac695f81a95f63a9afea03f3e5847e13c6482c70e787250d5084fbc25839",
+    "validation.jsonl": "fce3d1bf14103237fdffad7f431490dabd827518d8e3ac55c467714bb3af5609"
+  }
+}

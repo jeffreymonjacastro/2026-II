@@ -1,0 +1,14 @@
+{
+  "factorial_runs": 12,
+  "total_runs": 24,
+  "selection": {
+    "rank": 1,
+    "alpha": 32,
+    "validation_f1": 0.8284084574845445,
+    "train_seconds": 224.53879176313058
+  },
+  "outside_rank": 64,
+  "fresh_confirmation_cases": 128,
+  "regression_r2": 0.9796944746138281,
+  "protected_data_audit": "passed"
+}

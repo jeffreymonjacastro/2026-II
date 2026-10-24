@@ -1,0 +1,29 @@
+{
+  "status": "completed",
+  "conditions": [
+    "fx_lora_r32_a32_s42",
+    "fx_lora_r2_a8_s42",
+    "fx_lora_r2_a32_s42",
+    "fx_lora_r32_a8_s42",
+    "fx_lora_r8_a32_s42",
+    "fx_lora_r8_a8_s42",
+    "fx_lora_r8_a8_s43",
+    "fx_lora_r32_a8_s43",
+    "fx_lora_r2_a8_s43",
+    "fx_lora_r2_a32_s43",
+    "fx_lora_r32_a32_s43",
+    "fx_lora_r8_a32_s43",
+    "fx_lora_r1_a32_s42",
+    "fx_lora_r1_a32_s43",
+    "fx_lora_r64_a32_s42",
+    "fx_lora_r64_a32_s43",
+    "fx_dora_r1_a32_s42",
+    "fx_dora_r1_a32_s43"
+  ],
+  "selected": {
+    "rank": 1,
+    "alpha": 32,
+    "validation_f1": 0.8284084574845445,
+    "train_seconds": 224.53879176313058
+  }
+}

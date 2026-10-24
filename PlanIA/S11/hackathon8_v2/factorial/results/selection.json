@@ -1,0 +1,60 @@
+{
+  "rule": "mean validation F1 within 0.02 of best, then smallest rank, then lowest mean training time",
+  "best_validation_f1": 0.8284084574845445,
+  "selected": {
+    "rank": 1,
+    "alpha": 32,
+    "validation_f1": 0.8284084574845445,
+    "train_seconds": 224.53879176313058
+  },
+  "cells": [
+    {
+      "rank": 1,
+      "alpha": 32,
+      "validation_f1": 0.8284084574845445,
+      "train_seconds": 224.53879176313058
+    },
+    {
+      "rank": 2,
+      "alpha": 8,
+      "validation_f1": 0.7315422754209939,
+      "train_seconds": 226.89377174549736
+    },
+    {
+      "rank": 2,
+      "alpha": 32,
+      "validation_f1": 0.8060247401551749,
+      "train_seconds": 218.71254003443755
+    },
+    {
+      "rank": 8,
+      "alpha": 8,
+      "validation_f1": 0.7303122828258698,
+      "train_seconds": 211.12680942891166
+    },
+    {
+      "rank": 8,
+      "alpha": 32,
+      "validation_f1": 0.8036818531571155,
+      "train_seconds": 217.18695134134032
+    },
+    {
+      "rank": 32,
+      "alpha": 8,
+      "validation_f1": 0.7392933018068888,
+      "train_seconds": 216.78304884093814
+    },
+    {
+      "rank": 32,
+      "alpha": 32,
+      "validation_f1": 0.8017243903300875,
+      "train_seconds": 226.36815259605646
+    },
+    {
+      "rank": 64,
+      "alpha": 32,
+      "validation_f1": 0.7855502939367257,
+      "train_seconds": 339.671014302643
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "train_seconds": 315.03754265001044,
+  "train_peak_allocated_gb": 3.196134090423584,
+  "train_peak_reserved_gb": 3.27734375,
+  "trainable_parameters": 532480,
+  "seed": 42,
+  "rank": 1,
+  "alpha": 32,
+  "method": "loraplus",
+  "steps": 32,
+  "examples_seen": 256,
+  "warmup_seconds": 1.2500858241692185,
+  "sequence_length_min": 398,
+  "sequence_length_max": 417,
+  "final_loss": 0.05631025449838489,
+  "use_rslora": false,
+  "loraplus_lr_ratio": 16.0,
+  "optimizer_groups": [
+    {
+      "index": 0,
+      "parameters": 200704,
+      "base_lr": 0.0002,
+      "weight_decay": 0.01
+    },
+    {
+      "index": 1,
+      "parameters": 0,
+      "base_lr": 1e-06,
+      "weight_decay": 0.01
+    },
+    {
+      "index": 2,
+      "parameters": 331776,
+      "base_lr": 0.0032,
+      "weight_decay": 0.01
+    },
+    {
+      "index": 3,
+      "parameters": 0,
+      "base_lr": 0.0032,
+      "weight_decay": 0.0
+    }
+  ],
+  "simulated_train_cost_usd": 0.08751042851389179,
+  "condition": "fx_loraplus_r1_a32_s42",
+  "phase": "additional_technology_comparison"
+}

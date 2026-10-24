@@ -1,0 +1,231 @@
+[
+  {
+    "gpu": "NVIDIA RTX A6000",
+    "node": "g002",
+    "job_id": "58225",
+    "cuda": "13.0",
+    "torch": "2.14.1+cu130",
+    "plan": {
+      "ranks": [
+        2,
+        8,
+        32
+      ],
+      "alphas": [
+        8,
+        32
+      ],
+      "seeds": [
+        42,
+        43
+      ],
+      "steps": 32,
+      "effective_batch": 8,
+      "execution_order": [
+        {
+          "rank": 32,
+          "alpha": 32,
+          "seed": 42,
+          "phase": "extremes"
+        },
+        {
+          "rank": 2,
+          "alpha": 8,
+          "seed": 42,
+          "phase": "extremes"
+        },
+        {
+          "rank": 2,
+          "alpha": 32,
+          "seed": 42,
+          "phase": "extremes"
+        },
+        {
+          "rank": 32,
+          "alpha": 8,
+          "seed": 42,
+          "phase": "extremes"
+        },
+        {
+          "rank": 8,
+          "alpha": 32,
+          "seed": 42,
+          "phase": "factorial"
+        },
+        {
+          "rank": 8,
+          "alpha": 8,
+          "seed": 42,
+          "phase": "factorial"
+        },
+        {
+          "rank": 8,
+          "alpha": 8,
+          "seed": 43,
+          "phase": "replica"
+        },
+        {
+          "rank": 32,
+          "alpha": 8,
+          "seed": 43,
+          "phase": "replica"
+        },
+        {
+          "rank": 2,
+          "alpha": 8,
+          "seed": 43,
+          "phase": "replica"
+        },
+        {
+          "rank": 2,
+          "alpha": 32,
+          "seed": 43,
+          "phase": "replica"
+        },
+        {
+          "rank": 32,
+          "alpha": 32,
+          "seed": 43,
+          "phase": "replica"
+        },
+        {
+          "rank": 8,
+          "alpha": 32,
+          "seed": 43,
+          "phase": "replica"
+        }
+      ],
+      "confirmation_rank": 64,
+      "practical_delta": 0.02,
+      "selection": "Mean validation F1 within 0.02 of maximum, smallest rank, then mean training time",
+      "inference": "greedy; batch 1; 96 tokens; adapters unmerged",
+      "warmup": "one forward/backward without optimizer step, excluded from train time",
+      "fixed_hardware": "g002 NVIDIA RTX A6000; 7 typed shards; 4 CPU; 32 GiB RAM",
+      "note": "Only validation determines selection and outside-domain alpha; test, stress and fresh confirmation are reporting sets."
+    },
+    "data_sha256": {
+      "test.jsonl": "00456c3731b6d27cb10100fae50feed6e20a27980bb7bc9e73d39a0745b8c31e",
+      "train.jsonl": "117bac695f81a95f63a9afea03f3e5847e13c6482c70e787250d5084fbc25839",
+      "validation.jsonl": "fce3d1bf14103237fdffad7f431490dabd827518d8e3ac55c467714bb3af5609",
+      "stress.jsonl": "fe8309c4cdf914df25d3192c885b03c81a61b7cb7193c6f5cde5c8f6e2d34819"
+    }
+  },
+  {
+    "gpu": "NVIDIA RTX A6000",
+    "node": "g002",
+    "job_id": "58225",
+    "cuda": "13.0",
+    "torch": "2.14.1+cu130",
+    "plan": {
+      "ranks": [
+        2,
+        8,
+        32
+      ],
+      "alphas": [
+        8,
+        32
+      ],
+      "seeds": [
+        42,
+        43
+      ],
+      "steps": 32,
+      "effective_batch": 8,
+      "execution_order": [
+        {
+          "rank": 32,
+          "alpha": 32,
+          "seed": 42,
+          "phase": "extremes"
+        },
+        {
+          "rank": 2,
+          "alpha": 8,
+          "seed": 42,
+          "phase": "extremes"
+        },
+        {
+          "rank": 2,
+          "alpha": 32,
+          "seed": 42,
+          "phase": "extremes"
+        },
+        {
+          "rank": 32,
+          "alpha": 8,
+          "seed": 42,
+          "phase": "extremes"
+        },
+        {
+          "rank": 8,
+          "alpha": 32,
+          "seed": 42,
+          "phase": "factorial"
+        },
+        {
+          "rank": 8,
+          "alpha": 8,
+          "seed": 42,
+          "phase": "factorial"
+        },
+        {
+          "rank": 8,
+          "alpha": 8,
+          "seed": 43,
+          "phase": "replica"
+        },
+        {
+          "rank": 32,
+          "alpha": 8,
+          "seed": 43,
+          "phase": "replica"
+        },
+        {
+          "rank": 2,
+          "alpha": 8,
+          "seed": 43,
+          "phase": "replica"
+        },
+        {
+          "rank": 2,
+          "alpha": 32,
+          "seed": 43,
+          "phase": "replica"
+        },
+        {
+          "rank": 32,
+          "alpha": 32,
+          "seed": 43,
+          "phase": "replica"
+        },
+        {
+          "rank": 8,
+          "alpha": 32,
+          "seed": 43,
+          "phase": "replica"
+        }
+      ],
+      "confirmation_rank": 64,
+      "practical_delta": 0.02,
+      "selection": "Mean validation F1 within 0.02 of maximum, smallest rank, then mean training time",
+      "inference": "greedy; batch 1; 96 tokens; adapters unmerged",
+      "warmup": "one forward/backward without optimizer step, excluded from train time",
+      "fixed_hardware": "g002 NVIDIA RTX A6000; 7 typed shards; 4 CPU; 32 GiB RAM",
+      "note": "Only validation determines selection and outside-domain alpha; test, stress and fresh confirmation are reporting sets.",
+      "response_surface": "Polynomial in log2(rank), alpha categorical and interactions, seed block. Search integer ranks 1..64; verify new predicted optimum with both seeds. Always test rank64 at initial selected alpha."
+    },
+    "data_sha256": {
+      "test.jsonl": "00456c3731b6d27cb10100fae50feed6e20a27980bb7bc9e73d39a0745b8c31e",
+      "train.jsonl": "117bac695f81a95f63a9afea03f3e5847e13c6482c70e787250d5084fbc25839",
+      "validation.jsonl": "fce3d1bf14103237fdffad7f431490dabd827518d8e3ac55c467714bb3af5609",
+      "stress.jsonl": "fe8309c4cdf914df25d3192c885b03c81a61b7cb7193c6f5cde5c8f6e2d34819"
+    },
+    "source_sha256": {
+      "factorial_runner.py": "22736096719031c5ddd409a9a2804dfbff89b2ea413544d818f2dc7f60aa55f7",
+      "experiment.py": "81a213d0be33b6ffe723eeef6875ac9e4b7f0df9e2a3689031e8c0faa931c868",
+      "evaluation.py": "1f432db74a53fe0aedfb18454f6e4b1d75779448405a3e03288c6f4b8b3610dc"
+    },
+    "session_started_utc": "2026-10-23T10:01:29Z"
+  }
+]

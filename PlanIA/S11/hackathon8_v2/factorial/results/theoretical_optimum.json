@@ -1,0 +1,26 @@
+{
+  "formula": "F1 ~ x + q + alpha + x:alpha + q:alpha + seed_block; x=(log2(r)-3)/2; q=x^2-2/3",
+  "coefficients": [
+    0.7687631406160219,
+    0.0008626691402018659,
+    0.0026491089367936685,
+    0.035047187264770914,
+    -0.0030128440527455174,
+    -0.0024563968512778945,
+    -0.03793182303546366
+  ],
+  "candidate": {
+    "rank": 1,
+    "alpha": 32,
+    "predicted_validation_f1": 0.8073407177183417
+  },
+  "domain_factorial": [
+    2,
+    32
+  ],
+  "candidate_search": [
+    1,
+    64
+  ],
+  "note": "Predictions beyond [2,32] are extrapolations, requiring actual duplicate confirmation."
+}

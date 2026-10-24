@@ -1,0 +1,19 @@
+{
+  "train_seconds": 653.4422805621289,
+  "train_peak_allocated_gb": 3.4766135215759277,
+  "train_peak_reserved_gb": 3.587890625,
+  "trainable_parameters": 864256,
+  "seed": 43,
+  "rank": 1,
+  "alpha": 32,
+  "method": "dora",
+  "steps": 32,
+  "examples_seen": 256,
+  "warmup_seconds": 2.421932389959693,
+  "sequence_length_min": 398,
+  "sequence_length_max": 417,
+  "final_loss": 0.01542906343456707,
+  "simulated_train_cost_usd": 0.18151174460059136,
+  "condition": "fx_dora_r1_a32_s43",
+  "phase": "technology_comparison"
+}

@@ -1,0 +1,33 @@
+{
+  "status": "ok",
+  "class_counts": {
+    "train": {
+      "critica": 64,
+      "alta": 64,
+      "media": 64,
+      "baja": 64
+    },
+    "validation": {
+      "critica": 12,
+      "alta": 12,
+      "media": 12,
+      "baja": 12
+    },
+    "test": {
+      "critica": 16,
+      "alta": 16,
+      "media": 16,
+      "baja": 16
+    },
+    "stress": {
+      "critica": 4,
+      "alta": 4,
+      "media": 4,
+      "baja": 4
+    }
+  },
+  "group_overlap": 0,
+  "exact_duplicates": 0,
+  "boundary_checks": 8,
+  "impact_monotonicity_checks": 6
+}

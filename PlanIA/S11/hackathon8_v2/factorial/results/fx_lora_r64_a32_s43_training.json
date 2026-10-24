@@ -1,0 +1,19 @@
+{
+  "train_seconds": 341.7975842761807,
+  "train_peak_allocated_gb": 3.702012062072754,
+  "train_peak_reserved_gb": 3.9296875,
+  "trainable_parameters": 34078720,
+  "seed": 43,
+  "rank": 64,
+  "alpha": 32,
+  "method": "lora",
+  "steps": 32,
+  "examples_seen": 256,
+  "warmup_seconds": 1.3447561282664537,
+  "sequence_length_min": 398,
+  "sequence_length_max": 417,
+  "final_loss": 0.02171013631595997,
+  "simulated_train_cost_usd": 0.0949437734100502,
+  "condition": "fx_lora_r64_a32_s43",
+  "phase": "outside_domain"
+}

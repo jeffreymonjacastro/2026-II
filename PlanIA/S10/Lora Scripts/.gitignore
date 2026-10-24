@@ -6,3 +6,4 @@ __pycache__/
 outputs/**/checkpoints/
 outputs/**/adapters/
 outputs/**/error_notebook.ipynb
+outputs/archive_previous_attempts/

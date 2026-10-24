@@ -1,0 +1,11 @@
+{
+  "sha256": "0696e9fe2bffe4e87cb47abbb198450c89d368765543a77295971dd0a9ba4701",
+  "seed": 42,
+  "task": "task_set_priority_classification",
+  "tasks_per_set": 4,
+  "counts": {
+    "train": 400,
+    "validation": 100,
+    "test": 100
+  }
+}

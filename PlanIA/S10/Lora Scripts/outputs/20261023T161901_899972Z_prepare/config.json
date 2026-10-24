@@ -1,0 +1,18 @@
+{
+  "model_id": "Qwen/Qwen3.5-4B",
+  "seed": 42,
+  "mode": "prepare",
+  "train_size": 400,
+  "validation_size": 100,
+  "test_size": 100,
+  "rank": 16,
+  "alpha": 32,
+  "dropout": 0.0,
+  "learning_rate": 0.0002,
+  "epochs": 3,
+  "batch_size": 1,
+  "accumulation": 16,
+  "max_seq_length": 768,
+  "max_new_tokens": 224,
+  "warmup_ratio": 0.03
+}

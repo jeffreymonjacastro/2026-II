@@ -1,0 +1,21 @@
+[InstallIPythonKernelSpecApp] WARNING | Installing to /home/jeffrey.monja/Github/2026-II/PlanIA/S10/Lora Scripts/.cache/kernel/share/jupyter/kernels, which is not in ['/home/jeffrey.monja/Github/2026-II/PlanIA/S10/Lora Scripts/.venv/share/jupyter/kernels', '/home/jeffrey.monja/Github/2026-II/PlanIA/S10/Lora Scripts/.cache/jupyter/kernels', '/usr/local/share/jupyter/kernels', '/usr/share/jupyter/kernels', '/home/jeffrey.monja/Github/2026-II/PlanIA/S10/Lora Scripts/.cache/ipython/kernels']. The kernelspec may not be found.
+Installed kernelspec qwen-project in /home/jeffrey.monja/Github/2026-II/PlanIA/S10/Lora Scripts/.cache/kernel/share/jupyter/kernels/qwen-project
+name, driver_version, memory.total [MiB], memory.free [MiB]
+NVIDIA RTX A6000, 610.57.04, 49140 MiB, 25907 MiB
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Completed cell 3 ['download']
+Completed cell 5 ['setup']
+Completed cell 7 ['policy']
+Completed cell 9 ['data']
+Completed cell 11 ['scoring']
+Completed cell 13 ['model']
+Completed cell 15 ['tokenize']
+Completed cell 17 ['evaluation']
+Completed cell 19 ['baseline']
+Completed cell 21 ['training']
+Completed cell 23 ['lora']
+Completed cell 25 ['dora']
+Completed cell 27 ['quality_plots']
+Completed cell 29 ['resource_plots']
+Completed cell 31 ['conclusions']
+Execution completed: outputs/58321_deadline_executed.ipynb

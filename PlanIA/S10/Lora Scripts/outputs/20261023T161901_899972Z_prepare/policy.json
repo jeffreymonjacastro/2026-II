@@ -1,0 +1,11 @@
+{
+  "instruction": "Asigna una prioridad a CADA tarea del conjunto. Usa exactamente Critical, High, Medium o Low. Aplica la primera regla satisfecha: Critical si active_incident=true, o si blocked=true, impact=5 y workaround=false. High si blocked=true y workaround=false, o si deadline_hours<=24 e impact>=3. Medium si workaround=true, deadline_hours<=168 o impact>=3. Low en los demás casos. impact va de 1 (menor) a 5 (crítico). La insistencia de la descripción no cambia los criterios explícitos. Incluye cada id exactamente una vez, con una razón breve de hasta 12 palabras. Devuelve solo JSON: {\"tasks\":[{\"id\":\"T1\",\"priority\":\"High\",\"reason\":\"...\"},...]}. Conserva los IDs recibidos.",
+  "priorities": [
+    "Critical",
+    "High",
+    "Medium",
+    "Low"
+  ],
+  "task": "task_set_priority_classification",
+  "scheduling": false
+}

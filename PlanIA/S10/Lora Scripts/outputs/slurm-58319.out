@@ -11,3 +11,6 @@ Completed cell 11 ['scoring']
 Completed cell 13 ['model']
 Completed cell 15 ['tokenize']
 Completed cell 17 ['evaluation']
+Completed cell 19 ['baseline']
+Completed cell 21 ['training']
+[2026-10-23T11:04:07.140] error: *** JOB 58319 ON g002 CANCELLED AT 2026-10-23T11:04:07 DUE to SIGNAL Terminated ***

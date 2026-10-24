@@ -1,0 +1,7 @@
+{
+  "job_id": 58321,
+  "task": "task_set_priority_classification",
+  "results": "outputs/58321_deadline",
+  "notebook": "qwen35_4b_priorizacion.ipynb",
+  "status": "completed"
+}

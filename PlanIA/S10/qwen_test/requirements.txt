@@ -1,0 +1,9 @@
+# Entorno local independiente: uv sync (Python 3.12).
+# Mantener estas dependencias alineadas con pyproject.toml.
+torch==2.9.1
+transformers==5.19.0
+accelerate==1.15.0
+bitsandbytes==0.50.2
+pillow>=11,<13
+ipykernel>=6.29,<8
+jupyterlab>=4,<5

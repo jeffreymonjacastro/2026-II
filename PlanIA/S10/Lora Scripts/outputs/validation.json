@@ -1,50 +1,38 @@
 {
-  "notebook_schema": "passed",
-  "code_cells_syntax": "passed",
-  "preparation_execution": "passed",
-  "dataset_examples": 600,
-  "split_sizes": [
-    400,
-    100,
-    100
+  "confirmed_task": "classify_each_task_in_a_set",
+  "priorities": [
+    "Critical",
+    "High",
+    "Medium",
+    "Low"
   ],
-  "max_token_length": 234,
-  "duplicate_and_split_checks": "passed",
-  "invalid_output_metric_checks": "passed",
-  "language_mlp_targets": 96,
-  "dora_parameter_tensors_meta_check": 288,
-  "training_argument_interfaces": "passed_full_and_smoke",
-  "pip_check": "passed",
+  "scheduling": false,
   "model_download": "complete",
-  "model_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
-  "gpu_smoke_job_id": 58318,
-  "gpu_smoke_status": "running_g002_shared_rtxa6000",
-  "full_experiment": "replaced_by_deadline_profile",
-  "prepared_artifacts": "outputs/20261023T151209_251679Z_prepare",
-  "python_runtime": "3.11.7 (shared Khipu Spack runtime)",
-  "full_experiment_job_id": null,
-  "previous_attempts": [
-    {
-      "job": 58314,
-      "status": "failed_before_model_load",
-      "reason": "login-only Python interpreter absent on compute node; corrected"
-    },
-    {
-      "job": 58315,
-      "status": "failed_before_model_load",
-      "reason": "srun GRES propagation; corrected; GPU had only 9247 MiB free"
-    }
+  "data_and_scoring_checks": "passed",
+  "max_observed_sequence_tokens": 468,
+  "max_reference_answer_tokens": 128,
+  "gpu_adapter_pipeline_smoke": "passed_on_same_model_and_adapter_code",
+  "current_job": 58321,
+  "current_job_mode": "deadline",
+  "deadline_sets": [
+    80,
+    12,
+    12
   ],
-  "notebook_source_sha256": "8e177d6e136ec153a8adc215c615b27c1c6788a7ec4aeb828921a16406b8bd03",
-  "execution_gap": "No GPU inference or training completed. Dedicated GPU smoke and dependent full experiment are queued.",
-  "cancelled_own_pending_jobs": [
-    58316,
-    58317
-  ],
-  "deadline_profile": {
-    "train": 200,
-    "validation": 40,
-    "test": 40,
-    "epochs": 1
-  }
+  "tasks_per_set": 4,
+  "test_tasks": 48,
+  "prior_attempts": "archived_not_used_for_final_comparison",
+  "current_job_status": "completed",
+  "baseline_completed": true,
+  "lora_completed": true,
+  "baseline_accuracy": 0.4166666666666667,
+  "lora_accuracy": 0.8541666666666666,
+  "baseline_schema_compliance": 0.5,
+  "lora_schema_compliance": 1.0,
+  "all_three_models_completed": true,
+  "predictions_reconciled": true,
+  "notebook_executed": true,
+  "plots_inspected": true,
+  "artifact_directory": "outputs/58321_deadline",
+  "notebook_sha256": "734089fc5b5f86b34539806c196ee72fce5291e95187500ad2e9c9b68e40fc33"
 }

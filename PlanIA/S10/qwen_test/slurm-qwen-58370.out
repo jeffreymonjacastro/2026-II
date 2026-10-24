@@ -1,0 +1,37 @@
+Job 58370 | Nodo ds001 | Inicio 2026-10-23T21:03:36-05:00
+Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]Loading weights:   0%|          | 1/723 [00:00<02:55,  4.12it/s]Loading weights:   1%|          | 6/723 [00:01<02:20,  5.10it/s]Loading weights:   4%|▎         | 26/723 [00:01<00:25, 26.99it/s]Loading weights:   6%|▌         | 44/723 [00:01<00:14, 48.03it/s]Loading weights:   9%|▉         | 65/723 [00:01<00:08, 73.48it/s]Loading weights:  11%|█▏        | 83/723 [00:01<00:06, 93.10it/s]Loading weights:  14%|█▍        | 100/723 [00:01<00:05, 107.60it/s]Loading weights:  17%|█▋        | 121/723 [00:01<00:04, 131.01it/s]Loading weights:  20%|█▉        | 142/723 [00:01<00:03, 150.09it/s]Loading weights:  22%|██▏       | 161/723 [00:02<00:03, 157.90it/s]Loading weights:  25%|██▌       | 182/723 [00:02<00:03, 169.22it/s]Loading weights:  28%|██▊       | 201/723 [00:02<00:03, 167.42it/s]Loading weights:  31%|███       | 223/723 [00:02<00:02, 180.19it/s]Loading weights:  34%|███▎      | 243/723 [00:02<00:02, 183.89it/s]Loading weights:  36%|███▋      | 263/723 [00:02<00:02, 179.02it/s]Loading weights:  40%|███▉      | 288/723 [00:02<00:02, 196.20it/s]Loading weights:  43%|████▎     | 309/723 [00:02<00:02, 189.29it/s]Loading weights:  46%|████▌     | 330/723 [00:02<00:02, 189.79it/s]Loading weights:  48%|████▊     | 350/723 [00:03<00:01, 188.87it/s]Loading weights:  51%|█████     | 370/723 [00:03<00:01, 182.78it/s]Loading weights:  54%|█████▍    | 391/723 [00:03<00:01, 189.88it/s]Loading weights:  57%|█████▋    | 411/723 [00:03<00:01, 191.37it/s]Loading weights:  60%|█████▉    | 431/723 [00:03<00:01, 193.52it/s]Loading weights:  65%|██████▌   | 473/723 [00:03<00:00, 258.60it/s]Loading weights:  71%|███████▏  | 516/723 [00:03<00:00, 307.70it/s]Loading weights:  78%|███████▊  | 564/723 [00:03<00:00, 356.61it/s]Loading weights:  84%|████████▍ | 607/723 [00:03<00:00, 378.21it/s]Loading weights:  92%|█████████▏| 662/723 [00:03<00:00, 427.51it/s]Loading weights:  99%|█████████▉| 718/723 [00:04<00:00, 463.59it/s]Loading weights: 100%|██████████| 723/723 [00:04<00:00, 178.38it/s]
+Modelo: Qwen/Qwen3.5-4B | GPU: NVIDIA RTX A6000
+Carga del tokenizer y modelo: 17.37 s
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `fused_recurrent_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+PROMPT: Explica en dos frases qué es un modelo de lenguaje.
+
+RESPUESTA:
+ Un modelo de lenguaje es un sistema computacional entrenado con grandes volúmenes de texto que aprende patrones lingüísticos y relaciones semánticas. Su objetivo principal es predecir y generar texto coherente, respondiendo a preguntas o completando frases basándose en esos patrones aprendidos.
+
+MÉTRICAS:
+ {
+  "model": "Qwen/Qwen3.5-4B",
+  "model_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+  "gpu": "NVIDIA RTX A6000",
+  "input_tokens": 24,
+  "output_tokens": 64,
+  "total_tokens": 88,
+  "model_load_seconds": 17.371,
+  "generation_seconds": 9.558,
+  "inference_seconds": 9.614,
+  "output_tokens_per_second": 6.7,
+  "cuda_allocated_gib": 3.083,
+  "cuda_peak_allocated_gib": 3.182,
+  "cuda_peak_reserved_gib": 3.225,
+  "device_total_memory_gib": 47.401,
+  "device_free_before_gib": 7.246,
+  "device_free_after_gib": 7.121,
+  "device_gpu_utilization_mean_percent": 98.0,
+  "device_gpu_utilization_max_percent": 100.0,
+  "gpu_utilization_samples": 41,
+  "gpu_utilization_error": null
+}
+Finalizado: 2026-10-23T21:05:01-05:00

@@ -1,0 +1,11 @@
+{
+  "train_seconds": 197.97781392093748,
+  "train_peak_allocated_gib": 7.026217937469482,
+  "train_peak_reserved_gib": 8.923828125,
+  "trainable_parameters": 18087936,
+  "best_checkpoint": "outputs/58321_deadline/checkpoints/lora/checkpoint-5",
+  "best_validation_loss": 0.1850791573524475,
+  "finite_nonzero_gradients": true,
+  "parameter_updated": true,
+  "optimizer_steps": 5
+}

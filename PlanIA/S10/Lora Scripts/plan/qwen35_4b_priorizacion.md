@@ -1,79 +1,55 @@
-# Qwen3.5-4B: priorización de tareas, LoRA y DoRA
+# Qwen3.5-4B: prioridades por tarea en conjuntos
 
-## Objetivo y alcance acordado
+## Definición final confirmada por el usuario
 
-Crear un único notebook nuevo basado en main.ipynb, sin modificar los archivos
-del docente ni las ediciones existentes. Explicaciones y ejemplos en español.
-Comparar el checkpoint original Qwen/Qwen3.5-4B con un entrenamiento LoRA y otro
-DoRA independiente mediante Hugging Face PEFT. Todos los datos, funciones,
-experimentos, evaluaciones y gráficos viven en el notebook.
+Recibir un conjunto de tareas y asignar a cada una Critical, High, Medium o Low,
+con una razón breve. Conservar IDs. El orden de salida no afecta la clasificación.
+No construir horarios. Todos los experimentos permanecen en un notebook nuevo;
+los originales del docente se conservan. Los intentos previos se archivan y no
+se utilizan como evidencia de esta comparación.
 
-Se omiten por acuerdo el diseño factorial, réplicas con varias semillas, 20% de
-datos escritos por alumnos, regresión, análisis monetario y presentación. No se
-afirma cumplir toda la rúbrica original ni demostrar superioridad general.
+## Política y datos
 
-## Implementación
+Cada tarea contiene id, descripción, deadline_hours, impact (1–5), blocked,
+workaround y active_incident. Aplicar en orden: Critical ante incidente activo o
+bloqueo crítico sin alternativa; High ante bloqueo sin alternativa o plazo <=24h
+con impacto >=3; Medium ante alternativa, plazo <=168h o impacto >=3; Low en los
+demás casos. La insistencia del texto no cambia los atributos explícitos.
+Salida JSON tasks con id, priority y reason por tarea. Razones revisadas de forma
+cualitativa, sin inferir que sean correctas solo por existir.
 
-1. Revisar requerements.txt y conservarlo; crear requirements.txt compatible con
-   Linux y CUDA, con Matplotlib y scikit-learn. Congelar versiones efectivas.
-2. Descargar el checkpoint oficial completo antes del cómputo GPU, guardar la
-   revisión resuelta y reutilizarlo localmente en modo offline.
-3. Crear qwen35_4b_priorizacion.ipynb: objetivo, preparación, configuración,
-   política, datos, baseline, LoRA, DoRA, resultados, gráficos y conclusiones.
-4. Clasificar tareas TI con JSON {priority, reason} y cuatro clases. P1: incidente
-   activo de seguridad/pérdida de datos o caída crítica sin alternativa. P2:
-   trabajo bloqueado sin alternativa o plazo con consecuencias <=24 h. P3:
-   degradación no crítica, alternativa disponible o plazo con consecuencias
-   <=7 días. P4: mantenimiento/mejoras opcionales sin impacto inmediato.
-5. Generar 600 ejemplos sintéticos únicos, balanceados: 400 entrenamiento, 100
-   validación, 100 prueba. Separar familias de escenarios/plantillas, fijar
-   semilla, verificar etiquetas y ausencia de duplicados y guardar huellas.
-6. Cargar la clase nativa de generación condicional; congelar visión. Usar el
-   chat template oficial y enable_thinking=False. Baseline con generación greedy,
-   máximo 128 tokens, batch 1, calentamiento fuera del test.
-7. Cuantizar consistentemente en NF4 4-bit con doble cuantización. Preparar cada
-   método desde una carga nueva. Adaptar solo MLP del modelo de lenguaje
-   (gate_proj/up_proj/down_proj), comprobar nombres y parámetros entrenables.
-8. Ajustes compartidos: r=16, alpha=32, dropout=0, lr=2e-4, 3 épocas, batch 1,
-   acumulación 16, máximo 512 tokens, warmup_ratio=0.03, semilla 42. Gradient
-   checkpointing y pérdida únicamente sobre la respuesta. Validación por época,
-   selección por menor pérdida de validación. DoRA: use_dora=True. Evaluación sin
-   fusionar adaptadores. Mantener idénticos datos, hardware y presupuesto.
-9. Guardar outputs/<run_id>/: configuración, entorno, paquetes, dataset JSONL,
-   predicciones CSV, métricas CSV/JSON, historial, adaptadores y PNG Matplotlib.
-   Medir exactitud, macro-F1 de cuatro clases, recall por clase, JSON/esquema,
-   latencia, tiempo de entrenamiento, parámetros y picos de VRAM. Respuestas
-   inválidas cuentan como errores; conservar columna inválida en confusión.
-10. Figuras: distribución de clases, comparación de calidad, confusiones,
-    curvas de pérdida y recursos. Conclusiones basadas en resultados reales.
+Generar datos sintéticos reproducibles y etiquetas derivadas de la política.
+Equilibrar prioridades globalmente por partición, no imponer una de cada por set.
+Separar servicios/redacciones y comprobar ausencia de duplicados. Deadline:
+80/12/12 conjuntos de cuatro tareas, una época, 48 tareas de prueba. Full opcional:
+400/100/100 y tres épocas. Datos y configuración iguales para los tres modelos.
 
-## Khipu y validación
+## Modelo y ejecución para entrega en cuatro horas
 
-Seguir AGENTS.md: preparación/transferencias en login; inferencia y entrenamiento
-solo con Slurm. Revisar límites antes de enviar. Solicitud objetivo: gpu,
-rtxa6000:1, 4 CPUs, 48 GiB RAM, 4 horas. Smoke de 30 minutos, datos reducidos y
-dos pasos por método. El wrapper del scheduler solo ejecuta el notebook.
+Checkpoint oficial descargado y revisión fijada. Qwen original, LoRA y DoRA desde
+cargas independientes. NF4 4-bit, doble cuantización, r=16, alpha=32, dropout=0,
+lr=2e-4, acumulación 16, límite 768 tokens, hasta 224 generados. Adaptar 96 MLP
+projections del lenguaje y congelar visión. Pérdida solo en respuestas. Validación
+por época y menor pérdida de validación; DoRA con use_dora=True en PEFT.
 
-Validar formato, política, separación, máscaras de etiquetas, scoring de inválidos,
-gradientes finitos/no nulos, actualización, guardado/recarga de ambos adaptadores.
-Ejecutar de principio a fin e inspeccionar resultados y figuras. Registrar
-restricciones reales de entorno o cola sin inventar resultados ni cambiar solo
-un método. Aceptación: notebook ejecutado, tres condiciones medidas, adaptadores
-recargables, CSV/JSON reconciliables y gráficos legibles. Mejorar métricas no es
-un requisito de aceptación.
+Usar Slurm con siete shards disponibles en g002, sin alterar jobs de otros usuarios.
+La infraestructura GPU y adaptadores ya pasaron un smoke previo; la nueva estructura
+y scoring pasan verificaciones CPU. El run final repite las comprobaciones de
+gradientes, actualización, guardado y recarga. No esperar la cola dedicada de dos días.
 
-Referencias: https://huggingface.co/Qwen/Qwen3.5-4B ;
-https://huggingface.co/docs/peft/package_reference/lora_variant_dora ; AGENTS.md.
+## Evidencia y validación
 
-## Ajuste por entrega en cuatro horas (2026-10-23)
+Medir exactitud y macro-F1 por tarea, recall por prioridad, conjuntos enteramente
+correctos, completitud, duplicados, IDs desconocidos y JSON/esquema. Alinear por
+ID; omisiones y duplicados reciben INVALID y cuentan como errores. Guardar
+responses.csv por set, predictions.csv por tarea, métricas CSV/JSON, dataset JSONL,
+configuración, entorno, versiones, historial y adaptadores.
 
-La cola dedicada no cumple el plazo. Se cancelaron únicamente los jobs propios
-58316/58317. El smoke 58318 se ejecuta en g002 con siete shards RTX A6000,
-cuatro CPUs y 48 GiB RAM; el nodo informó ~16 GiB VRAM libres. No se alteró
-ningún proceso o job de otros usuarios.
+Matplotlib: distribución de prioridades, comparación de calidad, matrices con
+columna INVALID, pérdidas y recursos. Mostrar cada tarea, prioridad y razón.
+Reconciliar CSV con métricas e inspeccionar figuras. Los tiempos en GPU compartida
+y picos del proceso secuencial no son benchmarks aislados. No inventar mejoras.
 
-Se incorpora el modo `deadline`: 200 ejemplos de entrenamiento, 40 validación,
-40 prueba y una época por adaptador. Se mantienen checkpoint, r=16, alpha=32,
-semilla, política y condiciones comparables. La comparación sigue incluyendo
-original, LoRA y DoRA; el tamaño reducido y la GPU compartida se declaran como
-limitaciones. El modo full permanece disponible para trabajo posterior.
+Omitidos: factorial, réplicas, 20% manual, regresión, costos monetarios y PPT.
+Referencias: AGENTS.md; https://huggingface.co/Qwen/Qwen3.5-4B ;
+https://huggingface.co/docs/peft/package_reference/lora_variant_dora .

@@ -2,7 +2,8 @@
 #SBATCH --job-name=qwen35-prioridades
 #SBATCH --account=pregrado
 #SBATCH --partition=gpu
-#SBATCH --gres=gpu:rtxa6000:1
+#SBATCH --gres=shard:rtxa6000:7
+#SBATCH --nodelist=g002
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4

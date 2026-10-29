@@ -1,0 +1,18 @@
+{
+  "mejor_individual": "ResNet50",
+  "diferencia_f1_stacking_menos_mejor": 0.004159014434584218,
+  "errores_stacking_por_clase": {
+    "chicken_wings": 42,
+    "hamburger": 98,
+    "hot_dog": 109,
+    "pizza": 51,
+    "sushi": 69,
+    "tacos": 87
+  },
+  "acierto_oraculo_por_pareja": {
+    "ResNet50 + DenseNet121": 0.951,
+    "ResNet50 + MobileNetV2": 0.9423333333333334,
+    "DenseNet121 + MobileNetV2": 0.9405
+  },
+  "nota": "El orÃ¡culo es un lÃ­mite descriptivo: conoce si cada modelo acierta. No es un ensemble implementable ni evidencia causal."
+}

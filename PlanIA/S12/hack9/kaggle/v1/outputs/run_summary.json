@@ -1,0 +1,21 @@
+{
+  "status": "complete",
+  "stage": "done",
+  "device": "cuda",
+  "artifacts": [
+    "ejemplos.png",
+    "run_summary.json",
+    "__notebook__.ipynb",
+    "matrices_confusion.png",
+    "balance.csv",
+    "dataset_meta.csv",
+    "historial.csv",
+    "analisis.json",
+    "predicciones.csv",
+    "curvas_entrenamiento.png",
+    "metricas_por_fold.csv",
+    "resumen_metricas.csv"
+  ],
+  "fold": 5,
+  "model": "MobileNetV2"
+}

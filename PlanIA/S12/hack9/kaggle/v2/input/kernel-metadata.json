@@ -1,0 +1,17 @@
+{
+  "id": "jeffreyamc/hack9-fast-food-xgboost-v2",
+  "title": "Hack9 Fast Food XGBoost v2",
+  "code_file": "hack9_v2.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "jeffreyamc/hack9-fast-food-101"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

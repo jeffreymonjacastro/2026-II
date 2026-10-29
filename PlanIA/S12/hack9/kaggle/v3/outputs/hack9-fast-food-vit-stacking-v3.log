@@ -1,0 +1,194 @@
+[{"stream_name":"stderr","time":8.275348619,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.275432666,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.275438407,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.275442164,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":8.948238246,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.948272222,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.948277263,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.948281674,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":31.722342532,"data":"GPU: Tesla T4 timm: 1.0.29\n"}
+,{"stream_name":"stdout","time":542.097621355,"data":"Grupos duplicados exactos: 1\n"}
+,{"stream_name":"stdout","time":542.097679515,"data":"Imágenes: 6000\n"}
+,{"stream_name":"stdout","time":542.097688502,"data":"label\n"}
+,{"stream_name":"stdout","time":542.097697026,"data":"chicken_wings    1000\n"}
+,{"stream_name":"stdout","time":542.097700419,"data":"hamburger        1000\n"}
+,{"stream_name":"stdout","time":542.097703532,"data":"hot_dog          1000\n"}
+,{"stream_name":"stdout","time":542.097706501,"data":"pizza            1000\n"}
+,{"stream_name":"stdout","time":542.097709486,"data":"sushi            1000\n"}
+,{"stream_name":"stdout","time":542.097712502,"data":"tacos            1000\n"}
+,{"stream_name":"stderr","time":546.404160369,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":546.404188377,"data":"\n"}
+,{"stream_name":"stderr","time":546.404193777,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":580.627986549,"data":"ViT-Small fold 1 época 1: train=0.269, val_f1=0.9638\n"}
+,{"stream_name":"stdout","time":610.70398898,"data":"ViT-Small fold 1 época 2: train=0.081, val_f1=0.9710\n"}
+,{"stream_name":"stdout","time":641.179961136,"data":"ViT-Small fold 1 época 3: train=0.048, val_f1=0.9667\n"}
+,{"stream_name":"stdout","time":670.832825064,"data":"ViT-Small fold 1 época 4: train=0.028, val_f1=0.9689\n"}
+,{"stream_name":"stdout","time":700.942344867,"data":"ViT-Small fold 1 época 5: train=0.021, val_f1=0.9730\n"}
+,{"stream_name":"stdout","time":731.370397791,"data":"ViT-Small fold 1 época 6: train=0.013, val_f1=0.9688\n"}
+,{"stream_name":"stdout","time":761.797430153,"data":"ViT-Small fold 1 época 7: train=0.009, val_f1=0.9710\n"}
+,{"stream_name":"stdout","time":791.686824162,"data":"ViT-Small fold 1 época 8: train=0.009, val_f1=0.9689\n"}
+,{"stream_name":"stdout","time":800.464674467,"data":"ViT-Small fold 1: mejor época 5, F1 interno 0.9730\n"}
+,{"stream_name":"stdout","time":833.37973368,"data":"DeiT3-Small fold 1 época 1: train=0.269, val_f1=0.9617\n"}
+,{"stream_name":"stdout","time":863.978743622,"data":"DeiT3-Small fold 1 época 2: train=0.100, val_f1=0.9648\n"}
+,{"stream_name":"stdout","time":894.717930907,"data":"DeiT3-Small fold 1 época 3: train=0.057, val_f1=0.9690\n"}
+,{"stream_name":"stdout","time":925.089722677,"data":"DeiT3-Small fold 1 época 4: train=0.039, val_f1=0.9668\n"}
+,{"stream_name":"stdout","time":955.376309514,"data":"DeiT3-Small fold 1 época 5: train=0.027, val_f1=0.9647\n"}
+,{"stream_name":"stdout","time":985.915764365,"data":"DeiT3-Small fold 1 época 6: train=0.027, val_f1=0.9658\n"}
+,{"stream_name":"stdout","time":1016.331509934,"data":"DeiT3-Small fold 1 época 7: train=0.020, val_f1=0.9637\n"}
+,{"stream_name":"stdout","time":1046.959678255,"data":"DeiT3-Small fold 1 época 8: train=0.017, val_f1=0.9688\n"}
+,{"stream_name":"stdout","time":1055.783999614,"data":"DeiT3-Small fold 1: mejor época 3, F1 interno 0.9690\n"}
+,{"stream_name":"stdout","time":1093.215752788,"data":"ViT-Base fold 1 época 1: train=0.289, val_f1=0.9628\n"}
+,{"stream_name":"stdout","time":1125.014054945,"data":"ViT-Base fold 1 época 2: train=0.051, val_f1=0.9640\n"}
+,{"stream_name":"stdout","time":1157.055563608,"data":"ViT-Base fold 1 época 3: train=0.017, val_f1=0.9731\n"}
+,{"stream_name":"stdout","time":1188.654341299,"data":"ViT-Base fold 1 época 4: train=0.014, val_f1=0.9689\n"}
+,{"stream_name":"stdout","time":1220.78052337,"data":"ViT-Base fold 1 época 5: train=0.018, val_f1=0.9699\n"}
+,{"stream_name":"stdout","time":1252.672521148,"data":"ViT-Base fold 1 época 6: train=0.019, val_f1=0.9584\n"}
+,{"stream_name":"stdout","time":1284.342744823,"data":"ViT-Base fold 1 época 7: train=0.036, val_f1=0.9627\n"}
+,{"stream_name":"stdout","time":1316.026166818,"data":"ViT-Base fold 1 época 8: train=0.071, val_f1=0.9731\n"}
+,{"stream_name":"stdout","time":1324.920855845,"data":"ViT-Base fold 1: mejor época 3, F1 interno 0.9731\n"}
+,{"stream_name":"stdout","time":1325.506191514,"data":"Fold terminado: 1\n"}
+,{"stream_name":"stdout","time":1357.377054787,"data":"ViT-Small fold 2 época 1: train=0.252, val_f1=0.9697\n"}
+,{"stream_name":"stdout","time":1387.553364399,"data":"ViT-Small fold 2 época 2: train=0.065, val_f1=0.9687\n"}
+,{"stream_name":"stdout","time":1417.783572071,"data":"ViT-Small fold 2 época 3: train=0.043, val_f1=0.9708\n"}
+,{"stream_name":"stdout","time":1447.924222262,"data":"ViT-Small fold 2 época 4: train=0.024, val_f1=0.9625\n"}
+,{"stream_name":"stdout","time":1478.314681623,"data":"ViT-Small fold 2 época 5: train=0.018, val_f1=0.9634\n"}
+,{"stream_name":"stdout","time":1508.663532993,"data":"ViT-Small fold 2 época 6: train=0.013, val_f1=0.9635\n"}
+,{"stream_name":"stdout","time":1538.779131477,"data":"ViT-Small fold 2 época 7: train=0.012, val_f1=0.9687\n"}
+,{"stream_name":"stdout","time":1568.986474365,"data":"ViT-Small fold 2 época 8: train=0.007, val_f1=0.9686\n"}
+,{"stream_name":"stdout","time":1577.742393394,"data":"ViT-Small fold 2: mejor época 3, F1 interno 0.9708\n"}
+,{"stream_name":"stdout","time":1608.8691352,"data":"DeiT3-Small fold 2 época 1: train=0.222, val_f1=0.9614\n"}
+,{"stream_name":"stdout","time":1639.436778785,"data":"DeiT3-Small fold 2 época 2: train=0.078, val_f1=0.9645\n"}
+,{"stream_name":"stdout","time":1670.124709224,"data":"DeiT3-Small fold 2 época 3: train=0.054, val_f1=0.9656\n"}
+,{"stream_name":"stdout","time":1700.594079504,"data":"DeiT3-Small fold 2 época 4: train=0.029, val_f1=0.9656\n"}
+,{"stream_name":"stdout","time":1730.905930433,"data":"DeiT3-Small fold 2 época 5: train=0.024, val_f1=0.9647\n"}
+,{"stream_name":"stdout","time":1761.345034073,"data":"DeiT3-Small fold 2 época 6: train=0.028, val_f1=0.9676\n"}
+,{"stream_name":"stdout","time":1791.324904013,"data":"DeiT3-Small fold 2 época 7: train=0.011, val_f1=0.9666\n"}
+,{"stream_name":"stdout","time":1821.947676223,"data":"DeiT3-Small fold 2 época 8: train=0.013, val_f1=0.9635\n"}
+,{"stream_name":"stdout","time":1830.633181847,"data":"DeiT3-Small fold 2: mejor época 6, F1 interno 0.9676\n"}
+,{"stream_name":"stdout","time":1864.302452618,"data":"ViT-Base fold 2 época 1: train=0.230, val_f1=0.9697\n"}
+,{"stream_name":"stdout","time":1896.341023451,"data":"ViT-Base fold 2 época 2: train=0.029, val_f1=0.9771\n"}
+,{"stream_name":"stdout","time":1927.645911535,"data":"ViT-Base fold 2 época 3: train=0.025, val_f1=0.9666\n"}
+,{"stream_name":"stdout","time":1959.340408409,"data":"ViT-Base fold 2 época 4: train=0.018, val_f1=0.9739\n"}
+,{"stream_name":"stdout","time":1991.236102677,"data":"ViT-Base fold 2 época 5: train=0.012, val_f1=0.9677\n"}
+,{"stream_name":"stdout","time":2022.788717705,"data":"ViT-Base fold 2 época 6: train=0.023, val_f1=0.9676\n"}
+,{"stream_name":"stdout","time":2054.34125424,"data":"ViT-Base fold 2 época 7: train=0.076, val_f1=0.9718\n"}
+,{"stream_name":"stdout","time":2085.727067859,"data":"ViT-Base fold 2 época 8: train=0.012, val_f1=0.9729\n"}
+,{"stream_name":"stdout","time":2094.939178981,"data":"ViT-Base fold 2: mejor época 2, F1 interno 0.9771\n"}
+,{"stream_name":"stdout","time":2095.490619595,"data":"Fold terminado: 2\n"}
+,{"stream_name":"stdout","time":2126.98228207,"data":"ViT-Small fold 3 época 1: train=0.244, val_f1=0.9627\n"}
+,{"stream_name":"stdout","time":2157.226294604,"data":"ViT-Small fold 3 época 2: train=0.076, val_f1=0.9668\n"}
+,{"stream_name":"stdout","time":2187.812596184,"data":"ViT-Small fold 3 época 3: train=0.044, val_f1=0.9709\n"}
+,{"stream_name":"stdout","time":2218.017773736,"data":"ViT-Small fold 3 época 4: train=0.027, val_f1=0.9699\n"}
+,{"stream_name":"stdout","time":2248.003061051,"data":"ViT-Small fold 3 época 5: train=0.025, val_f1=0.9658\n"}
+,{"stream_name":"stdout","time":2278.361992155,"data":"ViT-Small fold 3 época 6: train=0.009, val_f1=0.9678\n"}
+,{"stream_name":"stdout","time":2308.579873072,"data":"ViT-Small fold 3 época 7: train=0.005, val_f1=0.9709\n"}
+,{"stream_name":"stdout","time":2338.904581088,"data":"ViT-Small fold 3 época 8: train=0.006, val_f1=0.9709\n"}
+,{"stream_name":"stdout","time":2347.664739992,"data":"ViT-Small fold 3: mejor época 3, F1 interno 0.9709\n"}
+,{"stream_name":"stdout","time":2378.751752903,"data":"DeiT3-Small fold 3 época 1: train=0.267, val_f1=0.9553\n"}
+,{"stream_name":"stdout","time":2409.10247224,"data":"DeiT3-Small fold 3 época 2: train=0.085, val_f1=0.9658\n"}
+,{"stream_name":"stdout","time":2439.418204186,"data":"DeiT3-Small fold 3 época 3: train=0.052, val_f1=0.9627\n"}
+,{"stream_name":"stdout","time":2469.938888359,"data":"DeiT3-Small fold 3 época 4: train=0.040, val_f1=0.9626\n"}
+,{"stream_name":"stdout","time":2500.094329173,"data":"DeiT3-Small fold 3 época 5: train=0.024, val_f1=0.9552\n"}
+,{"stream_name":"stdout","time":2529.664051269,"data":"DeiT3-Small fold 3 época 6: train=0.024, val_f1=0.9595\n"}
+,{"stream_name":"stdout","time":2559.549261248,"data":"DeiT3-Small fold 3 época 7: train=0.022, val_f1=0.9605\n"}
+,{"stream_name":"stdout","time":2589.299439225,"data":"DeiT3-Small fold 3 época 8: train=0.016, val_f1=0.9637\n"}
+,{"stream_name":"stdout","time":2598.140758299,"data":"DeiT3-Small fold 3: mejor época 2, F1 interno 0.9658\n"}
+,{"stream_name":"stdout","time":2631.265365417,"data":"ViT-Base fold 3 época 1: train=0.269, val_f1=0.9544\n"}
+,{"stream_name":"stdout","time":2662.610203532,"data":"ViT-Base fold 3 época 2: train=0.051, val_f1=0.9740\n"}
+,{"stream_name":"stdout","time":2693.671997831,"data":"ViT-Base fold 3 época 3: train=0.013, val_f1=0.9720\n"}
+,{"stream_name":"stdout","time":2724.886025616,"data":"ViT-Base fold 3 época 4: train=0.011, val_f1=0.9750\n"}
+,{"stream_name":"stdout","time":2756.173189511,"data":"ViT-Base fold 3 época 5: train=0.019, val_f1=0.9730\n"}
+,{"stream_name":"stdout","time":2787.56740776,"data":"ViT-Base fold 3 época 6: train=0.018, val_f1=0.9658\n"}
+,{"stream_name":"stdout","time":2818.401317786,"data":"ViT-Base fold 3 época 7: train=0.024, val_f1=0.9738\n"}
+,{"stream_name":"stdout","time":2850.07420687,"data":"ViT-Base fold 3 época 8: train=0.022, val_f1=0.9667\n"}
+,{"stream_name":"stdout","time":2859.414372865,"data":"ViT-Base fold 3: mejor época 4, F1 interno 0.9750\n"}
+,{"stream_name":"stdout","time":2860.009473954,"data":"Fold terminado: 3\n"}
+,{"stream_name":"stdout","time":2890.500671705,"data":"ViT-Small fold 4 época 1: train=0.270, val_f1=0.9718\n"}
+,{"stream_name":"stdout","time":2920.655316786,"data":"ViT-Small fold 4 época 2: train=0.089, val_f1=0.9739\n"}
+,{"stream_name":"stdout","time":2950.378795298,"data":"ViT-Small fold 4 época 3: train=0.049, val_f1=0.9718\n"}
+,{"stream_name":"stdout","time":2979.934962161,"data":"ViT-Small fold 4 época 4: train=0.033, val_f1=0.9719\n"}
+,{"stream_name":"stdout","time":3009.332218715,"data":"ViT-Small fold 4 época 5: train=0.021, val_f1=0.9718\n"}
+,{"stream_name":"stdout","time":3038.773951982,"data":"ViT-Small fold 4 época 6: train=0.014, val_f1=0.9770\n"}
+,{"stream_name":"stdout","time":3068.16606774,"data":"ViT-Small fold 4 época 7: train=0.010, val_f1=0.9770\n"}
+,{"stream_name":"stdout","time":3097.797142605,"data":"ViT-Small fold 4 época 8: train=0.011, val_f1=0.9677\n"}
+,{"stream_name":"stdout","time":3106.146786256,"data":"ViT-Small fold 4: mejor época 7, F1 interno 0.9770\n"}
+,{"stream_name":"stdout","time":3136.547392594,"data":"DeiT3-Small fold 4 época 1: train=0.277, val_f1=0.9636\n"}
+,{"stream_name":"stdout","time":3165.830906785,"data":"DeiT3-Small fold 4 época 2: train=0.098, val_f1=0.9719\n"}
+,{"stream_name":"stdout","time":3195.53685087,"data":"DeiT3-Small fold 4 época 3: train=0.071, val_f1=0.9730\n"}
+,{"stream_name":"stdout","time":3225.226250873,"data":"DeiT3-Small fold 4 época 4: train=0.040, val_f1=0.9739\n"}
+,{"stream_name":"stdout","time":3254.596881363,"data":"DeiT3-Small fold 4 época 5: train=0.030, val_f1=0.9739\n"}
+,{"stream_name":"stdout","time":3283.890374017,"data":"DeiT3-Small fold 4 época 6: train=0.024, val_f1=0.9667\n"}
+,{"stream_name":"stdout","time":3313.566342012,"data":"DeiT3-Small fold 4 época 7: train=0.020, val_f1=0.9666\n"}
+,{"stream_name":"stdout","time":3343.015743696,"data":"DeiT3-Small fold 4 época 8: train=0.020, val_f1=0.9688\n"}
+,{"stream_name":"stdout","time":3351.480773165,"data":"DeiT3-Small fold 4: mejor época 4, F1 interno 0.9739\n"}
+,{"stream_name":"stdout","time":3384.64094357,"data":"ViT-Base fold 4 época 1: train=0.270, val_f1=0.9740\n"}
+,{"stream_name":"stdout","time":3415.564147099,"data":"ViT-Base fold 4 época 2: train=0.042, val_f1=0.9697\n"}
+,{"stream_name":"stdout","time":3446.850344527,"data":"ViT-Base fold 4 época 3: train=0.024, val_f1=0.9781\n"}
+,{"stream_name":"stdout","time":3477.475951011,"data":"ViT-Base fold 4 época 4: train=0.017, val_f1=0.9667\n"}
+,{"stream_name":"stdout","time":3508.083690598,"data":"ViT-Base fold 4 época 5: train=0.029, val_f1=0.9771\n"}
+,{"stream_name":"stdout","time":3539.059060146,"data":"ViT-Base fold 4 época 6: train=0.018, val_f1=0.9770\n"}
+,{"stream_name":"stdout","time":3569.760400887,"data":"ViT-Base fold 4 época 7: train=0.035, val_f1=0.9750\n"}
+,{"stream_name":"stdout","time":3601.340180576,"data":"ViT-Base fold 4 época 8: train=0.013, val_f1=0.9791\n"}
+,{"stream_name":"stdout","time":3610.416925734,"data":"ViT-Base fold 4: mejor época 8, F1 interno 0.9791\n"}
+,{"stream_name":"stdout","time":3611.009275987,"data":"Fold terminado: 4\n"}
+,{"stream_name":"stdout","time":3641.480892073,"data":"ViT-Small fold 5 época 1: train=0.256, val_f1=0.9592\n"}
+,{"stream_name":"stdout","time":3671.041806575,"data":"ViT-Small fold 5 época 2: train=0.082, val_f1=0.9719\n"}
+,{"stream_name":"stdout","time":3700.682608872,"data":"ViT-Small fold 5 época 3: train=0.045, val_f1=0.9751\n"}
+,{"stream_name":"stdout","time":3730.267112413,"data":"ViT-Small fold 5 época 4: train=0.027, val_f1=0.9644\n"}
+,{"stream_name":"stdout","time":3759.595923388,"data":"ViT-Small fold 5 época 5: train=0.017, val_f1=0.9698\n"}
+,{"stream_name":"stdout","time":3788.98877181,"data":"ViT-Small fold 5 época 6: train=0.010, val_f1=0.9730\n"}
+,{"stream_name":"stdout","time":3818.181625068,"data":"ViT-Small fold 5 época 7: train=0.008, val_f1=0.9709\n"}
+,{"stream_name":"stdout","time":3847.699360769,"data":"ViT-Small fold 5 época 8: train=0.007, val_f1=0.9708\n"}
+,{"stream_name":"stdout","time":3856.27863928,"data":"ViT-Small fold 5: mejor época 3, F1 interno 0.9751\n"}
+,{"stream_name":"stdout","time":3886.461182276,"data":"DeiT3-Small fold 5 época 1: train=0.257, val_f1=0.9625\n"}
+,{"stream_name":"stdout","time":3915.716332042,"data":"DeiT3-Small fold 5 época 2: train=0.105, val_f1=0.9552\n"}
+,{"stream_name":"stdout","time":3944.963561922,"data":"DeiT3-Small fold 5 época 3: train=0.055, val_f1=0.9626\n"}
+,{"stream_name":"stdout","time":3974.703653977,"data":"DeiT3-Small fold 5 época 4: train=0.038, val_f1=0.9551\n"}
+,{"stream_name":"stdout","time":4004.058118116,"data":"DeiT3-Small fold 5 época 5: train=0.032, val_f1=0.9531\n"}
+,{"stream_name":"stdout","time":4033.501183167,"data":"DeiT3-Small fold 5 época 6: train=0.031, val_f1=0.9532\n"}
+,{"stream_name":"stdout","time":4062.949644929,"data":"DeiT3-Small fold 5 época 7: train=0.017, val_f1=0.9594\n"}
+,{"stream_name":"stdout","time":4092.493624596,"data":"DeiT3-Small fold 5 época 8: train=0.012, val_f1=0.9562\n"}
+,{"stream_name":"stdout","time":4101.054139497,"data":"DeiT3-Small fold 5: mejor época 3, F1 interno 0.9626\n"}
+,{"stream_name":"stdout","time":4133.992185091,"data":"ViT-Base fold 5 época 1: train=0.241, val_f1=0.9646\n"}
+,{"stream_name":"stdout","time":4166.044242481,"data":"ViT-Base fold 5 época 2: train=0.049, val_f1=0.9697\n"}
+,{"stream_name":"stdout","time":4197.522026997,"data":"ViT-Base fold 5 época 3: train=0.021, val_f1=0.9676\n"}
+,{"stream_name":"stdout","time":4229.487137062,"data":"ViT-Base fold 5 época 4: train=0.011, val_f1=0.9739\n"}
+,{"stream_name":"stdout","time":4261.547958577,"data":"ViT-Base fold 5 época 5: train=0.009, val_f1=0.9760\n"}
+,{"stream_name":"stdout","time":4292.985582965,"data":"ViT-Base fold 5 época 6: train=0.033, val_f1=0.9668\n"}
+,{"stream_name":"stdout","time":4325.017542372,"data":"ViT-Base fold 5 época 7: train=0.023, val_f1=0.9676\n"}
+,{"stream_name":"stdout","time":4356.483519794,"data":"ViT-Base fold 5 época 8: train=0.010, val_f1=0.9739\n"}
+,{"stream_name":"stdout","time":4365.487644106,"data":"ViT-Base fold 5: mejor época 5, F1 interno 0.9760\n"}
+,{"stream_name":"stdout","time":4366.170028239,"data":"Fold terminado: 5\n"}
+,{"stream_name":"stdout","time":4368.269354811,"data":"{\n"}
+,{"stream_name":"stdout","time":4368.269385164,"data":"  \"mejor_individual\": \"ViT-Base\",\n"}
+,{"stream_name":"stdout","time":4368.269391224,"data":"  \"diferencia_f1_stacking_menos_mejor\": 0.005047841298708944,\n"}
+,{"stream_name":"stdout","time":4368.269396484,"data":"  \"errores_stacking_por_clase\": {\n"}
+,{"stream_name":"stdout","time":4368.269401551,"data":"    \"chicken_wings\": 14,\n"}
+,{"stream_name":"stdout","time":4368.269421149,"data":"    \"hamburger\": 26,\n"}
+,{"stream_name":"stdout","time":4368.269426035,"data":"    \"hot_dog\": 32,\n"}
+,{"stream_name":"stdout","time":4368.269430042,"data":"    \"pizza\": 20,\n"}
+,{"stream_name":"stdout","time":4368.269433931,"data":"    \"sushi\": 20,\n"}
+,{"stream_name":"stdout","time":4368.269437678,"data":"    \"tacos\": 20\n"}
+,{"stream_name":"stdout","time":4368.269441507,"data":"  },\n"}
+,{"stream_name":"stdout","time":4368.269445866,"data":"  \"acierto_oraculo_por_pareja\": {\n"}
+,{"stream_name":"stdout","time":4368.26945077,"data":"    \"ViT-Small + DeiT3-Small\": 0.982,\n"}
+,{"stream_name":"stdout","time":4368.269454624,"data":"    \"ViT-Small + ViT-Base\": 0.9841666666666666,\n"}
+,{"stream_name":"stdout","time":4368.269459406,"data":"    \"DeiT3-Small + ViT-Base\": 0.9826666666666667\n"}
+,{"stream_name":"stdout","time":4368.269463516,"data":"  },\n"}
+,{"stream_name":"stdout","time":4368.269467315,"data":"  \"precision_objetivo_superado\": true,\n"}
+,{"stream_name":"stdout","time":4368.269471311,"data":"  \"nota\": \"El oráculo es un límite descriptivo, no un ensemble implementable.\"\n"}
+,{"stream_name":"stdout","time":4368.26947643,"data":"}\n"}
+,{"stream_name":"stdout","time":4368.269480112,"data":"Estado: complete etapa: done\n"}
+,{"stream_name":"stderr","time":4374.041253767,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":4374.041296379,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":4374.223250995,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":4374.223278497,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":4375.05855946,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":4375.188162414,"data":"[NbConvertApp] Writing 1140383 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":4377.840583319,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":4378.48048091,"data":"[NbConvertApp] Support files will be in __results___files/\n"}
+,{"stream_name":"stderr","time":4378.480526016,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":4378.481044924,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":4378.481245118,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":4378.481509349,"data":"[NbConvertApp] Writing 433205 bytes to __results__.html\n"}
+]

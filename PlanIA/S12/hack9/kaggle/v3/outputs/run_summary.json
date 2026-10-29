@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "stage": "done",
+  "device": "cuda",
+  "artifacts": [
+    "predicciones.csv",
+    "particiones.csv",
+    "metricas_por_fold.csv",
+    "dataset_meta.csv",
+    "run_summary.json",
+    "analisis.json",
+    "balance.csv",
+    "__notebook__.ipynb",
+    "historial.csv",
+    "curvas_entrenamiento.png",
+    "resumen_metricas.csv",
+    "matrices_confusion.png",
+    "ejemplos.png"
+  ],
+  "fold": 5,
+  "model": "ViT-Base"
+}

@@ -1,0 +1,27 @@
+{
+  "status": "complete",
+  "stage": "done",
+  "device": "cuda",
+  "artifacts": [
+    "__notebook__.ipynb",
+    "grid_search_resultados.csv",
+    "ejemplos.png",
+    "probabilidades_externas.csv",
+    "analisis.json",
+    "resumen_metricas.csv",
+    "dataset_meta.csv",
+    "curvas_entrenamiento.png",
+    "grid_search_f1.png",
+    "resumen_grid.csv",
+    "matrices_confusion.png",
+    "mejores_hiperparametros.csv",
+    "comparacion_f1.png",
+    "predicciones.csv",
+    "metricas_por_fold.csv",
+    "run_summary.json",
+    "balance.csv",
+    "historial.csv"
+  ],
+  "fold": 5,
+  "model": "XGBoost"
+}

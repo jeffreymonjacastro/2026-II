@@ -1,0 +1,143 @@
+[{"stream_name":"stderr","time":7.899869108,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.899918747,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.899925123,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.899929348,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":8.542233552,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.542262699,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.542269411,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.542276224,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":26.477330685,"data":"GPU: Tesla T4\n"}
+,{"stream_name":"stdout","time":28.783973546,"data":"ImÃ¡genes: 6000\n"}
+,{"stream_name":"stdout","time":28.784029918,"data":"label\n"}
+,{"stream_name":"stdout","time":28.784056251,"data":"chicken_wings    1000\n"}
+,{"stream_name":"stdout","time":28.784060934,"data":"hamburger        1000\n"}
+,{"stream_name":"stdout","time":28.784064826,"data":"hot_dog          1000\n"}
+,{"stream_name":"stdout","time":28.784068811,"data":"pizza            1000\n"}
+,{"stream_name":"stdout","time":28.784072605,"data":"sushi            1000\n"}
+,{"stream_name":"stdout","time":28.784076385,"data":"tacos            1000\n"}
+,{"stream_name":"stdout","time":30.824530489,"data":"Downloading: \"https://download.pytorch.org/models/resnet50-11ad3fa6.pth\" to /root/.cache/torch/hub/checkpoints/resnet50-11ad3fa6.pth\n"}
+,{"stream_name":"stderr","time":30.825468761,"data":"\r  0%|          | 0.00/97.8M [00:00\u003c?, ?B/s]\n"}
+,{"stream_name":"stderr","time":30.925807594,"data":"\r  0%|          | 0.00/97.8M [00:00\u003c?, ?B/s]\r  9%|▉         | 8.88M/97.8M [00:00\u003c00:01, 92.8MB/s]\n"}
+,{"stream_name":"stderr","time":31.026709239,"data":"\r  9%|▉         | 8.88M/97.8M [00:00\u003c00:01, 92.8MB/s]\r 30%|███       | 29.5M/97.8M [00:00\u003c00:00, 165MB/s] \n"}
+,{"stream_name":"stderr","time":31.125854292,"data":"\r 30%|███       | 29.5M/97.8M [00:00\u003c00:00, 165MB/s] \r 49%|████▉     | 48.1M/97.8M [00:00\u003c00:00, 179MB/s]\n"}
+,{"stream_name":"stderr","time":31.227882239,"data":"\r 49%|████▉     | 48.1M/97.8M [00:00\u003c00:00, 179MB/s]\r 70%|███████   | 68.5M/97.8M [00:00\u003c00:00, 192MB/s]\n"}
+,{"stream_name":"stderr","time":31.337088569,"data":"\r 70%|███████   | 68.5M/97.8M [00:00\u003c00:00, 192MB/s]\r 89%|████████▉ | 86.9M/97.8M [00:00\u003c00:00, 185MB/s]\n"}
+,{"stream_name":"stderr","time":31.382142653,"data":"\r 89%|████████▉ | 86.9M/97.8M [00:00\u003c00:00, 185MB/s]\r100%|██████████| 97.8M/97.8M [00:00\u003c00:00, 184MB/s]\n"}
+,{"stream_name":"stderr","time":31.428049794,"data":"\r100%|██████████| 97.8M/97.8M [00:00\u003c00:00, 184MB/s]\n"}
+,{"stream_name":"stderr","time":31.428076381,"data":"\n"}
+,{"stream_name":"stderr","time":31.428105697,"data":"\n"}
+,{"stream_name":"stdout","time":157.530251692,"data":"ResNet50 fold 1 epoch 1: train loss 0.904, meta loss 0.316\n"}
+,{"stream_name":"stdout","time":186.20138374,"data":"ResNet50 fold 1 epoch 2: train loss 0.309, meta loss 0.228\n"}
+,{"stream_name":"stdout","time":215.096549392,"data":"ResNet50 fold 1 epoch 3: train loss 0.189, meta loss 0.212\n"}
+,{"stream_name":"stdout","time":243.887545072,"data":"ResNet50 fold 1 epoch 4: train loss 0.131, meta loss 0.232\n"}
+,{"stream_name":"stdout","time":276.454614645,"data":"Downloading: \"https://download.pytorch.org/models/densenet121-a639ec97.pth\" to /root/.cache/torch/hub/checkpoints/densenet121-a639ec97.pth\n"}
+,{"stream_name":"stderr","time":276.502828311,"data":"\r  0%|          | 0.00/30.8M [00:00\u003c?, ?B/s]\n"}
+,{"stream_name":"stderr","time":276.604304762,"data":"\r  0%|          | 0.00/30.8M [00:00\u003c?, ?B/s]\r 12%|█▏        | 3.62M/30.8M [00:00\u003c00:00, 38.0MB/s]\n"}
+,{"stream_name":"stderr","time":276.721089696,"data":"\r 12%|█▏        | 3.62M/30.8M [00:00\u003c00:00, 38.0MB/s]\r 36%|███▌      | 11.0M/30.8M [00:00\u003c00:00, 55.6MB/s]\n"}
+,{"stream_name":"stderr","time":276.860060201,"data":"\r 36%|███▌      | 11.0M/30.8M [00:00\u003c00:00, 55.6MB/s]\r 53%|█████▎    | 16.2M/30.8M [00:00\u003c00:00, 47.4MB/s]\n"}
+,{"stream_name":"stderr","time":276.942508636,"data":"\r 53%|█████▎    | 16.2M/30.8M [00:00\u003c00:00, 47.4MB/s]\r100%|██████████| 30.8M/30.8M [00:00\u003c00:00, 73.7MB/s]\n"}
+,{"stream_name":"stderr","time":277.048714486,"data":"\r100%|██████████| 30.8M/30.8M [00:00\u003c00:00, 73.7MB/s]\n"}
+,{"stream_name":"stderr","time":277.048747613,"data":"\n"}
+,{"stream_name":"stderr","time":277.048752406,"data":"\n"}
+,{"stream_name":"stdout","time":305.868556536,"data":"DenseNet121 fold 1 epoch 1: train loss 0.826, meta loss 0.394\n"}
+,{"stream_name":"stdout","time":333.59451703,"data":"DenseNet121 fold 1 epoch 2: train loss 0.370, meta loss 0.291\n"}
+,{"stream_name":"stdout","time":361.028288826,"data":"DenseNet121 fold 1 epoch 3: train loss 0.262, meta loss 0.260\n"}
+,{"stream_name":"stdout","time":388.68623001,"data":"DenseNet121 fold 1 epoch 4: train loss 0.194, meta loss 0.237\n"}
+,{"stream_name":"stdout","time":397.271503399,"data":"Downloading: \"https://download.pytorch.org/models/mobilenet_v2-7ebf99e0.pth\" to /root/.cache/torch/hub/checkpoints/mobilenet_v2-7ebf99e0.pth\n"}
+,{"stream_name":"stderr","time":397.27263692,"data":"\r  0%|          | 0.00/13.6M [00:00\u003c?, ?B/s]\n"}
+,{"stream_name":"stderr","time":397.373127774,"data":"\r  0%|          | 0.00/13.6M [00:00\u003c?, ?B/s]\r 60%|█████▉    | 8.12M/13.6M [00:00\u003c00:00, 84.9MB/s]\n"}
+,{"stream_name":"stderr","time":397.394973293,"data":"\r 60%|█████▉    | 8.12M/13.6M [00:00\u003c00:00, 84.9MB/s]\r100%|██████████| 13.6M/13.6M [00:00\u003c00:00, 117MB/s] \n"}
+,{"stream_name":"stderr","time":397.462648912,"data":"\r100%|██████████| 13.6M/13.6M [00:00\u003c00:00, 117MB/s] \n"}
+,{"stream_name":"stderr","time":397.462683016,"data":"\n"}
+,{"stream_name":"stderr","time":397.462687936,"data":"\n"}
+,{"stream_name":"stdout","time":431.71583637,"data":"MobileNetV2 fold 1 epoch 1: train loss 1.279, meta loss 0.642\n"}
+,{"stream_name":"stdout","time":459.354615134,"data":"MobileNetV2 fold 1 epoch 2: train loss 0.581, meta loss 0.408\n"}
+,{"stream_name":"stdout","time":487.133797627,"data":"MobileNetV2 fold 1 epoch 3: train loss 0.432, meta loss 0.336\n"}
+,{"stream_name":"stdout","time":514.215010271,"data":"MobileNetV2 fold 1 epoch 4: train loss 0.369, meta loss 0.305\n"}
+,{"stream_name":"stdout","time":531.6921268,"data":"Fold 1 terminado. Mejor grid: {'max_depth': 2, 'n_estimators': 200}; F1 interno: 0.9334\n"}
+,{"stream_name":"stdout","time":558.855281226,"data":"ResNet50 fold 2 epoch 1: train loss 0.920, meta loss 0.386\n"}
+,{"stream_name":"stdout","time":585.977869234,"data":"ResNet50 fold 2 epoch 2: train loss 0.318, meta loss 0.304\n"}
+,{"stream_name":"stdout","time":612.925110551,"data":"ResNet50 fold 2 epoch 3: train loss 0.190, meta loss 0.270\n"}
+,{"stream_name":"stdout","time":640.180397113,"data":"ResNet50 fold 2 epoch 4: train loss 0.136, meta loss 0.276\n"}
+,{"stream_name":"stdout","time":675.507920259,"data":"DenseNet121 fold 2 epoch 1: train loss 0.839, meta loss 0.413\n"}
+,{"stream_name":"stdout","time":702.759647021,"data":"DenseNet121 fold 2 epoch 2: train loss 0.368, meta loss 0.325\n"}
+,{"stream_name":"stdout","time":729.577069534,"data":"DenseNet121 fold 2 epoch 3: train loss 0.253, meta loss 0.293\n"}
+,{"stream_name":"stdout","time":756.947044346,"data":"DenseNet121 fold 2 epoch 4: train loss 0.198, meta loss 0.286\n"}
+,{"stream_name":"stdout","time":792.087351982,"data":"MobileNetV2 fold 2 epoch 1: train loss 1.289, meta loss 0.700\n"}
+,{"stream_name":"stdout","time":818.555635173,"data":"MobileNetV2 fold 2 epoch 2: train loss 0.596, meta loss 0.464\n"}
+,{"stream_name":"stdout","time":845.392165617,"data":"MobileNetV2 fold 2 epoch 3: train loss 0.432, meta loss 0.391\n"}
+,{"stream_name":"stdout","time":872.345208465,"data":"MobileNetV2 fold 2 epoch 4: train loss 0.367, meta loss 0.361\n"}
+,{"stream_name":"stdout","time":886.871046766,"data":"Fold 2 terminado. Mejor grid: {'max_depth': 4, 'n_estimators': 200}; F1 interno: 0.9103\n"}
+,{"stream_name":"stdout","time":914.354398845,"data":"ResNet50 fold 3 epoch 1: train loss 0.878, meta loss 0.337\n"}
+,{"stream_name":"stdout","time":941.780528747,"data":"ResNet50 fold 3 epoch 2: train loss 0.310, meta loss 0.264\n"}
+,{"stream_name":"stdout","time":968.991486357,"data":"ResNet50 fold 3 epoch 3: train loss 0.184, meta loss 0.245\n"}
+,{"stream_name":"stdout","time":996.117750643,"data":"ResNet50 fold 3 epoch 4: train loss 0.121, meta loss 0.249\n"}
+,{"stream_name":"stdout","time":1031.78639025,"data":"DenseNet121 fold 3 epoch 1: train loss 0.843, meta loss 0.404\n"}
+,{"stream_name":"stdout","time":1059.196402092,"data":"DenseNet121 fold 3 epoch 2: train loss 0.375, meta loss 0.294\n"}
+,{"stream_name":"stdout","time":1086.360367187,"data":"DenseNet121 fold 3 epoch 3: train loss 0.261, meta loss 0.262\n"}
+,{"stream_name":"stdout","time":1113.841929978,"data":"DenseNet121 fold 3 epoch 4: train loss 0.200, meta loss 0.252\n"}
+,{"stream_name":"stdout","time":1149.004428634,"data":"MobileNetV2 fold 3 epoch 1: train loss 1.277, meta loss 0.680\n"}
+,{"stream_name":"stdout","time":1176.17231306,"data":"MobileNetV2 fold 3 epoch 2: train loss 0.601, meta loss 0.439\n"}
+,{"stream_name":"stdout","time":1203.274642877,"data":"MobileNetV2 fold 3 epoch 3: train loss 0.439, meta loss 0.356\n"}
+,{"stream_name":"stdout","time":1230.147103423,"data":"MobileNetV2 fold 3 epoch 4: train loss 0.367, meta loss 0.339\n"}
+,{"stream_name":"stdout","time":1244.844776827,"data":"Fold 3 terminado. Mejor grid: {'max_depth': 2, 'n_estimators': 200}; F1 interno: 0.9227\n"}
+,{"stream_name":"stdout","time":1272.410658287,"data":"ResNet50 fold 4 epoch 1: train loss 0.882, meta loss 0.349\n"}
+,{"stream_name":"stdout","time":1300.004044897,"data":"ResNet50 fold 4 epoch 2: train loss 0.290, meta loss 0.284\n"}
+,{"stream_name":"stdout","time":1327.19351152,"data":"ResNet50 fold 4 epoch 3: train loss 0.184, meta loss 0.277\n"}
+,{"stream_name":"stdout","time":1354.549538532,"data":"ResNet50 fold 4 epoch 4: train loss 0.116, meta loss 0.270\n"}
+,{"stream_name":"stdout","time":1390.322808515,"data":"DenseNet121 fold 4 epoch 1: train loss 0.802, meta loss 0.428\n"}
+,{"stream_name":"stdout","time":1417.977464042,"data":"DenseNet121 fold 4 epoch 2: train loss 0.369, meta loss 0.327\n"}
+,{"stream_name":"stdout","time":1445.30571323,"data":"DenseNet121 fold 4 epoch 3: train loss 0.255, meta loss 0.292\n"}
+,{"stream_name":"stdout","time":1472.81426492,"data":"DenseNet121 fold 4 epoch 4: train loss 0.201, meta loss 0.277\n"}
+,{"stream_name":"stdout","time":1507.812774305,"data":"MobileNetV2 fold 4 epoch 1: train loss 1.267, meta loss 0.690\n"}
+,{"stream_name":"stdout","time":1534.818113161,"data":"MobileNetV2 fold 4 epoch 2: train loss 0.590, meta loss 0.457\n"}
+,{"stream_name":"stdout","time":1562.250775319,"data":"MobileNetV2 fold 4 epoch 3: train loss 0.433, meta loss 0.393\n"}
+,{"stream_name":"stdout","time":1589.658694102,"data":"MobileNetV2 fold 4 epoch 4: train loss 0.370, meta loss 0.358\n"}
+,{"stream_name":"stdout","time":1604.166513922,"data":"Fold 4 terminado. Mejor grid: {'max_depth': 4, 'n_estimators': 100}; F1 interno: 0.9239\n"}
+,{"stream_name":"stdout","time":1631.930584183,"data":"ResNet50 fold 5 epoch 1: train loss 0.920, meta loss 0.365\n"}
+,{"stream_name":"stdout","time":1659.504660213,"data":"ResNet50 fold 5 epoch 2: train loss 0.315, meta loss 0.275\n"}
+,{"stream_name":"stdout","time":1686.721953178,"data":"ResNet50 fold 5 epoch 3: train loss 0.180, meta loss 0.260\n"}
+,{"stream_name":"stdout","time":1714.33893358,"data":"ResNet50 fold 5 epoch 4: train loss 0.135, meta loss 0.244\n"}
+,{"stream_name":"stdout","time":1750.188455254,"data":"DenseNet121 fold 5 epoch 1: train loss 0.851, meta loss 0.435\n"}
+,{"stream_name":"stdout","time":1777.827130809,"data":"DenseNet121 fold 5 epoch 2: train loss 0.369, meta loss 0.327\n"}
+,{"stream_name":"stdout","time":1805.561387813,"data":"DenseNet121 fold 5 epoch 3: train loss 0.267, meta loss 0.293\n"}
+,{"stream_name":"stdout","time":1833.178290563,"data":"DenseNet121 fold 5 epoch 4: train loss 0.191, meta loss 0.286\n"}
+,{"stream_name":"stdout","time":1868.734147001,"data":"MobileNetV2 fold 5 epoch 1: train loss 1.277, meta loss 0.696\n"}
+,{"stream_name":"stdout","time":1896.120550733,"data":"MobileNetV2 fold 5 epoch 2: train loss 0.597, meta loss 0.455\n"}
+,{"stream_name":"stdout","time":1923.327157564,"data":"MobileNetV2 fold 5 epoch 3: train loss 0.431, meta loss 0.393\n"}
+,{"stream_name":"stdout","time":1950.395895352,"data":"MobileNetV2 fold 5 epoch 4: train loss 0.365, meta loss 0.365\n"}
+,{"stream_name":"stdout","time":1965.145825493,"data":"Fold 5 terminado. Mejor grid: {'max_depth': 6, 'n_estimators': 200}; F1 interno: 0.9217\n"}
+,{"stream_name":"stdout","time":1967.242878241,"data":"{\n"}
+,{"stream_name":"stdout","time":1967.242935783,"data":"  \"mejor_individual\": \"ResNet50\",\n"}
+,{"stream_name":"stdout","time":1967.242943308,"data":"  \"diferencia_f1_stacking_menos_mejor\": 0.004159014434584218,\n"}
+,{"stream_name":"stdout","time":1967.242948675,"data":"  \"errores_stacking_por_clase\": {\n"}
+,{"stream_name":"stdout","time":1967.242953565,"data":"    \"chicken_wings\": 42,\n"}
+,{"stream_name":"stdout","time":1967.24295792,"data":"    \"hamburger\": 98,\n"}
+,{"stream_name":"stdout","time":1967.242962655,"data":"    \"hot_dog\": 109,\n"}
+,{"stream_name":"stdout","time":1967.242966943,"data":"    \"pizza\": 51,\n"}
+,{"stream_name":"stdout","time":1967.242971083,"data":"    \"sushi\": 69,\n"}
+,{"stream_name":"stdout","time":1967.242975184,"data":"    \"tacos\": 87\n"}
+,{"stream_name":"stdout","time":1967.242981047,"data":"  },\n"}
+,{"stream_name":"stdout","time":1967.242988401,"data":"  \"acierto_oraculo_por_pareja\": {\n"}
+,{"stream_name":"stdout","time":1967.242991496,"data":"    \"ResNet50 + DenseNet121\": 0.951,\n"}
+,{"stream_name":"stdout","time":1967.242994295,"data":"    \"ResNet50 + MobileNetV2\": 0.9423333333333334,\n"}
+,{"stream_name":"stdout","time":1967.242997079,"data":"    \"DenseNet121 + MobileNetV2\": 0.9405\n"}
+,{"stream_name":"stdout","time":1967.243045808,"data":"  },\n"}
+,{"stream_name":"stdout","time":1967.243053304,"data":"  \"nota\": \"El orÃ¡culo es un lÃ­mite descriptivo: conoce si cada modelo acierta. No es un ensemble implementable ni evidencia causal.\"\n"}
+,{"stream_name":"stdout","time":1967.243058547,"data":"}\n"}
+,{"stream_name":"stdout","time":1967.47213065,"data":"Estado: complete etapa: done\n"}
+,{"stream_name":"stderr","time":1973.128292311,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":1973.128320425,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":1973.294662019,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":1973.29468878,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":1974.066743167,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":1974.17398742,"data":"[NbConvertApp] Writing 1176250 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":1976.582514305,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":1977.183666272,"data":"[NbConvertApp] Support files will be in __results___files/\n"}
+,{"stream_name":"stderr","time":1977.183721509,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":1977.184253667,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":1977.1844724,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":1977.18470645,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":1977.184885105,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":1977.185166105,"data":"[NbConvertApp] Writing 380623 bytes to __results__.html\n"}
+]

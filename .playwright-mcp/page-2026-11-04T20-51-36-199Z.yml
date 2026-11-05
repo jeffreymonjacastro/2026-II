@@ -1,0 +1,1341 @@
+- main [ref=e2]:
+  - generic [ref=e7]:
+    - 'heading "Hackatón 11: ¿Confiar, verificar o escalar? — v1 (local)" [level=1] [ref=e8]'
+    - paragraph [ref=e9]:
+      - strong [ref=e10]: "Modelos:"
+      - text: Random Forest y Logistic Regression.
+      - strong [ref=e11]: "Equipo:"
+      - text: completar nombres antes de entregar.
+    - paragraph [ref=e12]:
+      - text: Experimento reproducible de colaboración Humano–IA sobre Statlog German Credit. Las seis partes siguen
+      - code [ref=e13]: Sem13_Hackaton11.pdf
+      - text: . Los humanos son
+      - strong [ref=e14]: simulados
+      - text: ", no participantes reales. Las conclusiones se generan a partir de esta ejecución."
+    - paragraph [ref=e15]:
+      - strong [ref=e16]: "Protocolo:"
+      - text: entrenamiento 60%, validación 20% y prueba 20%, estratificados. Elegimos el modelo por F1 de validación y congelamos la política antes de prueba. Se comparan todos los candidatos brevemente; el análisis detallado y la defensa corresponden exclusivamente al mejor modelo de validación.
+    - paragraph [ref=e17]:
+      - strong [ref=e18]: "Fuente:"
+      - text: Hofmann (1994),
+      - link "UCI Statlog German Credit" [ref=e19] [cursor=pointer]:
+        - /url: https://archive.ics.uci.edu/dataset/144/statlog+german+credit+data
+      - text: ", DOI"
+      - link "10.24432/C5NC77" [ref=e20] [cursor=pointer]:
+        - /url: https://doi.org/10.24432/C5NC77
+      - text: ", CC BY 4.0. Se usa"
+      - code [ref=e21]: german.data
+      - text: (20 atributos);
+      - code [ref=e22]: german.data-numeric
+      - text: es otra representación,
+      - strong [ref=e23]: "no"
+      - text: un conjunto de observaciones adicionales.
+  - generic [ref=e28]:
+    - heading "Preparación del entorno" [level=3] [ref=e29]
+    - paragraph [ref=e30]:
+      - text: El notebook es autocontenido. Usa NumPy, pandas, scikit-learn, SciPy, Matplotlib, SHAP y joblib. Kaggle incluye además xgboost, lightgbm y catboost. Si falta SHAP, instalar
+      - code [ref=e31]: pip install shap
+      - text: en el entorno antes de ejecutar. No se requieren claves dentro del notebook. La sesión remota solicita Tesla T4; se registra el hardware, y se usa CPU para estos datos pequeños para mantener el mismo protocolo reproducible.
+  - generic [ref=e32]:
+    - generic [ref=e34]:
+      - generic [ref=e35]: "In [1]:"
+      - generic [ref=e36]: "import os, sys, json, hashlib, platform, subprocess, time from pathlib import Path import importlib.metadata as metadata import numpy as np import pandas as pd import matplotlib.pyplot as plt from IPython.display import display, Markdown from scipy.stats import mannwhitneyu from sklearn.model_selection import train_test_split from sklearn.compose import ColumnTransformer from sklearn.pipeline import Pipeline from sklearn.preprocessing import OneHotEncoder, StandardScaler from sklearn.impute import SimpleImputer from sklearn.metrics import (accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, confusion_matrix, ConfusionMatrixDisplay, RocCurveDisplay, brier_score_loss) import joblib import shap plt.rcParams.update({\"figure.figsize\": (9, 4.5), \"font.size\": 11, \"axes.spines.top\": False, \"axes.spines.right\": False}) COLORS = {\"IA\": \"#28689a\", \"Humano–IA\": \"#b47722\", \"Junior\": \"#7d8050\", \"Senior\": \"#a34f80\"}"
+    - generic [ref=e40]: "C:\\Users\\jeffr\\GitHub\\2026-II\\.venv\\Lib\\site-packages\\tqdm\\auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html from .autonotebook import tqdm as notebook_tqdm"
+  - generic [ref=e50]:
+    - heading "Configuración, rutas y trazabilidad" [level=3] [ref=e51]
+    - paragraph [ref=e52]:
+      - text: La semilla y los índices de cada partición son compartidos por las dos variantes. Se guardan probabilidades, decisiones, búsqueda de umbrales, métricas, gráficos, modelo seleccionado y versiones de paquetes.
+      - code [ref=e53]: run_summary.json
+      - text: empieza como
+      - code [ref=e54]: running
+      - text: y solamente pasa a
+      - code [ref=e55]: complete
+      - text: al terminar todas las verificaciones.
+  - generic [ref=e56]:
+    - generic [ref=e58]:
+      - generic [ref=e59]: "In [2]:"
+      - generic [ref=e60]: "MODE = 'local' SEED = 42 N_VAL_SIM, N_TEST_SIM = 200, 500 JUNIOR_ACCURACY, SENIOR_ACCURACY = 0.70, 0.95 GROUP = \"Equipo por completar\" if MODE == \"kaggle\": DATA = next(p.parent for p in Path(\"/kaggle/input\").rglob(\"german.data\")) OUT = Path(\"/kaggle/working\") else: here = Path.cwd().resolve() ROOT = next(p for p in [here, *here.parents] if (p / \"data/german.data\").exists()) DATA, OUT = ROOT / \"data\", ROOT / \"local/outputs\" OUT.mkdir(parents=True, exist_ok=True) versions = {p: metadata.version(p) for p in [\"numpy\", \"pandas\", \"scikit-learn\", \"scipy\", \"matplotlib\", \"shap\"]} summary = {\"status\": \"running\", \"stage\": \"setup\", \"mode\": MODE, \"seed\": SEED, \"python\": sys.version, \"platform\": platform.platform(), \"versions\": versions, \"human_simulation_only\": True} def checkpoint(stage, **values): summary.update(stage=stage, **values) (OUT / \"run_summary.json\").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding=\"utf-8\") def savefig(name): plt.tight_layout() plt.savefig(OUT / name, dpi=150, bbox_inches=\"tight\") plt.show() plt.close() gpu = subprocess.run([\"nvidia-smi\", \"--query-gpu=name\", \"--format=csv,noheader\"], capture_output=True, text=True).stdout.strip() if MODE == \"kaggle\" else \"CPU local\" checkpoint(\"setup\", hardware=gpu, estimator_device=\"CPU (dataset pequeño)\") print(\"Entorno:\", MODE, \"| Hardware:\", gpu, \"| Salida:\", OUT)"
+    - generic [ref=e64]: "Entorno: local | Hardware: CPU local | Salida: C:\\Users\\jeffr\\GitHub\\2026-II\\PlanIA\\S13\\local\\outputs"
+  - generic [ref=e74]:
+    - heading "Parte 1 — Comprensión del problema y exploración de datos (10%)" [level=2] [ref=e75]
+    - heading "Actividad 1.1 — Comprensión del problema" [level=3] [ref=e76]
+    - paragraph [ref=e77]: Aprobar a una persona que incumple puede causar pérdida de capital y gastos de recuperación. Rechazar a un buen cliente implica ingresos perdidos, daño a la relación comercial y posibles perjuicios injustos. Una clasificación automática también puede reproducir sesgos presentes en los datos.
+    - paragraph [ref=e78]:
+      - text: "El README fija costes diferentes:"
+      - strong [ref=e79]: mal cliente aprobado = 5
+      - text: "y"
+      - strong [ref=e80]: buen cliente rechazado = 1
+      - text: . Son costes relativos, no dinero real. Codificamos
+      - code [ref=e81]: y=1
+      - text: como
+      - strong [ref=e82]: mal crédito
+      - text: (código original 2), por lo que un falso negativo cuesta cinco y un falso positivo cuesta uno. El F1 principal es binario para mal crédito; también reportamos F1 macro. El PDF no especifica la variante de F1, por eso esta elección es explícita.
+    - heading "Actividad 1.2 — Carga y comprobación del dataset" [level=3] [ref=e83]
+    - paragraph [ref=e84]: Usamos las 20 columnas originales y su diccionario local. Las categorías A65 y A124 describen estados desconocidos en el origen; no son celdas nulas ni se borran. Las columnas personales sensibles se conservan para reproducir el ejercicio, sin interpretar el desempeño como evidencia suficiente de equidad o aptitud bancaria.
+  - generic [ref=e85]:
+    - generic [ref=e87]:
+      - generic [ref=e88]: "In [3]:"
+      - generic [ref=e89]: "FEATURES = [\"checking\", \"duration\", \"credit_history\", \"purpose\", \"amount\", \"savings\", \"employment\", \"installment_rate\", \"personal_status_sex\", \"guarantors\", \"residence_since\", \"property\", \"age\", \"other_plans\", \"housing\", \"existing_credits\", \"job\", \"dependents\", \"telephone\", \"foreign_worker\"] NUM = [\"duration\", \"amount\", \"installment_rate\", \"residence_since\", \"age\", \"existing_credits\", \"dependents\"] CAT = [c for c in FEATURES if c not in NUM] df = pd.read_csv(DATA / \"german.data\", sep=r\"\\s+\", header=None, names=FEATURES + [\"original_class\"]) assert df.shape == (1000, 21) assert set(df.original_class) == {1, 2} X = df[FEATURES].copy() y = (df.original_class == 2).astype(int).to_numpy() assert np.bincount(y).tolist() == [700, 300] digest = hashlib.sha256((DATA / \"german.data\").read_bytes()).hexdigest() quality = {\"rows\": len(df), \"features\": len(FEATURES), \"numeric\": len(NUM), \"categorical\": len(CAT), \"missing_cells\": int(df.isna().sum().sum()), \"duplicate_rows\": int(df.duplicated().sum()), \"sha256\": digest, \"class_0_good\": int(sum(y == 0)), \"class_1_bad\": int(sum(y == 1))} checkpoint(\"data\", dataset=quality) display(pd.Series(quality, name=\"Valor\").to_frame()) display(df.head(4)) display(df[NUM].describe().round(2)) display(pd.DataFrame({\"variable\": CAT, \"categorias\": [df[c].nunique() for c in CAT]}))"
+    - generic [ref=e94]:
+      - table [ref=e99]:
+        - rowgroup [ref=e100]:
+          - row [ref=e101]:
+            - columnheader [ref=e102]
+            - columnheader "Valor" [ref=e103]
+        - rowgroup [ref=e104]:
+          - row [ref=e105]:
+            - rowheader "rows" [ref=e106]
+            - cell "1000" [ref=e107]
+          - row [ref=e108]:
+            - rowheader "features" [ref=e109]
+            - cell "20" [ref=e110]
+          - row [ref=e111]:
+            - rowheader "numeric" [ref=e112]
+            - cell "7" [ref=e113]
+          - row [ref=e114]:
+            - rowheader "categorical" [ref=e115]
+            - cell "13" [ref=e116]
+          - row [ref=e117]:
+            - rowheader "missing_cells" [ref=e118]
+            - cell "0" [ref=e119]
+          - row [ref=e120]:
+            - rowheader "duplicate_rows" [ref=e121]
+            - cell "0" [ref=e122]
+          - row [ref=e123]:
+            - rowheader "sha256" [ref=e124]
+            - cell "b21f3d81db8071257d5ff1deaeba1fd4303b62712e6fcc..." [ref=e125]
+          - row [ref=e126]:
+            - rowheader "class_0_good" [ref=e127]
+            - cell "700" [ref=e128]
+          - row [ref=e129]:
+            - rowheader "class_1_bad" [ref=e130]
+            - cell "300" [ref=e131]
+      - generic [ref=e135]:
+        - table [ref=e136]:
+          - rowgroup [ref=e137]:
+            - row [ref=e138]:
+              - columnheader [ref=e139]
+              - columnheader "checking" [ref=e140]
+              - columnheader "duration" [ref=e141]
+              - columnheader "credit_history" [ref=e142]
+              - columnheader "purpose" [ref=e143]
+              - columnheader "amount" [ref=e144]
+              - columnheader "savings" [ref=e145]
+              - columnheader "employment" [ref=e146]
+              - columnheader "installment_rate" [ref=e147]
+              - columnheader "personal_status_sex" [ref=e148]
+              - columnheader "guarantors" [ref=e149]
+              - columnheader "..." [ref=e150]
+              - columnheader "property" [ref=e151]
+              - columnheader "age" [ref=e152]
+              - columnheader "other_plans" [ref=e153]
+              - columnheader "housing" [ref=e154]
+              - columnheader "existing_credits" [ref=e155]
+              - columnheader "job" [ref=e156]
+              - columnheader "dependents" [ref=e157]
+              - columnheader "telephone" [ref=e158]
+              - columnheader "foreign_worker" [ref=e159]
+              - columnheader "original_class" [ref=e160]
+          - rowgroup [ref=e161]:
+            - row [ref=e162]:
+              - rowheader "0" [ref=e163]
+              - cell "A11" [ref=e164]
+              - cell "6" [ref=e165]
+              - cell "A34" [ref=e166]
+              - cell "A43" [ref=e167]
+              - cell "1169" [ref=e168]
+              - cell "A65" [ref=e169]
+              - cell "A75" [ref=e170]
+              - cell "4" [ref=e171]
+              - cell "A93" [ref=e172]
+              - cell "A101" [ref=e173]
+              - cell "..." [ref=e174]
+              - cell "A121" [ref=e175]
+              - cell "67" [ref=e176]
+              - cell "A143" [ref=e177]
+              - cell "A152" [ref=e178]
+              - cell "2" [ref=e179]
+              - cell "A173" [ref=e180]
+              - cell "1" [ref=e181]
+              - cell "A192" [ref=e182]
+              - cell "A201" [ref=e183]
+              - cell "1" [ref=e184]
+            - row [ref=e185]:
+              - rowheader "1" [ref=e186]
+              - cell "A12" [ref=e187]
+              - cell "48" [ref=e188]
+              - cell "A32" [ref=e189]
+              - cell "A43" [ref=e190]
+              - cell "5951" [ref=e191]
+              - cell "A61" [ref=e192]
+              - cell "A73" [ref=e193]
+              - cell "2" [ref=e194]
+              - cell "A92" [ref=e195]
+              - cell "A101" [ref=e196]
+              - cell "..." [ref=e197]
+              - cell "A121" [ref=e198]
+              - cell "22" [ref=e199]
+              - cell "A143" [ref=e200]
+              - cell "A152" [ref=e201]
+              - cell "1" [ref=e202]
+              - cell "A173" [ref=e203]
+              - cell "1" [ref=e204]
+              - cell "A191" [ref=e205]
+              - cell "A201" [ref=e206]
+              - cell "2" [ref=e207]
+            - row [ref=e208]:
+              - rowheader "2" [ref=e209]
+              - cell "A14" [ref=e210]
+              - cell "12" [ref=e211]
+              - cell "A34" [ref=e212]
+              - cell "A46" [ref=e213]
+              - cell "2096" [ref=e214]
+              - cell "A61" [ref=e215]
+              - cell "A74" [ref=e216]
+              - cell "2" [ref=e217]
+              - cell "A93" [ref=e218]
+              - cell "A101" [ref=e219]
+              - cell "..." [ref=e220]
+              - cell "A121" [ref=e221]
+              - cell "49" [ref=e222]
+              - cell "A143" [ref=e223]
+              - cell "A152" [ref=e224]
+              - cell "1" [ref=e225]
+              - cell "A172" [ref=e226]
+              - cell "2" [ref=e227]
+              - cell "A191" [ref=e228]
+              - cell "A201" [ref=e229]
+              - cell "1" [ref=e230]
+            - row [ref=e231]:
+              - rowheader "3" [ref=e232]
+              - cell "A11" [ref=e233]
+              - cell "42" [ref=e234]
+              - cell "A32" [ref=e235]
+              - cell "A42" [ref=e236]
+              - cell "7882" [ref=e237]
+              - cell "A61" [ref=e238]
+              - cell "A74" [ref=e239]
+              - cell "2" [ref=e240]
+              - cell "A93" [ref=e241]
+              - cell "A103" [ref=e242]
+              - cell "..." [ref=e243]
+              - cell "A122" [ref=e244]
+              - cell "45" [ref=e245]
+              - cell "A143" [ref=e246]
+              - cell "A153" [ref=e247]
+              - cell "1" [ref=e248]
+              - cell "A173" [ref=e249]
+              - cell "2" [ref=e250]
+              - cell "A191" [ref=e251]
+              - cell "A201" [ref=e252]
+              - cell "1" [ref=e253]
+        - paragraph [ref=e254]: 4 rows × 21 columns
+      - table [ref=e259]:
+        - rowgroup [ref=e260]:
+          - row [ref=e261]:
+            - columnheader [ref=e262]
+            - columnheader "duration" [ref=e263]
+            - columnheader "amount" [ref=e264]
+            - columnheader "installment_rate" [ref=e265]
+            - columnheader "residence_since" [ref=e266]
+            - columnheader "age" [ref=e267]
+            - columnheader "existing_credits" [ref=e268]
+            - columnheader "dependents" [ref=e269]
+        - rowgroup [ref=e270]:
+          - row [ref=e271]:
+            - rowheader "count" [ref=e272]
+            - cell "1000.00" [ref=e273]
+            - cell "1000.00" [ref=e274]
+            - cell "1000.00" [ref=e275]
+            - cell "1000.00" [ref=e276]
+            - cell "1000.00" [ref=e277]
+            - cell "1000.00" [ref=e278]
+            - cell "1000.00" [ref=e279]
+          - row [ref=e280]:
+            - rowheader "mean" [ref=e281]
+            - cell "20.90" [ref=e282]
+            - cell "3271.26" [ref=e283]
+            - cell "2.97" [ref=e284]
+            - cell "2.84" [ref=e285]
+            - cell "35.55" [ref=e286]
+            - cell "1.41" [ref=e287]
+            - cell "1.16" [ref=e288]
+          - row [ref=e289]:
+            - rowheader "std" [ref=e290]
+            - cell "12.06" [ref=e291]
+            - cell "2822.74" [ref=e292]
+            - cell "1.12" [ref=e293]
+            - cell "1.10" [ref=e294]
+            - cell "11.38" [ref=e295]
+            - cell "0.58" [ref=e296]
+            - cell "0.36" [ref=e297]
+          - row [ref=e298]:
+            - rowheader "min" [ref=e299]
+            - cell "4.00" [ref=e300]
+            - cell "250.00" [ref=e301]
+            - cell "1.00" [ref=e302]
+            - cell "1.00" [ref=e303]
+            - cell "19.00" [ref=e304]
+            - cell "1.00" [ref=e305]
+            - cell "1.00" [ref=e306]
+          - row [ref=e307]:
+            - rowheader "25%" [ref=e308]
+            - cell "12.00" [ref=e309]
+            - cell "1365.50" [ref=e310]
+            - cell "2.00" [ref=e311]
+            - cell "2.00" [ref=e312]
+            - cell "27.00" [ref=e313]
+            - cell "1.00" [ref=e314]
+            - cell "1.00" [ref=e315]
+          - row [ref=e316]:
+            - rowheader "50%" [ref=e317]
+            - cell "18.00" [ref=e318]
+            - cell "2319.50" [ref=e319]
+            - cell "3.00" [ref=e320]
+            - cell "3.00" [ref=e321]
+            - cell "33.00" [ref=e322]
+            - cell "1.00" [ref=e323]
+            - cell "1.00" [ref=e324]
+          - row [ref=e325]:
+            - rowheader "75%" [ref=e326]
+            - cell "24.00" [ref=e327]
+            - cell "3972.25" [ref=e328]
+            - cell "4.00" [ref=e329]
+            - cell "4.00" [ref=e330]
+            - cell "42.00" [ref=e331]
+            - cell "2.00" [ref=e332]
+            - cell "1.00" [ref=e333]
+          - row [ref=e334]:
+            - rowheader "max" [ref=e335]
+            - cell "72.00" [ref=e336]
+            - cell "18424.00" [ref=e337]
+            - cell "4.00" [ref=e338]
+            - cell "4.00" [ref=e339]
+            - cell "75.00" [ref=e340]
+            - cell "4.00" [ref=e341]
+            - cell "2.00" [ref=e342]
+      - table [ref=e347]:
+        - rowgroup [ref=e348]:
+          - row [ref=e349]:
+            - columnheader [ref=e350]
+            - columnheader "variable" [ref=e351]
+            - columnheader "categorias" [ref=e352]
+        - rowgroup [ref=e353]:
+          - row [ref=e354]:
+            - rowheader "0" [ref=e355]
+            - cell "checking" [ref=e356]
+            - cell "4" [ref=e357]
+          - row [ref=e358]:
+            - rowheader "1" [ref=e359]
+            - cell "credit_history" [ref=e360]
+            - cell "5" [ref=e361]
+          - row [ref=e362]:
+            - rowheader "2" [ref=e363]
+            - cell "purpose" [ref=e364]
+            - cell "10" [ref=e365]
+          - row [ref=e366]:
+            - rowheader "3" [ref=e367]
+            - cell "savings" [ref=e368]
+            - cell "5" [ref=e369]
+          - row [ref=e370]:
+            - rowheader "4" [ref=e371]
+            - cell "employment" [ref=e372]
+            - cell "5" [ref=e373]
+          - row [ref=e374]:
+            - rowheader "5" [ref=e375]
+            - cell "personal_status_sex" [ref=e376]
+            - cell "4" [ref=e377]
+          - row [ref=e378]:
+            - rowheader "6" [ref=e379]
+            - cell "guarantors" [ref=e380]
+            - cell "3" [ref=e381]
+          - row [ref=e382]:
+            - rowheader "7" [ref=e383]
+            - cell "property" [ref=e384]
+            - cell "4" [ref=e385]
+          - row [ref=e386]:
+            - rowheader "8" [ref=e387]
+            - cell "other_plans" [ref=e388]
+            - cell "3" [ref=e389]
+          - row [ref=e390]:
+            - rowheader "9" [ref=e391]
+            - cell "housing" [ref=e392]
+            - cell "3" [ref=e393]
+          - row [ref=e394]:
+            - rowheader "10" [ref=e395]
+            - cell "job" [ref=e396]
+            - cell "4" [ref=e397]
+          - row [ref=e398]:
+            - rowheader "11" [ref=e399]
+            - cell "telephone" [ref=e400]
+            - cell "2" [ref=e401]
+          - row [ref=e402]:
+            - rowheader "12" [ref=e403]
+            - cell "foreign_worker" [ref=e404]
+            - cell "2" [ref=e405]
+  - generic [ref=e410]:
+    - heading "Exploración gráfica y correlaciones" [level=3] [ref=e411]
+    - paragraph [ref=e412]: Edad, duración y balance de clases describen la población. Las correlaciones son Pearson para variables numéricas y la etiqueta binaria; no implican causalidad. Este EDA no interviene en la selección de atributos, umbrales ni modelos. El conjunto de prueba se mantiene fuera de toda decisión de ajuste.
+  - generic [ref=e413]:
+    - generic [ref=e415]:
+      - generic [ref=e416]: "In [4]:"
+      - generic [ref=e417]: "fig, axes = plt.subplots(1, 3, figsize=(13, 3.8)) axes[0].hist(df.age, bins=18, color=COLORS[\"IA\"], edgecolor=\"white\") axes[0].set(xlabel=\"Edad (años)\", ylabel=\"Solicitantes\", title=\"Edad\") axes[1].hist(df.duration, bins=16, color=COLORS[\"IA\"], edgecolor=\"white\") axes[1].set(xlabel=\"Duración (meses)\", ylabel=\"Solicitantes\", title=\"Duración del crédito\") axes[2].bar([\"Bueno\", \"Malo\"], np.bincount(y), color=[COLORS[\"IA\"], COLORS[\"Humano–IA\"]]) axes[2].set(ylabel=\"Solicitantes\", title=\"Clases originales (n = 1,000)\") savefig(\"01_exploracion.png\") corr = df[NUM].assign(bad_credit=y).corr() corr.to_csv(OUT / \"correlaciones.csv\") fig, ax = plt.subplots(figsize=(9, 7)) im = ax.imshow(corr, cmap=\"BrBG\", vmin=-1, vmax=1) ax.set_xticks(range(len(corr)), corr.columns, rotation=45, ha=\"right\") ax.set_yticks(range(len(corr)), corr.index) for i in range(len(corr)): for j in range(len(corr)): ax.text(j, i, f\"{corr.iloc[i,j]:.2f}\", ha=\"center\", va=\"center\", fontsize=8) fig.colorbar(im, ax=ax, label=\"Correlación Pearson\") ax.set_title(\"Variables numéricas y mal crédito · n = 1,000\") savefig(\"02_correlaciones.png\") display(corr[\"bad_credit\"].drop(\"bad_credit\").sort_values(key=abs, ascending=False).to_frame().round(3))"
+    - generic [ref=e422]:
+      - img "No description has been provided for this image" [ref=e426]
+      - img "No description has been provided for this image" [ref=e430]
+      - table [ref=e435]:
+        - rowgroup [ref=e436]:
+          - row [ref=e437]:
+            - columnheader [ref=e438]
+            - columnheader "bad_credit" [ref=e439]
+        - rowgroup [ref=e440]:
+          - row [ref=e441]:
+            - rowheader "duration" [ref=e442]
+            - cell "0.215" [ref=e443]
+          - row [ref=e444]:
+            - rowheader "amount" [ref=e445]
+            - cell "0.155" [ref=e446]
+          - row [ref=e447]:
+            - rowheader "age" [ref=e448]
+            - cell "-0.091" [ref=e449]
+          - row [ref=e450]:
+            - rowheader "installment_rate" [ref=e451]
+            - cell "0.072" [ref=e452]
+          - row [ref=e453]:
+            - rowheader "existing_credits" [ref=e454]
+            - cell "-0.046" [ref=e455]
+          - row [ref=e456]:
+            - rowheader "dependents" [ref=e457]
+            - cell "-0.003" [ref=e458]
+          - row [ref=e459]:
+            - rowheader "residence_since" [ref=e460]
+            - cell "0.003" [ref=e461]
+  - generic [ref=e466]:
+    - heading "Parte 2 — Desarrollo del modelo base (20%)" [level=2] [ref=e467]
+    - heading "Actividad 2.1 — Preprocesamiento y particiones" [level=3] [ref=e468]
+    - paragraph [ref=e469]:
+      - text: Estratificamos 600/200/200 solicitudes conservando 70%/30% en cada partición. Ajustamos imputación, one-hot y escalamiento
+      - strong [ref=e470]: sólo en entrenamiento
+      - text: . La mediana y la moda son medidas preventivas ante nulos; no se crean nulos artificiales. Se escalan los siete atributos numéricos, necesario para regresión logística y inocuo para árboles. One-hot evita imponer un orden ficticio a códigos categóricos. No usamos SMOTE ni alteramos la prevalencia de validación o prueba.
+  - generic [ref=e471]:
+    - generic [ref=e473]:
+      - generic [ref=e474]: "In [5]:"
+      - generic [ref=e475]: "idx_trainval, idx_test = train_test_split(np.arange(len(df)), test_size=0.2, stratify=y, random_state=SEED) idx_train, idx_val = train_test_split(idx_trainval, test_size=0.25, stratify=y[idx_trainval], random_state=SEED) assert not (set(idx_train) & set(idx_val) or set(idx_train) & set(idx_test) or set(idx_val) & set(idx_test)) split = pd.DataFrame({\"row_id\": np.arange(len(df)), \"split\": \"train\", \"y\": y}) split.loc[idx_val, \"split\"] = \"validation\" split.loc[idx_test, \"split\"] = \"test\" split.to_csv(OUT / \"particiones.csv\", index=False) display(pd.crosstab(split.split, split.y).rename(columns={0: \"Bueno\", 1: \"Malo\"})) pre = ColumnTransformer([ (\"num\", Pipeline([(\"imputer\", SimpleImputer(strategy=\"median\")), (\"scale\", StandardScaler())]), NUM), (\"cat\", Pipeline([(\"imputer\", SimpleImputer(strategy=\"most_frequent\")), (\"onehot\", OneHotEncoder(handle_unknown=\"ignore\", sparse_output=False))]), CAT)]) Ztrain = pre.fit_transform(X.iloc[idx_train]) Zval, Ztest = pre.transform(X.iloc[idx_val]), pre.transform(X.iloc[idx_test]) yt, yv, ye = y[idx_train], y[idx_val], y[idx_test] names = pre.get_feature_names_out() print(\"Matrices transformadas:\", Ztrain.shape, Zval.shape, Ztest.shape)"
+    - generic [ref=e480]:
+      - table [ref=e485]:
+        - rowgroup [ref=e486]:
+          - row [ref=e487]:
+            - columnheader "y" [ref=e488]
+            - columnheader "Bueno" [ref=e489]
+            - columnheader "Malo" [ref=e490]
+          - row [ref=e491]:
+            - columnheader "split" [ref=e492]
+            - columnheader [ref=e493]
+            - columnheader [ref=e494]
+        - rowgroup [ref=e495]:
+          - row [ref=e496]:
+            - rowheader "test" [ref=e497]
+            - cell "140" [ref=e498]
+            - cell "60" [ref=e499]
+          - row [ref=e500]:
+            - rowheader "train" [ref=e501]
+            - cell "420" [ref=e502]
+            - cell "180" [ref=e503]
+          - row [ref=e504]:
+            - rowheader "validation" [ref=e505]
+            - cell "140" [ref=e506]
+            - cell "60" [ref=e507]
+      - generic [ref=e508]: "Matrices transformadas: (600, 61) (200, 61) (200, 61)"
+  - generic [ref=e516]:
+    - heading "Actividad 2.2 — Entrenamiento de Random Forest y Logistic Regression" [level=3] [ref=e517]
+    - paragraph [ref=e518]:
+      - text: "Comparación controlada con hiperparámetros modestos, semilla fija y umbral de clasificación 0.5. No son probabilidades calibradas: guardamos Brier score y verificamos empíricamente si la entropía distingue errores. El mejor modelo se elige por"
+      - strong [ref=e519]: F1 binario en validación
+      - text: ", con ROC-AUC como desempate; prueba no decide el modelo. Se conserva el ajuste de entrenamiento para que la política elegida en validación no cambie al reentrenar."
+  - generic [ref=e522]:
+    - generic [ref=e523]: "In [6]:"
+    - generic [ref=e524]: "from sklearn.ensemble import RandomForestClassifier from sklearn.linear_model import LogisticRegression models = { \"Random Forest\": RandomForestClassifier(n_estimators=300, max_depth=8, min_samples_leaf=3, class_weight=\"balanced\", random_state=SEED, n_jobs=2), \"Logistic Regression\": LogisticRegression(C=1.0, max_iter=2000, class_weight=\"balanced\", solver=\"lbfgs\", random_state=SEED)}"
+  - generic [ref=e532]:
+    - heading "Actividad 2.3 — Métricas y selección sin consultar prueba" [level=3] [ref=e533]
+    - paragraph [ref=e534]:
+      - text: Precision, Recall y F1 consideran positivo al mal crédito. ROC-AUC usa probabilidades; el coste relativo complementa las métricas de clasificación. La tabla siguiente es de
+      - strong [ref=e535]: validación
+      - text: . Las métricas finales de prueba se calculan posteriormente, con decisiones y umbrales congelados.
+  - generic [ref=e536]:
+    - generic [ref=e538]:
+      - generic [ref=e539]: "In [7]:"
+      - generic [ref=e540]: "def metrics(truth, pred, probability=None): tn, fp, fn, tp = confusion_matrix(truth, pred, labels=[0,1]).ravel() return {\"Accuracy\": accuracy_score(truth,pred), \"Precision\": precision_score(truth,pred,zero_division=0), \"Recall\": recall_score(truth,pred,zero_division=0), \"F1\": f1_score(truth,pred,zero_division=0), \"F1_macro\": f1_score(truth,pred,average=\"macro\",zero_division=0), \"ROC_AUC\": roc_auc_score(truth,probability) if probability is not None else np.nan, \"Coste\": int(fp + 5*fn), \"Coste_por_caso\": float((fp+5*fn)/len(truth)), \"TN\":int(tn), \"FP\":int(fp), \"FN\":int(fn), \"TP\":int(tp)} val_prob, test_prob, training_rows = {}, {}, [] for name, model in models.items(): start = time.perf_counter() model.fit(Ztrain, yt) assert list(model.classes_) == [0,1] val_prob[name] = model.predict_proba(Zval)[:,1] training_rows.append({\"Modelo\":name, **metrics(yv,val_prob[name]>=0.5,val_prob[name]), \"Brier\":brier_score_loss(yv,val_prob[name]), \"Segundos\":time.perf_counter()-start}) validation = pd.DataFrame(training_rows).sort_values([\"F1\",\"ROC_AUC\"],ascending=False) best_name = validation.iloc[0].Modelo best_model = models[best_name] validation.to_csv(OUT / \"modelos_validacion.csv\",index=False) checkpoint(\"models\", selected_model=best_name, versions=versions) display(validation.round(4)) print(\"Modelo seleccionado sin mirar prueba:\", best_name)"
+    - generic [ref=e545]:
+      - table [ref=e550]:
+        - rowgroup [ref=e551]:
+          - row [ref=e552]:
+            - columnheader [ref=e553]
+            - columnheader "Modelo" [ref=e554]
+            - columnheader "Accuracy" [ref=e555]
+            - columnheader "Precision" [ref=e556]
+            - columnheader "Recall" [ref=e557]
+            - columnheader "F1" [ref=e558]
+            - columnheader "F1_macro" [ref=e559]
+            - columnheader "ROC_AUC" [ref=e560]
+            - columnheader "Coste" [ref=e561]
+            - columnheader "Coste_por_caso" [ref=e562]
+            - columnheader "TN" [ref=e563]
+            - columnheader "FP" [ref=e564]
+            - columnheader "FN" [ref=e565]
+            - columnheader "TP" [ref=e566]
+            - columnheader "Brier" [ref=e567]
+            - columnheader "Segundos" [ref=e568]
+        - rowgroup [ref=e569]:
+          - row [ref=e570]:
+            - rowheader "0" [ref=e571]
+            - cell "Random Forest" [ref=e572]
+            - cell "0.645" [ref=e573]
+            - cell "0.4396" [ref=e574]
+            - cell "0.6667" [ref=e575]
+            - cell "0.5298" [ref=e576]
+            - cell "0.6223" [ref=e577]
+            - cell "0.7412" [ref=e578]
+            - cell "151" [ref=e579]
+            - cell "0.755" [ref=e580]
+            - cell "89" [ref=e581]
+            - cell "51" [ref=e582]
+            - cell "20" [ref=e583]
+            - cell "40" [ref=e584]
+            - cell "0.2007" [ref=e585]
+            - cell "0.6861" [ref=e586]
+          - row [ref=e587]:
+            - rowheader "1" [ref=e588]
+            - cell "Logistic Regression" [ref=e589]
+            - cell "0.630" [ref=e590]
+            - cell "0.4205" [ref=e591]
+            - cell "0.6167" [ref=e592]
+            - cell "0.5000" [ref=e593]
+            - cell "0.6032" [ref=e594]
+            - cell "0.7218" [ref=e595]
+            - cell "166" [ref=e596]
+            - cell "0.830" [ref=e597]
+            - cell "89" [ref=e598]
+            - cell "51" [ref=e599]
+            - cell "23" [ref=e600]
+            - cell "37" [ref=e601]
+            - cell "0.2278" [ref=e602]
+            - cell "0.0303" [ref=e603]
+      - generic [ref=e604]: "Modelo seleccionado sin mirar prueba: Random Forest"
+  - generic [ref=e612]:
+    - heading "Parte 3 — Cuantificación de incertidumbre (20%)" [level=2] [ref=e613]
+    - heading "Actividades 3.1 y 3.2 — Probabilidades y entropía" [level=3] [ref=e614]
+    - paragraph [ref=e615]:
+      - text: Para
+      - code [ref=e616]: p = P(mal crédito | x)
+      - text: ", calculamos"
+      - generic [ref=e618]:
+        - generic [ref=e619]: H
+        - generic [ref=e620]: (
+        - generic [ref=e621]: x
+        - generic [ref=e622]: )
+        - generic [ref=e623]: =
+        - generic [ref=e624]: −
+        - generic [ref=e625]: p
+        - generic [ref=e626]: ln
+        - generic [ref=e627]: (
+        - generic [ref=e628]: p
+        - generic [ref=e629]: )
+        - generic [ref=e630]: −
+        - generic [ref=e631]: (
+        - generic [ref=e632]: "1"
+        - generic [ref=e633]: −
+        - generic [ref=e634]: p
+        - generic [ref=e635]: )
+        - generic [ref=e636]: ln
+        - generic [ref=e637]: (
+        - generic [ref=e638]: "1"
+        - generic [ref=e639]: −
+        - generic [ref=e640]: p
+        - generic [ref=e641]: )
+      - text: ", en nats. Vale cero en certeza y alcanza"
+      - generic [ref=e643]:
+        - generic [ref=e644]: ln
+        - generic [ref=e645]: (
+        - generic [ref=e646]: "2"
+        - generic [ref=e647]: )
+      - text: cerca de 0.5. Se recortan probabilidades sólo para evitar
+      - code [ref=e648]: log(0)
+      - text: .
+      - strong [ref=e649]: "No"
+      - text: confundimos baja entropía con corrección garantizada. En esta sección analizamos validación para justificar los umbrales; repetimos el diagnóstico en prueba una vez congelada la política.
+  - generic [ref=e650]:
+    - generic [ref=e652]:
+      - generic [ref=e653]: "In [8]:"
+      - generic [ref=e654]: "def entropy(probability): p = np.clip(np.asarray(probability,dtype=float),1e-12,1-1e-12) return -p*np.log(p) - (1-p)*np.log(1-p) assert np.isclose(entropy([0.5])[0],np.log(2)) assert entropy([0,1]).max() < 1e-8 assert np.allclose(entropy([0.2,0.8]), entropy([0.8,0.2])) pv = val_prob[best_name] uv = entropy(pv) uncertainty_val = pd.DataFrame({\"row_id\":idx_val,\"y\":yv,\"p_bad\":pv,\"entropy\":uv,\"correct\":(pv>=0.5)==yv}) uncertainty_val.to_csv(OUT / \"incertidumbre_validacion.csv\",index=False) display(uncertainty_val.head().round(4))"
+    - table [ref=e664]:
+      - rowgroup [ref=e665]:
+        - row [ref=e666]:
+          - columnheader [ref=e667]
+          - columnheader "row_id" [ref=e668]
+          - columnheader "y" [ref=e669]
+          - columnheader "p_bad" [ref=e670]
+          - columnheader "entropy" [ref=e671]
+          - columnheader "correct" [ref=e672]
+      - rowgroup [ref=e673]:
+        - row [ref=e674]:
+          - rowheader "0" [ref=e675]
+          - cell "254" [ref=e676]
+          - cell "0" [ref=e677]
+          - cell "0.3088" [ref=e678]
+          - cell "0.6181" [ref=e679]
+          - cell "True" [ref=e680]
+        - row [ref=e681]:
+          - rowheader "1" [ref=e682]
+          - cell "557" [ref=e683]
+          - cell "1" [ref=e684]
+          - cell "0.5012" [ref=e685]
+          - cell "0.6931" [ref=e686]
+          - cell "True" [ref=e687]
+        - row [ref=e688]:
+          - rowheader "2" [ref=e689]
+          - cell "185" [ref=e690]
+          - cell "0" [ref=e691]
+          - cell "0.1344" [ref=e692]
+          - cell "0.3946" [ref=e693]
+          - cell "True" [ref=e694]
+        - row [ref=e695]:
+          - rowheader "3" [ref=e696]
+          - cell "654" [ref=e697]
+          - cell "0" [ref=e698]
+          - cell "0.0896" [ref=e699]
+          - cell "0.3016" [ref=e700]
+          - cell "True" [ref=e701]
+        - row [ref=e702]:
+          - rowheader "4" [ref=e703]
+          - cell "646" [ref=e704]
+          - cell "0" [ref=e705]
+          - cell "0.6728" [ref=e706]
+          - cell "0.6322" [ref=e707]
+          - cell "False" [ref=e708]
+  - generic [ref=e713]:
+    - heading "Actividades 3.3 y 3.4 — ¿La incertidumbre identifica errores?" [level=3] [ref=e714]
+    - paragraph [ref=e715]: Mostramos histograma, boxplot aciertos/errores y accuracy por intervalos de entropía. Los intervalos vacíos no se dibujan como accuracy cero. Comparamos medias y usamos Mann–Whitney bilateral como análisis exploratorio; AUC de detección de error > 0.5 indica que mayor entropía tiende a identificar errores. La prueba estadística no demuestra calibración ni determina sola el escalamiento.
+  - generic [ref=e716]:
+    - generic [ref=e718]:
+      - generic [ref=e719]: "In [9]:"
+      - generic [ref=e720]: "def uncertainty_analysis(prob, truth, split_name, filename): u = entropy(prob) correct = (prob>=0.5)==truth fig, axes = plt.subplots(1,3,figsize=(14,4.2)) axes[0].hist(u,bins=18,color=COLORS[\"IA\"],edgecolor=\"white\") axes[0].set(xlabel=\"Entropía (nats)\",ylabel=\"Casos\",title=\"Distribución de incertidumbre\") axes[1].boxplot([u[correct],u[~correct]],tick_labels=[\"Aciertos\",\"Errores\"]) axes[1].set(ylabel=\"Entropía (nats)\",title=\"Aciertos frente a errores\") bins = pd.cut(u,np.linspace(0,np.log(2)+1e-10,9),include_lowest=True) grouped = pd.DataFrame({\"bin\":bins,\"correct\":correct,\"u\":u}).groupby(\"bin\",observed=True).agg( entropy=(\"u\",\"mean\"),accuracy=(\"correct\",\"mean\"),n=(\"correct\",\"size\")) axes[2].plot(grouped.entropy,grouped.accuracy,\"o-\",color=COLORS[\"IA\"]) for row in grouped.itertuples(): axes[2].annotate(str(row.n),(row.entropy,row.accuracy),xytext=(0,5),textcoords=\"offset points\",fontsize=8) axes[2].set(xlabel=\"Entropía media (nats)\",ylabel=\"Accuracy\",ylim=(0,1.08),title=\"Accuracy por intervalo · etiquetas = n\") fig.suptitle(f\"{best_name} · {split_name} (n = {len(truth)})\",y=1.03) savefig(filename) stats = {\"split\":split_name,\"mean_correct\":float(u[correct].mean()),\"mean_error\":float(u[~correct].mean()), \"mann_whitney_p\":float(mannwhitneyu(u[correct],u[~correct],alternative=\"two-sided\").pvalue), \"error_detection_auc\":float(roc_auc_score(~correct,u))} display(pd.Series(stats).to_frame(\"Valor\")) return stats uncertainty_stats = [uncertainty_analysis(pv,yv,\"validación\",\"03_incertidumbre_validacion.png\")]"
+    - generic [ref=e725]:
+      - img "No description has been provided for this image" [ref=e729]
+      - table [ref=e734]:
+        - rowgroup [ref=e735]:
+          - row [ref=e736]:
+            - columnheader [ref=e737]
+            - columnheader "Valor" [ref=e738]
+        - rowgroup [ref=e739]:
+          - row [ref=e740]:
+            - rowheader "split" [ref=e741]
+            - cell "validación" [ref=e742]
+          - row [ref=e743]:
+            - rowheader "mean_correct" [ref=e744]
+            - cell "0.601528" [ref=e745]
+          - row [ref=e746]:
+            - rowheader "mean_error" [ref=e747]
+            - cell "0.665383" [ref=e748]
+          - row [ref=e749]:
+            - rowheader "mann_whitney_p" [ref=e750]
+            - cell "0.0" [ref=e751]
+          - row [ref=e752]:
+            - rowheader "error_detection_auc" [ref=e753]
+            - cell "0.728136" [ref=e754]
+  - generic [ref=e759]:
+    - heading "Parte 4 — Diseño del sistema Humano–IA (25%)" [level=2] [ref=e760]
+    - heading "Actividad 4.1 — Política y justificación de umbrales" [level=3] [ref=e761]
+    - paragraph [ref=e762]:
+      - text: Si
+      - code [ref=e763]: H < A
+      - text: ", decide IA; si"
+      - code [ref=e764]: A <= H < B
+      - text: ", revisa junior; si"
+      - code [ref=e765]: H >= B
+      - text: ", revisa senior. Permitir"
+      - code [ref=e766]: A = B
+      - text: evita forzar trabajo a un junior cuando no aporta calidad. Los candidatos son cuantiles de entropía
+      - strong [ref=e767]: de validación
+      - text: ", más los extremos. La selección detallada se realiza en Parte 6.1 usando únicamente validación."
+    - heading "Actividad 4.2 — Analistas con diferentes grados de instrucción" [level=3] [ref=e768]
+    - paragraph [ref=e769]:
+      - text: "Junior: 70% de acierto; senior: 95%, tal como propone la guía. Aquí «precisión» del simulador significa"
+      - strong [ref=e770]: probabilidad de acierto (accuracy)
+      - text: ", no la métrica Precision. Cada decisión se genera con una variable Bernoulli: si falla, invierte la clase. La simulación consume"
+      - code [ref=e771]: y_true
+      - text: exclusivamente para construir respuestas sintéticas; el enrutador jamás recibe etiquetas reales.
+    - paragraph [ref=e772]: Reutilizamos las mismas respuestas entre políticas para compararlas de forma pareada. No reiniciamos el generador dentro del bucle por solicitante, lo que crearía errores artificialmente correlacionados. La accuracy humana supuesta es constante por clase y dificultad; esta simplificación puede sobreestimar ayuda en casos difíciles y no mide automatización sesgada ni fatiga.
+  - generic [ref=e775]:
+    - generic [ref=e776]: "In [10]:"
+    - generic [ref=e777]: "def simulate_analysts(truth, repetitions, seed): rng = np.random.default_rng(seed) u = rng.random((2,repetitions,len(truth))) return (np.where(u[0] < JUNIOR_ACCURACY, truth, 1-truth), np.where(u[1] < SENIOR_ACCURACY, truth, 1-truth)) def route(uncertainty,a,b): if not 0 <= a <= b: raise ValueError(\"Los umbrales requieren 0 <= A <= B\") return np.where(uncertainty<a,\"IA\",np.where(uncertainty<b,\"Junior\",\"Senior\")) def collaborate(ai,makers,junior,senior): return np.where(makers==\"IA\",ai,np.where(makers==\"Junior\",junior,senior)) def f1_many(truth,predictions): tp = np.sum((predictions==1)&(truth==1),axis=-1) fp = np.sum((predictions==1)&(truth==0),axis=-1) fn = np.sum((predictions==0)&(truth==1),axis=-1) return np.divide(2*tp,2*tp+fp+fn,out=np.zeros_like(tp,dtype=float),where=(2*tp+fp+fn)>0) # Controles con resultados conocidos y extremos de la política. assert np.isclose(f1_many(np.array([1,1,0,0]),np.array([[1,0,1,0]]))[0],0.5) assert np.all(route(np.array([0.1,0.6]),np.log(2)+1e-8,np.log(2)+1e-8)==\"IA\") assert np.all(route(np.array([0.1,0.6]),0,0)==\"Senior\") jcheck,scheck = simulate_analysts(np.tile([0,1],5000),10,10) assert abs(np.mean(jcheck==np.tile([0,1],5000))-0.70)<0.01 assert abs(np.mean(scheck==np.tile([0,1],5000))-0.95)<0.01 jval,sval = simulate_analysts(yv,N_VAL_SIM,seed=1001)"
+  - generic [ref=e785]:
+    - heading "Actividades 4.3 y 4.4 — Pipeline colaborativo y comparación" [level=3] [ref=e786]
+    - paragraph [ref=e787]: El pipeline encadena probabilidades, entropía, responsable y decisión final. Una solicitud se cuenta una sola vez como IA, junior o senior. La comparación final incluye IA sola, junior para todos, senior para todos y sistema colaborativo. Las respuestas simuladas y el responsable quedan guardados por fila para auditar F1, cobertura y coste. Primero congelamos los umbrales con la optimización siguiente.
+    - heading "Parte 6.1 — Optimización de la política en validación (10%)" [level=2] [ref=e788]
+    - paragraph [ref=e789]:
+      - text: Presentamos esta actividad antes de SHAP y de evaluar prueba para hacer explícito el orden del experimento. Buscamos el mayor HACS medio entre políticas que mejoran F1 al menos 0.01 y mejoran en al menos 80% de 200 simulaciones de validación. Esos guardarraíles se fijaron antes de ejecutar; no garantizan mejora en prueba. Si ninguna política cumple, se conserva la mejor candidata y se marca
+      - strong [ref=e790]: no elegible
+      - text: .
+    - paragraph [ref=e791]:
+      - generic [ref=e793]:
+        - generic [ref=e794]: C
+        - generic [ref=e795]: o
+        - generic [ref=e796]: v
+        - generic [ref=e797]: e
+        - generic [ref=e798]: r
+        - generic [ref=e799]: a
+        - generic [ref=e800]: g
+        - generic [ref=e801]: e
+        - generic [ref=e802]: =
+        - generic [ref=e803]:
+          - generic [ref=e804]: "N"
+          - generic [ref=e805]:
+            - generic [ref=e806]: I
+            - generic [ref=e807]: A
+        - generic [ref=e808]: /
+        - generic [ref=e810]: "N"
+      - text: ;
+      - generic [ref=e812]:
+        - generic [ref=e813]: E
+        - generic [ref=e814]: f
+        - generic [ref=e815]: f
+        - generic [ref=e816]: i
+        - generic [ref=e817]: c
+        - generic [ref=e818]: i
+        - generic [ref=e819]: e
+        - generic [ref=e820]: "n"
+        - generic [ref=e821]: c
+        - generic [ref=e822]: "y"
+        - generic [ref=e823]: =
+        - generic [ref=e824]: "1"
+        - generic [ref=e825]: −
+        - generic [ref=e826]: (
+        - generic [ref=e827]:
+          - generic [ref=e828]: "N"
+          - generic [ref=e829]:
+            - generic [ref=e830]: J
+            - generic [ref=e831]: u
+            - generic [ref=e832]: "n"
+            - generic [ref=e833]: i
+            - generic [ref=e834]: o
+            - generic [ref=e835]: r
+        - generic [ref=e836]: +
+        - generic [ref=e837]:
+          - generic [ref=e838]: "N"
+          - generic [ref=e839]:
+            - generic [ref=e840]: S
+            - generic [ref=e841]: e
+            - generic [ref=e842]: "n"
+            - generic [ref=e843]: i
+            - generic [ref=e844]: o
+            - generic [ref=e845]: r
+        - generic [ref=e846]: )
+        - generic [ref=e847]: /
+        - generic [ref=e849]: "N"
+      - text: .
+    - paragraph [ref=e850]:
+      - generic [ref=e852]:
+        - generic [ref=e853]: H
+        - generic [ref=e854]: A
+        - generic [ref=e855]: C
+        - generic [ref=e856]: S
+        - generic [ref=e857]: =
+        - generic [ref=e858]: "0.6"
+        - generic [ref=e859]: F
+        - generic [ref=e860]:
+          - generic [ref=e861]: "1"
+          - generic [ref=e862]:
+            - generic [ref=e863]: c
+            - generic [ref=e864]: o
+            - generic [ref=e865]: l
+            - generic [ref=e866]: a
+            - generic [ref=e867]: b
+        - generic [ref=e868]: +
+        - generic [ref=e869]: "0.2"
+        - generic [ref=e870]: C
+        - generic [ref=e871]: o
+        - generic [ref=e872]: v
+        - generic [ref=e873]: e
+        - generic [ref=e874]: r
+        - generic [ref=e875]: a
+        - generic [ref=e876]: g
+        - generic [ref=e877]: e
+        - generic [ref=e878]: +
+        - generic [ref=e879]: "0.2"
+        - generic [ref=e880]: E
+        - generic [ref=e881]: f
+        - generic [ref=e882]: f
+        - generic [ref=e883]: i
+        - generic [ref=e884]: c
+        - generic [ref=e885]: i
+        - generic [ref=e886]: e
+        - generic [ref=e887]: "n"
+        - generic [ref=e888]: c
+        - generic [ref=e889]: "y"
+      - text: .
+    - paragraph [ref=e890]:
+      - text: Coverage y Efficiency son iguales en este diseño. Se mantienen ambas columnas para seguir el PDF. El score no distingue esfuerzo senior/junior ni incorpora la matriz de costes; esos datos se reportan aparte. La mejora es
+      - generic [ref=e892]:
+        - generic [ref=e893]: Δ
+        - generic [ref=e894]: F
+        - generic [ref=e895]: "1"
+        - generic [ref=e896]: =
+        - generic [ref=e897]: F
+        - generic [ref=e898]:
+          - generic [ref=e899]: "1"
+          - generic [ref=e900]:
+            - generic [ref=e901]: c
+            - generic [ref=e902]: o
+            - generic [ref=e903]: l
+            - generic [ref=e904]: a
+            - generic [ref=e905]: b
+        - generic [ref=e906]: −
+        - generic [ref=e907]: F
+        - generic [ref=e908]:
+          - generic [ref=e909]: "1"
+          - generic [ref=e910]:
+            - generic [ref=e911]: I
+            - generic [ref=e912]: A
+      - text: ", y"
+      - code [ref=e913]: Mejora_pp = 100 × ΔF1
+      - text: .
+  - generic [ref=e914]:
+    - generic [ref=e916]:
+      - generic [ref=e917]: "In [11]:"
+      - generic [ref=e918]: "policies, grid_rows = {}, [] for name,prob in val_prob.items(): u,ai = entropy(prob),prob>=0.5 baseline = f1_score(yv,ai) thresholds = np.unique(np.r_[0,np.quantile(u,np.linspace(0.1,0.95,18)),np.log(2)+1e-8]) rows = [] for a in thresholds: for b in thresholds[thresholds>=a]: makers = route(u,a,b) fs = f1_many(yv,collaborate(ai,makers,jval,sval)) coverage = np.mean(makers==\"IA\") efficiency = 1-np.mean(makers!=\"IA\") mean_f1 = float(fs.mean()) row = {\"Modelo\":name,\"A\":float(a),\"B\":float(b),\"F1_IA\":baseline, \"F1_colab_mean\":mean_f1,\"Mejora\":mean_f1-baseline, \"Prob_mejora\":float(np.mean(fs>baseline)),\"Coverage\":coverage,\"Efficiency\":efficiency, \"HACS\":0.6*mean_f1+0.2*coverage+0.2*efficiency, \"Junior\":int(sum(makers==\"Junior\")),\"Senior\":int(sum(makers==\"Senior\"))} row[\"Elegible_validacion\"] = row[\"Mejora\"]>=0.01 and row[\"Prob_mejora\"]>=0.8 rows.append(row) grid = pd.DataFrame(rows) feasible = grid[grid.Elegible_validacion] choice = (feasible if len(feasible) else grid).sort_values([\"HACS\",\"Coverage\"],ascending=False).iloc[0].to_dict() policies[name] = choice grid_rows.extend(rows) search = pd.DataFrame(grid_rows) search.to_csv(OUT / \"busqueda_umbrales_validacion.csv\",index=False) policy_table = pd.DataFrame(policies.values()) policy_table.to_csv(OUT / \"politicas_congeladas.csv\",index=False) (OUT / \"politicas_congeladas.json\").write_text(json.dumps(policies,indent=2),encoding=\"utf-8\") display(policy_table.round(4)) chosen = policies[best_name] display(Markdown(f\"**Política del modelo elegido:** A={chosen['A']:.4f}, B={chosen['B']:.4f} nats. \" f\"En validación: ΔF1 medio={chosen['Mejora']:.4f}, HACS={chosen['HACS']:.4f}, \" f\"cobertura={chosen['Coverage']:.1%}, junior={chosen['Junior']}, senior={chosen['Senior']}. \" f\"Cumple guardarraíles: **{chosen['Elegible_validacion']}**.\")) selected_grid = search[search.Modelo==best_name] fig,ax = plt.subplots(figsize=(9,4.5)) ax.scatter(selected_grid.Coverage,selected_grid.HACS,s=15,alpha=0.5,color=COLORS[\"IA\"],label=\"Candidatas\") ax.scatter([chosen[\"Coverage\"]],[chosen[\"HACS\"]],s=95,marker=\"*\",color=COLORS[\"Humano–IA\"],label=\"Elegida\") ax.set(xlabel=\"Cobertura IA\",ylabel=\"HACS medio\",title=f\"Políticas en validación · {best_name}\",xlim=(0,1),ylim=(0,1)) ax.legend() savefig(\"04_politicas_validacion.png\") checkpoint(\"policy_frozen\", policy=chosen, validation_repetitions=N_VAL_SIM)"
+    - generic [ref=e923]:
+      - table [ref=e928]:
+        - rowgroup [ref=e929]:
+          - row [ref=e930]:
+            - columnheader [ref=e931]
+            - columnheader "Modelo" [ref=e932]
+            - columnheader "A" [ref=e933]
+            - columnheader "B" [ref=e934]
+            - columnheader "F1_IA" [ref=e935]
+            - columnheader "F1_colab_mean" [ref=e936]
+            - columnheader "Mejora" [ref=e937]
+            - columnheader "Prob_mejora" [ref=e938]
+            - columnheader "Coverage" [ref=e939]
+            - columnheader "Efficiency" [ref=e940]
+            - columnheader "HACS" [ref=e941]
+            - columnheader "Junior" [ref=e942]
+            - columnheader "Senior" [ref=e943]
+            - columnheader "Elegible_validacion" [ref=e944]
+        - rowgroup [ref=e945]:
+          - row [ref=e946]:
+            - rowheader "0" [ref=e947]
+            - cell "Random Forest" [ref=e948]
+            - cell "0.6930" [ref=e949]
+            - cell "0.6930" [ref=e950]
+            - cell "0.5298" [ref=e951]
+            - cell "0.5568" [ref=e952]
+            - cell "0.0270" [ref=e953]
+            - cell "1.0" [ref=e954]
+            - cell "0.95" [ref=e955]
+            - cell "0.95" [ref=e956]
+            - cell "0.7141" [ref=e957]
+            - cell "0" [ref=e958]
+            - cell "10" [ref=e959]
+            - cell "True" [ref=e960]
+          - row [ref=e961]:
+            - rowheader "1" [ref=e962]
+            - cell "Logistic Regression" [ref=e963]
+            - cell "0.6895" [ref=e964]
+            - cell "0.6895" [ref=e965]
+            - cell "0.5000" [ref=e966]
+            - cell "0.5752" [ref=e967]
+            - cell "0.0752" [ref=e968]
+            - cell "1.0" [ref=e969]
+            - cell "0.90" [ref=e970]
+            - cell "0.90" [ref=e971]
+            - cell "0.7051" [ref=e972]
+            - cell "0" [ref=e973]
+            - cell "20" [ref=e974]
+            - cell "True" [ref=e975]
+      - paragraph [ref=e979]:
+        - strong [ref=e980]: "Política del modelo elegido:"
+        - text: "A=0.6930, B=0.6930 nats. En validación: ΔF1 medio=0.0270, HACS=0.7141, cobertura=95.0%, junior=0, senior=10. Cumple guardarraíles:"
+        - strong [ref=e981]: "True"
+        - text: .
+      - img "No description has been provided for this image" [ref=e985]
+  - generic [ref=e990]:
+    - heading "Evaluación final congelada — actividades 2.3, 3.4 y 4.4" [level=3] [ref=e991]
+    - paragraph [ref=e992]:
+      - text: Abrimos prueba una vez terminadas todas las elecciones. Reportamos una realización reproducible (réplica 0, sin buscar una semilla favorable) y 500 réplicas nuevas. El intervalo Monte Carlo 2.5–97.5% mide variabilidad
+      - strong [ref=e993]: del simulador humano para estos 200 casos
+      - text: ", no incertidumbre de población. Guardamos ambas tablas y las decisiones completas. El HACS oficial de una realización y su media no se mezclan."
+  - generic [ref=e994]:
+    - generic [ref=e996]:
+      - generic [ref=e997]: "In [12]:"
+      - generic [ref=e998]: "jtest,stest = simulate_analysts(ye,N_TEST_SIM,seed=20261104) final_rows, sim_rows, decision_frames, base_rows = [], [], [], [] for name,model in models.items(): prob = model.predict_proba(Ztest)[:,1] test_prob[name] = prob ai,u = (prob>=0.5).astype(int),entropy(prob) policy = policies[name] makers = route(u,policy[\"A\"],policy[\"B\"]) decisions = collaborate(ai,makers,jtest,stest).astype(int) coverage,efficiency = float(np.mean(makers==\"IA\")),float(1-np.mean(makers!=\"IA\")) assert np.isclose(coverage,efficiency) fm = f1_many(ye,decisions) base = metrics(ye,ai,prob) base_rows.append({\"Modelo\":name,**base,\"Brier\":brier_score_loss(ye,prob)}) point = metrics(ye,decisions[0]) hacs = 0.6*point[\"F1\"]+0.2*coverage+0.2*efficiency row = {\"Grupo\":GROUP,\"Modelo\":name,\"F1 - Sólo IA\":base[\"F1\"],\"F1 - IA + Human\":point[\"F1\"], \"Mejora\":point[\"F1\"]-base[\"F1\"],\"Mejora_pp\":100*(point[\"F1\"]-base[\"F1\"]), \"HACS\":hacs,\"Coverage\":coverage,\"Efficiency\":efficiency, \"N_IA\":int(sum(makers==\"IA\")),\"N_Junior\":int(sum(makers==\"Junior\")),\"N_Senior\":int(sum(makers==\"Senior\")), \"F1_colab_MC_mean\":float(fm.mean()),\"F1_colab_MC_p025\":float(np.quantile(fm,0.025)), \"F1_colab_MC_p975\":float(np.quantile(fm,0.975)),\"Prob_mejora_MC\":float(np.mean(fm>base[\"F1\"])), \"HACS_MC_mean\":float(0.6*fm.mean()+0.4*coverage), \"Coste_IA\":base[\"Coste\"],\"Coste_colab\":point[\"Coste\"], \"Elegible_prueba\":bool(point[\"F1\"]>base[\"F1\"]),\"Seleccionado_validacion\":name==best_name} final_rows.append(row) sim_rows.extend({\"Modelo\":name,\"replica\":r,\"F1\":float(f),\"Mejora\":float(f-base[\"F1\"]), \"HACS\":float(0.6*f+0.4*coverage)} for r,f in enumerate(fm)) decision_frames.append(pd.DataFrame({\"Modelo\":name,\"row_id\":idx_test,\"y_true\":ye,\"p_bad\":prob, \"entropy\":u,\"y_ai\":ai,\"responsable\":makers,\"y_junior\":jtest[0],\"y_senior\":stest[0],\"y_final\":decisions[0]})) results = pd.DataFrame(final_rows) all_decisions = pd.concat(decision_frames,ignore_index=True) all_decisions.to_csv(OUT / \"decisiones_prueba.csv\",index=False) results.to_csv(OUT / \"tabla_resultados.csv\",index=False) pd.DataFrame(sim_rows).to_csv(OUT / \"simulaciones_prueba.csv\",index=False) pd.DataFrame(base_rows).to_csv(OUT / \"modelos_prueba.csv\",index=False) display(results[[\"Modelo\",\"F1 - Sólo IA\",\"F1 - IA + Human\",\"Mejora\",\"HACS\",\"Coverage\",\"Elegible_prueba\"]].round(4)) display(results[[\"Modelo\",\"F1_colab_MC_mean\",\"F1_colab_MC_p025\",\"F1_colab_MC_p975\",\"Prob_mejora_MC\"]].round(4)) selected_decisions = all_decisions[all_decisions.Modelo==best_name].reset_index(drop=True) selected_result = results[results.Modelo==best_name].iloc[0] comparison = pd.DataFrame([ {\"Sistema\":\"IA\",**metrics(ye,selected_decisions.y_ai,test_prob[best_name])}, {\"Sistema\":\"Junior\",**metrics(ye,jtest[0])}, {\"Sistema\":\"Senior\",**metrics(ye,stest[0])}, {\"Sistema\":\"Humano–IA\",**metrics(ye,selected_decisions.y_final)}]) comparison.to_csv(OUT / \"comparacion_sistemas.csv\",index=False) display(comparison[[\"Sistema\",\"Accuracy\",\"Precision\",\"Recall\",\"F1\",\"F1_macro\",\"Coste\"]].round(4))"
+    - generic [ref=e1003]:
+      - table [ref=e1008]:
+        - rowgroup [ref=e1009]:
+          - row [ref=e1010]:
+            - columnheader [ref=e1011]
+            - columnheader "Modelo" [ref=e1012]
+            - columnheader "F1 - Sólo IA" [ref=e1013]
+            - columnheader "F1 - IA + Human" [ref=e1014]
+            - columnheader "Mejora" [ref=e1015]
+            - columnheader "HACS" [ref=e1016]
+            - columnheader "Coverage" [ref=e1017]
+            - columnheader "Elegible_prueba" [ref=e1018]
+        - rowgroup [ref=e1019]:
+          - row [ref=e1020]:
+            - rowheader "0" [ref=e1021]
+            - cell "Random Forest" [ref=e1022]
+            - cell "0.5874" [ref=e1023]
+            - cell "0.5915" [ref=e1024]
+            - cell "0.0041" [ref=e1025]
+            - cell "0.7469" [ref=e1026]
+            - cell "0.98" [ref=e1027]
+            - cell "True" [ref=e1028]
+          - row [ref=e1029]:
+            - rowheader "1" [ref=e1030]
+            - cell "Logistic Regression" [ref=e1031]
+            - cell "0.6133" [ref=e1032]
+            - cell "0.6486" [ref=e1033]
+            - cell "0.0353" [ref=e1034]
+            - cell "0.7612" [ref=e1035]
+            - cell "0.93" [ref=e1036]
+            - cell "True" [ref=e1037]
+      - table [ref=e1042]:
+        - rowgroup [ref=e1043]:
+          - row [ref=e1044]:
+            - columnheader [ref=e1045]
+            - columnheader "Modelo" [ref=e1046]
+            - columnheader "F1_colab_MC_mean" [ref=e1047]
+            - columnheader "F1_colab_MC_p025" [ref=e1048]
+            - columnheader "F1_colab_MC_p975" [ref=e1049]
+            - columnheader "Prob_mejora_MC" [ref=e1050]
+        - rowgroup [ref=e1051]:
+          - row [ref=e1052]:
+            - rowheader "0" [ref=e1053]
+            - cell "Random Forest" [ref=e1054]
+            - cell "0.5903" [ref=e1055]
+            - cell "0.5816" [ref=e1056]
+            - cell "0.5915" [ref=e1057]
+            - cell "0.836" [ref=e1058]
+          - row [ref=e1059]:
+            - rowheader "1" [ref=e1060]
+            - cell "Logistic Regression" [ref=e1061]
+            - cell "0.6447" [ref=e1062]
+            - cell "0.6309" [ref=e1063]
+            - cell "0.6486" [ref=e1064]
+            - cell "1.000" [ref=e1065]
+      - table [ref=e1070]:
+        - rowgroup [ref=e1071]:
+          - row [ref=e1072]:
+            - columnheader [ref=e1073]
+            - columnheader "Sistema" [ref=e1074]
+            - columnheader "Accuracy" [ref=e1075]
+            - columnheader "Precision" [ref=e1076]
+            - columnheader "Recall" [ref=e1077]
+            - columnheader "F1" [ref=e1078]
+            - columnheader "F1_macro" [ref=e1079]
+            - columnheader "Coste" [ref=e1080]
+        - rowgroup [ref=e1081]:
+          - row [ref=e1082]:
+            - rowheader "0" [ref=e1083]
+            - cell "IA" [ref=e1084]
+            - cell "0.705" [ref=e1085]
+            - cell "0.5060" [ref=e1086]
+            - cell "0.7000" [ref=e1087]
+            - cell "0.5874" [ref=e1088]
+            - cell "0.6789" [ref=e1089]
+            - cell "131" [ref=e1090]
+          - row [ref=e1091]:
+            - rowheader "1" [ref=e1092]
+            - cell "Junior" [ref=e1093]
+            - cell "0.690" [ref=e1094]
+            - cell "0.4886" [ref=e1095]
+            - cell "0.7167" [ref=e1096]
+            - cell "0.5811" [ref=e1097]
+            - cell "0.6675" [ref=e1098]
+            - cell "130" [ref=e1099]
+          - row [ref=e1100]:
+            - rowheader "2" [ref=e1101]
+            - cell "Senior" [ref=e1102]
+            - cell "0.975" [ref=e1103]
+            - cell "0.9365" [ref=e1104]
+            - cell "0.9833" [ref=e1105]
+            - cell "0.9593" [ref=e1106]
+            - cell "0.9706" [ref=e1107]
+            - cell "9" [ref=e1108]
+          - row [ref=e1109]:
+            - rowheader "3" [ref=e1110]
+            - cell "Humano–IA" [ref=e1111]
+            - cell "0.710" [ref=e1112]
+            - cell "0.5122" [ref=e1113]
+            - cell "0.7000" [ref=e1114]
+            - cell "0.5915" [ref=e1115]
+            - cell "0.6834" [ref=e1116]
+            - cell "130" [ref=e1117]
+  - generic [ref=e1122]:
+    - heading "Matriz de confusión, ROC y comparación de sistemas" [level=3] [ref=e1123]
+    - paragraph [ref=e1124]: La ROC corresponde a probabilidades del modelo IA. El sistema colaborativo entrega decisiones discretas, por lo que no inventamos una curva ROC a partir de respuestas humanas. La matriz colaborativa permite revisar cambios en FP/FN y reconciliar el coste. Las barras comparan la réplica reproducible, no las medias.
+  - generic [ref=e1125]:
+    - generic [ref=e1127]:
+      - generic [ref=e1128]: "In [13]:"
+      - generic [ref=e1129]: "fig,axes = plt.subplots(1,3,figsize=(14,4)) ConfusionMatrixDisplay.from_predictions(ye,selected_decisions.y_ai,display_labels=[\"Bueno\",\"Malo\"],ax=axes[0],colorbar=False,cmap=\"Blues\") axes[0].set_title(\"IA sola · prueba\") ConfusionMatrixDisplay.from_predictions(ye,selected_decisions.y_final,display_labels=[\"Bueno\",\"Malo\"],ax=axes[1],colorbar=False,cmap=\"Blues\") axes[1].set_title(\"Humano–IA · prueba\") RocCurveDisplay.from_predictions(ye,test_prob[best_name],ax=axes[2],name=best_name) axes[2].plot([0,1],[0,1],\"--\",color=\"gray\") axes[2].set_title(\"ROC IA · positivo = mal crédito\") savefig(\"05_evaluacion_prueba.png\") fig,ax = plt.subplots(figsize=(9,4.5)) bars = ax.bar(comparison.Sistema,comparison.F1,color=[COLORS[x] for x in comparison.Sistema]) ax.bar_label(bars,fmt=\"%.3f\",padding=3) ax.set(ylabel=\"F1 binario · mal crédito\",ylim=(0,1),title=f\"{best_name} · prueba (n = 200), réplica 0\") savefig(\"06_comparacion_sistemas.png\") uncertainty_stats.append(uncertainty_analysis(test_prob[best_name],ye,\"prueba\",\"07_incertidumbre_prueba.png\")) pd.DataFrame(uncertainty_stats).to_csv(OUT / \"estadistica_incertidumbre.csv\",index=False)"
+    - generic [ref=e1134]:
+      - img "No description has been provided for this image" [ref=e1138]
+      - img "No description has been provided for this image" [ref=e1142]
+      - img "No description has been provided for this image" [ref=e1146]
+      - table [ref=e1151]:
+        - rowgroup [ref=e1152]:
+          - row [ref=e1153]:
+            - columnheader [ref=e1154]
+            - columnheader "Valor" [ref=e1155]
+        - rowgroup [ref=e1156]:
+          - row [ref=e1157]:
+            - rowheader "split" [ref=e1158]
+            - cell "prueba" [ref=e1159]
+          - row [ref=e1160]:
+            - rowheader "mean_correct" [ref=e1161]
+            - cell "0.595403" [ref=e1162]
+          - row [ref=e1163]:
+            - rowheader "mean_error" [ref=e1164]
+            - cell "0.656768" [ref=e1165]
+          - row [ref=e1166]:
+            - rowheader "mann_whitney_p" [ref=e1167]
+            - cell "0.000001" [ref=e1168]
+          - row [ref=e1169]:
+            - rowheader "error_detection_auc" [ref=e1170]
+            - cell "0.717995" [ref=e1171]
+  - generic [ref=e1176]:
+    - heading "Sensibilidad a la simulación y a la muestra de prueba" [level=3] [ref=e1177]
+    - paragraph [ref=e1178]: "El histograma describe 500 respuestas humanas alternativas con igual política. Además, un bootstrap pareado de solicitudes mantiene juntas las decisiones IA y colaborativas de cada caso de la réplica 0. Su intervalo percentil es exploratorio: no incluye el entrenamiento, la selección de umbrales ni la simulación humana adicional. No es una prueba de mejora garantizada en futuros solicitantes."
+  - generic [ref=e1179]:
+    - generic [ref=e1181]:
+      - generic [ref=e1182]: "In [14]:"
+      - generic [ref=e1183]: "rng = np.random.default_rng(903) bootstrap_delta = [] ya = selected_decisions.y_ai.to_numpy() yf = selected_decisions.y_final.to_numpy() for _ in range(1000): ix = rng.integers(0,len(ye),len(ye)) bootstrap_delta.append(f1_score(ye[ix],yf[ix],zero_division=0)-f1_score(ye[ix],ya[ix],zero_division=0)) ci = np.quantile(bootstrap_delta,[0.025,0.975]) pd.DataFrame({\"delta_F1\":bootstrap_delta}).to_csv(OUT / \"bootstrap_mejora.csv\",index=False) sim = pd.DataFrame(sim_rows) s = sim[sim.Modelo==best_name] fig,ax = plt.subplots(figsize=(9,4.5)) ax.hist(s.Mejora,bins=25,color=COLORS[\"Humano–IA\"],edgecolor=\"white\") ax.axvline(0,color=\"black\",linestyle=\"--\",label=\"Sin mejora\") ax.set(xlabel=\"ΔF1 colaborativo − IA\",ylabel=\"Réplicas\",title=f\"Variabilidad humana simulada · {best_name}, 500 réplicas\") ax.legend() savefig(\"08_variabilidad_humana.png\") print(\"IC bootstrap pareado 95% de ΔF1 (réplica 0):\",np.round(ci,4)) checkpoint(\"test\", test_repetitions=N_TEST_SIM, bootstrap_delta_ci=ci.tolist())"
+    - generic [ref=e1188]:
+      - img "No description has been provided for this image" [ref=e1192]
+      - generic [ref=e1193]: "IC bootstrap pareado 95% de ΔF1 (réplica 0): [0. 0.0141]"
+  - generic [ref=e1201]:
+    - heading "Parte 5 — Explicabilidad (15%)" [level=2] [ref=e1202]
+    - heading "Actividad 5.1 — SHAP del modelo seleccionado" [level=3] [ref=e1203]
+    - paragraph [ref=e1204]:
+      - text: Se explican las variables transformadas del mismo modelo evaluado. Para árboles usamos TreeExplainer; para regresión logística, LinearExplainer con fondo sólo de entrenamiento. Se normaliza la salida binaria para explicar
+      - strong [ref=e1205]: mal crédito
+      - text: ". Comprobamos aditividad: valor base + suma SHAP reconstruye probabilidad (Random Forest) o log-odds (boosting/regresión logística)."
+    - paragraph [ref=e1206]:
+      - text: Las importancias globales se agrupan de vuelta a las 20 variables originales. El resumen global usa prueba para
+      - strong [ref=e1207]: interpretación posterior
+      - text: ", sin ajustar modelo ni política. SHAP es una atribución del modelo, no evidencia causal ni certificación de justicia. Las dependencias entre atributos pueden repartir las atribuciones."
+    - paragraph [ref=e1208]:
+      - text: "Documentación:"
+      - link "TreeExplainer" [ref=e1209] [cursor=pointer]:
+        - /url: https://shap.readthedocs.io/en/latest/generated/shap.TreeExplainer.html
+      - text: "y"
+      - link "LinearExplainer" [ref=e1210] [cursor=pointer]:
+        - /url: https://shap.readthedocs.io/en/latest/generated/shap.LinearExplainer.html
+      - text: .
+  - generic [ref=e1211]:
+    - generic [ref=e1213]:
+      - generic [ref=e1214]: "In [15]:"
+      - generic [ref=e1215]: "if best_name == \"Logistic Regression\": explainer = shap.LinearExplainer(best_model,Ztrain) explanation = explainer(Ztest) units = \"log-odds de mal crédito\" else: explainer = shap.TreeExplainer(best_model) explanation = explainer(Ztest) units = \"probabilidad de mal crédito\" if best_name==\"Random Forest\" else \"log-odds de mal crédito\" values,base = np.asarray(explanation.values),np.asarray(explanation.base_values) if values.ndim==3: values = values[:,:,1] base = base[:,1] if base.ndim==0: base = np.full(len(ye),float(base)) reconstructed = base + values.sum(axis=1) p = test_prob[best_name] expected = p if best_name==\"Random Forest\" else np.log(np.clip(p,1e-10,1-1e-10)/(1-np.clip(p,1e-10,1-1e-10))) additivity_error = float(np.max(np.abs(reconstructed-expected))) assert np.allclose(reconstructed,expected,atol=1e-4), additivity_error onehot = pre.named_transformers_[\"cat\"].named_steps[\"onehot\"] source_features = NUM + [c for c,levels in zip(CAT,onehot.categories_) for _ in levels] assert len(source_features)==values.shape[1] aggregated = pd.DataFrame(values,columns=source_features).T.groupby(level=0,sort=False).sum().T importance = aggregated.abs().mean().sort_values(ascending=False) importance.rename(\"mean_abs_SHAP\").to_csv(OUT / \"shap_importancia_global.csv\") pd.DataFrame(values,columns=names).assign(row_id=idx_test).to_csv(OUT / \"shap_valores.csv\",index=False) fig,ax = plt.subplots(figsize=(9,5)) importance.head(12).sort_values().plot.barh(ax=ax,color=COLORS[\"IA\"]) ax.set(xlabel=f\"Media |SHAP| ({units})\",ylabel=\"Variable original\",title=f\"Importancia global SHAP · {best_name} · prueba\") savefig(\"09_shap_global.png\") print(\"Error máximo de aditividad SHAP:\",additivity_error,\"| Unidades:\",units)"
+    - generic [ref=e1220]:
+      - img "No description has been provided for this image" [ref=e1224]
+      - generic [ref=e1225]: "Error máximo de aditividad SHAP: 8.881784197001252e-16 | Unidades: probabilidad de mal crédito"
+  - generic [ref=e1233]:
+    - heading "Actividad 5.2 — Nueve casos de estudio" [level=3] [ref=e1234]
+    - paragraph [ref=e1235]: Seleccionamos tres aciertos entre las menores entropías, tres aciertos distintos entre las mayores y tres errores. «Baja» y «alta» son relativas a los aciertos observados, no garantizan pertenecer a zonas de enrutamiento; mostramos ambos. La selección de casos es ilustrativa, posterior a la evaluación, y no modifica decisiones. Si faltaran casos en un grupo, se registra la disponibilidad real.
+  - generic [ref=e1236]:
+    - generic [ref=e1238]:
+      - generic [ref=e1239]: "In [16]:"
+      - generic [ref=e1240]: "correct = selected_decisions.y_ai.to_numpy()==ye u = selected_decisions.entropy.to_numpy() correct_ids = np.flatnonzero(correct) low = correct_ids[np.argsort(u[correct_ids])[:3]] remaining = np.array([i for i in correct_ids if i not in low],dtype=int) high = remaining[np.argsort(u[remaining])[-3:][::-1]] errors = np.flatnonzero(~correct) wrong = errors[np.argsort(u[errors])[-3:][::-1]] case_groups = {\"Correcta / baja entropía\":low,\"Correcta / alta entropía\":high,\"Incorrecta\":wrong} case_rows = [] for category,ids in case_groups.items(): for i in ids: top = aggregated.iloc[i].abs().nlargest(3).index impacts = \"; \".join(f\"{f}={X.iloc[idx_test[i]][f]}: SHAP {aggregated.iloc[i][f]:+.3f}\" for f in top) case_rows.append({\"grupo\":category,\"pos_test\":int(i),\"row_id\":int(idx_test[i]),\"y_true\":int(ye[i]), \"y_ai\":int(ya[i]),\"p_bad\":float(p[i]),\"entropy\":float(u[i]), \"responsable\":selected_decisions.iloc[i].responsable,\"impactos\":impacts}) cases = pd.DataFrame(case_rows) cases.to_csv(OUT / \"casos_shap.csv\",index=False) display(cases[[\"grupo\",\"row_id\",\"y_true\",\"y_ai\",\"p_bad\",\"entropy\",\"responsable\"]].round(4)) fig,axes = plt.subplots(3,3,figsize=(17,12)) for ax,case in zip(axes.flat,cases.itertuples()): contributions = aggregated.iloc[case.pos_test] top = contributions.abs().nlargest(5).index v = contributions[top].sort_values() ax.barh(v.index,v.values,color=[COLORS[\"IA\"] if z<0 else COLORS[\"Humano–IA\"] for z in v.values]) ax.axvline(0,color=\"gray\",linewidth=0.8) ax.set_title(f\"Fila {case.row_id} · real={case.y_true}, IA={case.y_ai}\\nH={case.entropy:.3f} · {case.responsable}\",fontsize=10) ax.set_xlabel(\"SHAP · signo + aumenta riesgo\",fontsize=9) for ax in list(axes.flat)[len(cases):]: ax.set_visible(False) fig.suptitle(f\"Nueve casos · {best_name} · {units}\",y=1.01) savefig(\"10_shap_casos.png\")"
+    - generic [ref=e1245]:
+      - table [ref=e1250]:
+        - rowgroup [ref=e1251]:
+          - row [ref=e1252]:
+            - columnheader [ref=e1253]
+            - columnheader "grupo" [ref=e1254]
+            - columnheader "row_id" [ref=e1255]
+            - columnheader "y_true" [ref=e1256]
+            - columnheader "y_ai" [ref=e1257]
+            - columnheader "p_bad" [ref=e1258]
+            - columnheader "entropy" [ref=e1259]
+            - columnheader "responsable" [ref=e1260]
+        - rowgroup [ref=e1261]:
+          - row [ref=e1262]:
+            - rowheader "0" [ref=e1263]
+            - cell "Correcta / baja entropía" [ref=e1264]
+            - cell "234" [ref=e1265]
+            - cell "0" [ref=e1266]
+            - cell "0" [ref=e1267]
+            - cell "0.0743" [ref=e1268]
+            - cell "0.2646" [ref=e1269]
+            - cell "IA" [ref=e1270]
+          - row [ref=e1271]:
+            - rowheader "1" [ref=e1272]
+            - cell "Correcta / baja entropía" [ref=e1273]
+            - cell "803" [ref=e1274]
+            - cell "0" [ref=e1275]
+            - cell "0" [ref=e1276]
+            - cell "0.0913" [ref=e1277]
+            - cell "0.3055" [ref=e1278]
+            - cell "IA" [ref=e1279]
+          - row [ref=e1280]:
+            - rowheader "2" [ref=e1281]
+            - cell "Correcta / baja entropía" [ref=e1282]
+            - cell "933" [ref=e1283]
+            - cell "0" [ref=e1284]
+            - cell "0" [ref=e1285]
+            - cell "0.0957" [ref=e1286]
+            - cell "0.3156" [ref=e1287]
+            - cell "IA" [ref=e1288]
+          - row [ref=e1289]:
+            - rowheader "3" [ref=e1290]
+            - cell "Correcta / alta entropía" [ref=e1291]
+            - cell "13" [ref=e1292]
+            - cell "1" [ref=e1293]
+            - cell "1" [ref=e1294]
+            - cell "0.5020" [ref=e1295]
+            - cell "0.6931" [ref=e1296]
+            - cell "Senior" [ref=e1297]
+          - row [ref=e1298]:
+            - rowheader "4" [ref=e1299]
+            - cell "Correcta / alta entropía" [ref=e1300]
+            - cell "30" [ref=e1301]
+            - cell "0" [ref=e1302]
+            - cell "0" [ref=e1303]
+            - cell "0.4916" [ref=e1304]
+            - cell "0.6930" [ref=e1305]
+            - cell "Senior" [ref=e1306]
+          - row [ref=e1307]:
+            - rowheader "5" [ref=e1308]
+            - cell "Correcta / alta entropía" [ref=e1309]
+            - cell "953" [ref=e1310]
+            - cell "1" [ref=e1311]
+            - cell "1" [ref=e1312]
+            - cell "0.5095" [ref=e1313]
+            - cell "0.6930" [ref=e1314]
+            - cell "Senior" [ref=e1315]
+          - row [ref=e1316]:
+            - rowheader "6" [ref=e1317]
+            - cell "Incorrecta" [ref=e1318]
+            - cell "844" [ref=e1319]
+            - cell "0" [ref=e1320]
+            - cell "1" [ref=e1321]
+            - cell "0.5040" [ref=e1322]
+            - cell "0.6931" [ref=e1323]
+            - cell "Senior" [ref=e1324]
+          - row [ref=e1325]:
+            - rowheader "7" [ref=e1326]
+            - cell "Incorrecta" [ref=e1327]
+            - cell "277" [ref=e1328]
+            - cell "0" [ref=e1329]
+            - cell "1" [ref=e1330]
+            - cell "0.5104" [ref=e1331]
+            - cell "0.6929" [ref=e1332]
+            - cell "IA" [ref=e1333]
+          - row [ref=e1334]:
+            - rowheader "8" [ref=e1335]
+            - cell "Incorrecta" [ref=e1336]
+            - cell "779" [ref=e1337]
+            - cell "0" [ref=e1338]
+            - cell "1" [ref=e1339]
+            - cell "0.5161" [ref=e1340]
+            - cell "0.6926" [ref=e1341]
+            - cell "IA" [ref=e1342]
+      - img "No description has been provided for this image" [ref=e1346]
+  - generic [ref=e1351]:
+    - heading "Actividad 5.3 — Interpretación de cada caso" [level=3] [ref=e1352]
+    - paragraph [ref=e1353]: En cada registro respondemos qué variables influyen, si el signo es coherente con la salida del modelo, para qué puede servir la explicación y qué confianza permite. «Coherente» significa consistencia interna, no una regla causal sobre una persona. Una explicación de una predicción errónea puede ser matemáticamente coherente y aun así exigir revisión. El simulador de humanos no utiliza SHAP; por tanto, no atribuimos a SHAP el incremento de F1.
+  - generic [ref=e1354]:
+    - generic [ref=e1356]:
+      - generic [ref=e1357]: "In [17]:"
+      - generic [ref=e1358]: "for case in cases.itertuples(): outcome = \"coincide con la etiqueta\" if case.y_true==case.y_ai else \"es incorrecta frente a la etiqueta\" signed_sum = float(aggregated.iloc[case.pos_test].sum()) display(Markdown(f\"**Fila {case.row_id} — {case.grupo}.** \" f\"**Variables:** {case.impactos}. \" f\"**Coherencia:** la suma de contribuciones es {signed_sum:+.3f} en {units}; \" f\"junto al valor base reconstruye la salida (control de aditividad superado), pero la predicción {outcome}. \" f\"**Utilidad:** el analista puede contrastar estos atributos con documentos del solicitante; \" f\"el responsable asignado es {case.responsable}. \" f\"**Confianza o confusión:** H={case.entropy:.3f} describe incertidumbre del modelo, \" f\"no validez causal. Los códigos categóricos y atributos correlacionados requieren consultar \" f\"el diccionario; ni SHAP ni baja entropía garantizan una decisión correcta o equitativa.\"))"
+    - generic [ref=e1363]:
+      - paragraph [ref=e1367]:
+        - strong [ref=e1368]: Fila 234 — Correcta / baja entropía.
+        - strong [ref=e1369]: "Variables:"
+        - text: "checking=A14: SHAP -0.125; duration=4: SHAP -0.088; credit_history=A34: SHAP -0.064."
+        - strong [ref=e1370]: "Coherencia:"
+        - text: la suma de contribuciones es -0.426 en probabilidad de mal crédito; junto al valor base reconstruye la salida (control de aditividad superado), pero la predicción coincide con la etiqueta.
+        - strong [ref=e1371]: "Utilidad:"
+        - text: el analista puede contrastar estos atributos con documentos del solicitante; el responsable asignado es IA.
+        - strong [ref=e1372]: "Confianza o confusión:"
+        - text: H=0.265 describe incertidumbre del modelo, no validez causal. Los códigos categóricos y atributos correlacionados requieren consultar el diccionario; ni SHAP ni baja entropía garantizan una decisión correcta o equitativa.
+      - paragraph [ref=e1376]:
+        - strong [ref=e1377]: Fila 803 — Correcta / baja entropía.
+        - strong [ref=e1378]: "Variables:"
+        - text: "checking=A14: SHAP -0.148; credit_history=A34: SHAP -0.080; other_plans=A143: SHAP -0.036."
+        - strong [ref=e1379]: "Coherencia:"
+        - text: la suma de contribuciones es -0.409 en probabilidad de mal crédito; junto al valor base reconstruye la salida (control de aditividad superado), pero la predicción coincide con la etiqueta.
+        - strong [ref=e1380]: "Utilidad:"
+        - text: el analista puede contrastar estos atributos con documentos del solicitante; el responsable asignado es IA.
+        - strong [ref=e1381]: "Confianza o confusión:"
+        - text: H=0.306 describe incertidumbre del modelo, no validez causal. Los códigos categóricos y atributos correlacionados requieren consultar el diccionario; ni SHAP ni baja entropía garantizan una decisión correcta o equitativa.
+      - paragraph [ref=e1385]:
+        - strong [ref=e1386]: Fila 933 — Correcta / baja entropía.
+        - strong [ref=e1387]: "Variables:"
+        - text: "checking=A14: SHAP -0.128; credit_history=A34: SHAP -0.075; other_plans=A143: SHAP -0.034."
+        - strong [ref=e1388]: "Coherencia:"
+        - text: la suma de contribuciones es -0.405 en probabilidad de mal crédito; junto al valor base reconstruye la salida (control de aditividad superado), pero la predicción coincide con la etiqueta.
+        - strong [ref=e1389]: "Utilidad:"
+        - text: el analista puede contrastar estos atributos con documentos del solicitante; el responsable asignado es IA.
+        - strong [ref=e1390]: "Confianza o confusión:"
+        - text: H=0.316 describe incertidumbre del modelo, no validez causal. Los códigos categóricos y atributos correlacionados requieren consultar el diccionario; ni SHAP ni baja entropía garantizan una decisión correcta o equitativa.
+      - paragraph [ref=e1394]:
+        - strong [ref=e1395]: Fila 13 — Correcta / alta entropía.
+        - strong [ref=e1396]: "Variables:"
+        - text: "credit_history=A34: SHAP -0.116; checking=A11: SHAP +0.115; duration=24: SHAP +0.030."
+        - strong [ref=e1397]: "Coherencia:"
+        - text: la suma de contribuciones es +0.002 en probabilidad de mal crédito; junto al valor base reconstruye la salida (control de aditividad superado), pero la predicción coincide con la etiqueta.
+        - strong [ref=e1398]: "Utilidad:"
+        - text: el analista puede contrastar estos atributos con documentos del solicitante; el responsable asignado es Senior.
+        - strong [ref=e1399]: "Confianza o confusión:"
+        - text: H=0.693 describe incertidumbre del modelo, no validez causal. Los códigos categóricos y atributos correlacionados requieren consultar el diccionario; ni SHAP ni baja entropía garantizan una decisión correcta o equitativa.
+      - paragraph [ref=e1403]:
+        - strong [ref=e1404]: Fila 30 — Correcta / alta entropía.
+        - strong [ref=e1405]: "Variables:"
+        - text: "other_plans=A141: SHAP +0.088; savings=A64: SHAP -0.077; property=A121: SHAP -0.030."
+        - strong [ref=e1406]: "Coherencia:"
+        - text: la suma de contribuciones es -0.009 en probabilidad de mal crédito; junto al valor base reconstruye la salida (control de aditividad superado), pero la predicción coincide con la etiqueta.
+        - strong [ref=e1407]: "Utilidad:"
+        - text: el analista puede contrastar estos atributos con documentos del solicitante; el responsable asignado es Senior.
+        - strong [ref=e1408]: "Confianza o confusión:"
+        - text: H=0.693 describe incertidumbre del modelo, no validez causal. Los códigos categóricos y atributos correlacionados requieren consultar el diccionario; ni SHAP ni baja entropía garantizan una decisión correcta o equitativa.
+      - paragraph [ref=e1412]:
+        - strong [ref=e1413]: Fila 953 — Correcta / alta entropía.
+        - strong [ref=e1414]: "Variables:"
+        - text: "checking=A14: SHAP -0.166; amount=10974: SHAP +0.068; duration=36: SHAP +0.033."
+        - strong [ref=e1415]: "Coherencia:"
+        - text: la suma de contribuciones es +0.009 en probabilidad de mal crédito; junto al valor base reconstruye la salida (control de aditividad superado), pero la predicción coincide con la etiqueta.
+        - strong [ref=e1416]: "Utilidad:"
+        - text: el analista puede contrastar estos atributos con documentos del solicitante; el responsable asignado es Senior.
+        - strong [ref=e1417]: "Confianza o confusión:"
+        - text: H=0.693 describe incertidumbre del modelo, no validez causal. Los códigos categóricos y atributos correlacionados requieren consultar el diccionario; ni SHAP ni baja entropía garantizan una decisión correcta o equitativa.
+      - paragraph [ref=e1421]:
+        - strong [ref=e1422]: Fila 844 — Incorrecta.
+        - strong [ref=e1423]: "Variables:"
+        - text: "other_plans=A141: SHAP +0.143; checking=A14: SHAP -0.126; savings=A61: SHAP +0.028."
+        - strong [ref=e1424]: "Coherencia:"
+        - text: la suma de contribuciones es +0.004 en probabilidad de mal crédito; junto al valor base reconstruye la salida (control de aditividad superado), pero la predicción es incorrecta frente a la etiqueta.
+        - strong [ref=e1425]: "Utilidad:"
+        - text: el analista puede contrastar estos atributos con documentos del solicitante; el responsable asignado es Senior.
+        - strong [ref=e1426]: "Confianza o confusión:"
+        - text: H=0.693 describe incertidumbre del modelo, no validez causal. Los códigos categóricos y atributos correlacionados requieren consultar el diccionario; ni SHAP ni baja entropía garantizan una decisión correcta o equitativa.
+      - paragraph [ref=e1430]:
+        - strong [ref=e1431]: Fila 277 — Incorrecta.
+        - strong [ref=e1432]: "Variables:"
+        - text: "checking=A11: SHAP +0.125; savings=A65: SHAP -0.055; personal_status_sex=A91: SHAP +0.029."
+        - strong [ref=e1433]: "Coherencia:"
+        - text: la suma de contribuciones es +0.010 en probabilidad de mal crédito; junto al valor base reconstruye la salida (control de aditividad superado), pero la predicción es incorrecta frente a la etiqueta.
+        - strong [ref=e1434]: "Utilidad:"
+        - text: el analista puede contrastar estos atributos con documentos del solicitante; el responsable asignado es IA.
+        - strong [ref=e1435]: "Confianza o confusión:"
+        - text: H=0.693 describe incertidumbre del modelo, no validez causal. Los códigos categóricos y atributos correlacionados requieren consultar el diccionario; ni SHAP ni baja entropía garantizan una decisión correcta o equitativa.
+      - paragraph [ref=e1439]:
+        - strong [ref=e1440]: Fila 779 — Incorrecta.
+        - strong [ref=e1441]: "Variables:"
+        - text: "checking=A12: SHAP +0.050; savings=A61: SHAP +0.030; age=67: SHAP -0.025."
+        - strong [ref=e1442]: "Coherencia:"
+        - text: la suma de contribuciones es +0.016 en probabilidad de mal crédito; junto al valor base reconstruye la salida (control de aditividad superado), pero la predicción es incorrecta frente a la etiqueta.
+        - strong [ref=e1443]: "Utilidad:"
+        - text: el analista puede contrastar estos atributos con documentos del solicitante; el responsable asignado es IA.
+        - strong [ref=e1444]: "Confianza o confusión:"
+        - text: H=0.693 describe incertidumbre del modelo, no validez causal. Los códigos categóricos y atributos correlacionados requieren consultar el diccionario; ni SHAP ni baja entropía garantizan una decisión correcta o equitativa.
+  - generic [ref=e1449]:
+    - heading "Parte 6 — Cálculo del puntaje final HACS (10%)" [level=2] [ref=e1450]
+    - heading "Actividad 6.1 — Resultado de la optimización" [level=3] [ref=e1451]
+    - paragraph [ref=e1452]:
+      - text: La búsqueda se ejecutó antes de prueba y se conserva íntegra en
+      - code [ref=e1453]: busqueda_umbrales_validacion.csv
+      - text: . Los umbrales no se retocan después de ver prueba, incluso si otro modelo o semilla ofrece un resultado mayor. El modelo defendido sigue siendo el elegido por F1 de validación.
+    - heading "Actividad 6.2 — Tabla final, defensa y discusión" [level=3] [ref=e1454]
+    - paragraph [ref=e1455]:
+      - text: La tabla de seis columnas replica la imagen solicitada. «Mejora» es diferencia absoluta de F1; la tabla ampliada incorpora puntos porcentuales, réplicas y costes. La condición del ranking se verifica con
+      - strong [ref=e1456]: F1 colaborativo > F1 IA
+      - text: en la réplica reportada; no se oculta un incumplimiento. Completar los nombres del equipo.
+  - generic [ref=e1457]:
+    - generic [ref=e1459]:
+      - generic [ref=e1460]: "In [18]:"
+      - generic [ref=e1461]: "ranking_cols = [\"Grupo\",\"Modelo\",\"F1 - Sólo IA\",\"F1 - IA + Human\",\"Mejora\",\"HACS\"] display(results[ranking_cols].round(4)) results[ranking_cols].to_csv(OUT / \"tabla_entrega.csv\",index=False) r = selected_result st = uncertainty_stats[-1] eligible_text = \"supera\" if r[\"Elegible_prueba\"] else \"NO supera\" discussion = f\"\"\"### Resultado observado del modelo defendido: {best_name} Se eligió por F1 de validación ({validation.iloc[0].F1:.4f}), sin usar prueba. En prueba, F1 IA = **{r['F1 - Sólo IA']:.4f}**, F1 Humano–IA = **{r['F1 - IA + Human']:.4f}**, ΔF1 = **{r['Mejora']:+.4f}** ({r['Mejora_pp']:+.2f} puntos porcentuales) y HACS = **{r['HACS']:.4f}**. La realización reportada **{eligible_text}** la IA sola; elegible por mejora: **{r['Elegible_prueba']}**. La política A={chosen['A']:.4f}, B={chosen['B']:.4f} nats automatiza **{r['Coverage']:.1%}**: {r['N_IA']} IA, {r['N_Junior']} junior y {r['N_Senior']} senior, de 200 casos. Fue seleccionada por HACS con guardarraíles de mejora en validación; no se fuerza junior si la búsqueda prefiere A=B. Coste relativo IA **{r['Coste_IA']}** frente a colaborativo **{r['Coste_colab']}** (no incluye coste laboral). En 500 simulaciones, F1 colaborativo medio = **{r['F1_colab_MC_mean']:.4f}**, intervalo Monte Carlo central 95% = [{r['F1_colab_MC_p025']:.4f}, {r['F1_colab_MC_p975']:.4f}], y fracción de réplicas con mejora = **{r['Prob_mejora_MC']:.1%}**. El intervalo bootstrap pareado de ΔF1 en réplica 0 es [{ci[0]:.4f}, {ci[1]:.4f}]. Si contiene cero, la mejora de esa muestra tiene incertidumbre material. Entropía media de aciertos **{st['mean_correct']:.4f}**, de errores **{st['mean_error']:.4f}**; AUC de detección de errores **{st['error_detection_auc']:.4f}** y p exploratorio Mann–Whitney **{st['mann_whitney_p']:.4g}**. La utilidad de entropía depende de estos valores: no asumimos que toda equivocación sea incierta ni que toda certeza acierte. **Appropriate reliance:** delegar según incertidumbre busca combinar automatización con revisión; el junior puede empeorar una decisión y un senior también puede fallar. Los beneficios observados dependen de las accuracies humanas **supuestas**, no son evidencia de rendimiento humano real. No hemos medido calibración completa, fatiga, dependencia humano–IA, tiempos ni equidad por subgrupos. El dataset es histórico y pequeño; una implementación real requiere validación externa y estudio humano antes de sostener beneficios operativos. SHAP hace la salida inspeccionable, pero no demuestra que la asistencia explicativa causó la mejora. \"\"\" display(Markdown(discussion)) (OUT / \"discusion_resultados.md\").write_text(discussion,encoding=\"utf-8\")"
+    - generic [ref=e1466]:
+      - table [ref=e1471]:
+        - rowgroup [ref=e1472]:
+          - row [ref=e1473]:
+            - columnheader [ref=e1474]
+            - columnheader "Grupo" [ref=e1475]
+            - columnheader "Modelo" [ref=e1476]
+            - columnheader "F1 - Sólo IA" [ref=e1477]
+            - columnheader "F1 - IA + Human" [ref=e1478]
+            - columnheader "Mejora" [ref=e1479]
+            - columnheader "HACS" [ref=e1480]
+        - rowgroup [ref=e1481]:
+          - row [ref=e1482]:
+            - rowheader "0" [ref=e1483]
+            - cell "Equipo por completar" [ref=e1484]
+            - cell "Random Forest" [ref=e1485]
+            - cell "0.5874" [ref=e1486]
+            - cell "0.5915" [ref=e1487]
+            - cell "0.0041" [ref=e1488]
+            - cell "0.7469" [ref=e1489]
+          - row [ref=e1490]:
+            - rowheader "1" [ref=e1491]
+            - cell "Equipo por completar" [ref=e1492]
+            - cell "Logistic Regression" [ref=e1493]
+            - cell "0.6133" [ref=e1494]
+            - cell "0.6486" [ref=e1495]
+            - cell "0.0353" [ref=e1496]
+            - cell "0.7612" [ref=e1497]
+      - generic [ref=e1500]:
+        - 'heading "Resultado observado del modelo defendido: Random Forest" [level=3] [ref=e1501]'
+        - paragraph [ref=e1502]:
+          - text: Se eligió por F1 de validación (0.5298), sin usar prueba. En prueba, F1 IA =
+          - strong [ref=e1503]: "0.5874"
+          - text: ", F1 Humano–IA ="
+          - strong [ref=e1504]: "0.5915"
+          - text: ", ΔF1 ="
+          - strong [ref=e1505]: "+0.0041"
+          - text: (+0.41 puntos porcentuales) y HACS =
+          - strong [ref=e1506]: "0.7469"
+          - text: . La realización reportada
+          - strong [ref=e1507]: supera
+          - text: "la IA sola; elegible por mejora:"
+          - strong [ref=e1508]: "True"
+          - text: .
+        - paragraph [ref=e1509]:
+          - text: La política A=0.6930, B=0.6930 nats automatiza
+          - strong [ref=e1510]: 98.0%
+          - text: ": 196 IA, 0 junior y 4 senior, de 200 casos. Fue seleccionada por HACS con guardarraíles de mejora en validación; no se fuerza junior si la búsqueda prefiere A=B. Coste relativo IA"
+          - strong [ref=e1511]: "131"
+          - text: frente a colaborativo
+          - strong [ref=e1512]: "130"
+          - text: (no incluye coste laboral).
+        - paragraph [ref=e1513]:
+          - text: En 500 simulaciones, F1 colaborativo medio =
+          - strong [ref=e1514]: "0.5903"
+          - text: ", intervalo Monte Carlo central 95% = [0.5816, 0.5915], y fracción de réplicas con mejora ="
+          - strong [ref=e1515]: 83.6%
+          - text: . El intervalo bootstrap pareado de ΔF1 en réplica 0 es [0.0000, 0.0141]. Si contiene cero, la mejora de esa muestra tiene incertidumbre material.
+        - paragraph [ref=e1516]:
+          - text: Entropía media de aciertos
+          - strong [ref=e1517]: "0.5954"
+          - text: ", de errores"
+          - strong [ref=e1518]: "0.6568"
+          - text: ; AUC de detección de errores
+          - strong [ref=e1519]: "0.7180"
+          - text: y p exploratorio Mann–Whitney
+          - strong [ref=e1520]: "1.193e-06"
+          - text: ". La utilidad de entropía depende de estos valores: no asumimos que toda equivocación sea incierta ni que toda certeza acierte."
+        - paragraph [ref=e1521]:
+          - strong [ref=e1522]: "Appropriate reliance:"
+          - text: delegar según incertidumbre busca combinar automatización con revisión; el junior puede empeorar una decisión y un senior también puede fallar. Los beneficios observados dependen de las accuracies humanas
+          - strong [ref=e1523]: supuestas
+          - text: ", no son evidencia de rendimiento humano real. No hemos medido calibración completa, fatiga, dependencia humano–IA, tiempos ni equidad por subgrupos. El dataset es histórico y pequeño; una implementación real requiere validación externa y estudio humano antes de sostener beneficios operativos. SHAP hace la salida inspeccionable, pero no demuestra que la asistencia explicativa causó la mejora."
+      - generic [ref=e1524]:
+        - generic [ref=e1525]: "Out[18]:"
+        - generic [ref=e1526]: "1845"
+  - generic [ref=e1532]:
+    - heading "Comprobaciones finales y artefactos" [level=3] [ref=e1533]
+    - paragraph [ref=e1534]: Reconciliamos fórmulas desde conteos y decisiones, y registramos semilla, modelo, política, SHA-256 del archivo, versiones y estado final. Se guarda el preprocesador junto al modelo para volver a predecir sin ajustarlo otra vez. Los archivos joblib deben abrirse únicamente si se confía en su origen.
+  - generic [ref=e1535]:
+    - generic [ref=e1537]:
+      - generic [ref=e1538]: "In [19]:"
+      - generic [ref=e1539]: "for row in results.to_dict(\"records\"): d = all_decisions[all_decisions.Modelo==row[\"Modelo\"]] assert len(d)==200 and d.row_id.nunique()==200 assert row[\"N_IA\"]+row[\"N_Junior\"]+row[\"N_Senior\"]==200 f_ai = f1_score(d.y_true,d.y_ai) f_final = f1_score(d.y_true,d.y_final) assert np.isclose(row[\"F1 - Sólo IA\"],f_ai) assert np.isclose(row[\"F1 - IA + Human\"],f_final) assert np.isclose(row[\"Mejora\"],f_final-f_ai) assert np.isclose(row[\"HACS\"],0.6*f_final+0.2*row[\"Coverage\"]+0.2*row[\"Efficiency\"]) joblib.dump({\"preprocessor\":pre,\"model\":best_model,\"name\":best_name,\"policy\":chosen, \"features\":FEATURES,\"positive_class\":\"bad_credit\"},OUT / \"modelo_seleccionado.joblib\") manifest = [{\"name\":p.name,\"bytes\":p.stat().st_size,\"sha256\":hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(OUT.iterdir()) if p.is_file() and p.name not in {\"manifest.json\",\"run_summary.json\"}] (OUT / \"manifest.json\").write_text(json.dumps(manifest,indent=2),encoding=\"utf-8\") checkpoint(\"done\",status=\"complete\",selected_model=best_name,shap_additivity_max_error=additivity_error, selected_test={k:(v.item() if isinstance(v,np.generic) else v) for k,v in selected_result.to_dict().items()}, artifacts=[x[\"name\"] for x in manifest]) print(\"Estado:\",summary[\"status\"],\"| Etapa:\",summary[\"stage\"],\"| Modelo:\",best_name) print(\"Artefactos:\",len(manifest),\"| Directorio:\",OUT)"
+    - generic [ref=e1543]: "Estado: complete | Etapa: done | Modelo: Random Forest Artefactos: 30 | Directorio: C:\\Users\\jeffr\\GitHub\\2026-II\\PlanIA\\S13\\local\\outputs"

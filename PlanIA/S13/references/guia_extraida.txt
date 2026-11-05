@@ -1,0 +1,427 @@
+PÁGINA 1
+Hackaton 11: ¿Confiar, Verificar o Escalar? 
+ 
+Profesores: Dra. Aurea Soriano-Vargas. Mg. Robert Buleje 
+ 
+En equipos de hasta 5 personas: 
+ 
+Contexto 
+Las instituciones financieras utilizan sistemas de Inteligencia Artificial para 
+evaluar solicitudes de crédito y estimar el riesgo de incumplimiento de los 
+clientes. Sin embargo, una decisión automática incorrecta puede generar 
+pérdidas económicas, discriminación o rechazo injustificado de solicitantes. 
+ 
+En la práctica, los mejores sistemas no buscan reemplazar completamente a 
+los analistas humanos, sino colaborar con ellos. Las decisiones de bajo riesgo 
+pueden automatizarse, mientras que los casos más inciertos requieren 
+revisión humana. 
+ 
+En este hackatón, los estudiantes diseñarán un sistema de colaboración 
+Humano–IA capaz de decidir cuándo confiar en la IA y cuándo solicitar 
+intervención humana, utilizando medidas de incertidumbre basadas en 
+entropía y técnicas de explicabilidad. 
+ 
+Dataset: 
+Statlog 
+(German 
+Credit 
+Data) 
+El Statlog German Credit Dataset es uno de los conjuntos de datos clásicos 
+para evaluación de riesgo crediticio y ha sido ampliamente utilizado en 
+investigación sobre clasificación, explicabilidad, equidad y toma de 
+decisiones automatizadas. 
+Link: https://archive.ics.uci.edu/dataset/144/statlog+german+credit+data  
+El dataset contiene información de 1,000 solicitantes de crédito descritos 
+mediante 20 atributos financieros, demográficos y laborales. 
+El objetivo es predecir si un solicitante representa un: 
+● Buen riesgo crediticio (Good Credit Risk) 
+● Mal riesgo crediticio (Bad Credit Risk) 
+La distribución de clases es: 
+Clase 
+Instancias 
+Buen crédito 
+700 
+
+PÁGINA 2
+Mal crédito 
+300 
+ 
+Variables Disponibles 
+Entre las variables incluidas se encuentran: 
+● Estado de cuenta bancaria 
+● Duración del crédito 
+● Historial crediticio 
+● Propósito del préstamo 
+● Monto solicitado 
+● Cuenta de ahorro 
+● Antigüedad laboral 
+● Tasa de endeudamiento 
+● Estado civil 
+● Existencia de avalistas 
+● Tiempo de residencia 
+● Propiedades 
+● Edad 
+● Planes de pago existentes 
+● Tipo de vivienda 
+● Número de créditos activos 
+● Personas dependientes 
+● Empleo 
+● Teléfono 
+● Trabajador extranjero 
+Las variables combinan información financiera y personal, simulando un 
+escenario real de evaluación de riesgo. 
+ 
+Objetivos de Aprendizaje 
+Al finalizar este hackatón, el estudiante será capaz de: 
+● Construir modelos de clasificación para problemas de riesgo crediticio. 
+● Calcular incertidumbre predictiva mediante entropía. 
+● Analizar la relación entre incertidumbre y errores del modelo. 
+● Diseñar políticas de colaboración Humano–IA basadas en niveles de 
+confianza. 
+● Aplicar técnicas de explicabilidad para justificar decisiones 
+automatizadas. 
+● Evaluar experimentalmente el impacto de la intervención humana en 
+sistemas inteligentes. 
+
+PÁGINA 3
+● Comprender el concepto de appropriate reliance y sus implicancias en 
+aplicaciones de alto impacto. 
+Objetivo del Hackatón 
+Diseñar e implementar un sistema inteligente de colaboración Humano–IA 
+capaz de determinar cuándo una decisión crediticia debe ser tomada 
+automáticamente por la IA y cuándo debe ser escalada a un analista humano, 
+utilizando medidas de incertidumbre para maximizar la calidad de las 
+decisiones y minimizar el costo de intervención humana. 
+ 
+Competencia: ¿Quién gana? 
+Cada equipo reportará una puntuación final basada en un indicador 
+compuesto. 
+Métrica principal: Human-AI Collaboration Score (HACS) 
+ 
+Se define: 
+HACS=0.6×F1+0.2×Coverage+0.2×Efficiency 
+ 
+donde: 
+F1: Desempeño final del sistema colaborativo. 
+0≤F1≤1  
+ 
+Coverage: Porcentaje de casos resueltos automáticamente por la IA. 
+Coverage= Casos resueltos por IA 
+Total de casos 
+Ejemplo: 
+● 800 casos IA 
+● 200 casos humanos 
+Coverage=0.8C 
+ 
+Efficiency: Mide cuánto trabajo humano se evitó. 
+Efficiency=1  −  Casos revisados por humanos 
+Total de casos 
+ 
+Ejemplo 
+Equipo A 
+Métrica 
+Valor 
+F1 
+0.89 
+
+PÁGINA 4
+Coverage 
+0.30 
+Efficiency 
+0.30 
+HACS=0.654 
+ 
+Equipo B 
+Métrica 
+Valor 
+F1 
+0.87 
+Coverage 
+0.75 
+Efficiency 
+0.75 
+HACS=0.846 
+ 
+Gana el Equipo B porque logra casi el mismo desempeño usando mucho 
+menos trabajo humano. 
+Condición para ganar 
+Un equipo será descalificado del ranking principal si: 
+● Su sistema colaborativo no supera a la IA sola. 
+● No utiliza incertidumbre basada en entropía. 
+● No justifica los umbrales de escalamiento. 
+● No presenta análisis de explicabilidad. 
+De esta forma, los estudiantes no compiten por entrenar el mejor 
+clasificador, sino por construir el mejor equipo Humano–IA, que es 
+precisamente el objetivo de la clase de colaboración entre humanos e 
+inteligencia artificial. 
+ 
+Condición para ganar 
+ 
+1° puesto. 20 puntos + 10 puntos de participación. 
+2° puesto. 19 puntos + 8 puntos de participación. 
+3° puesto. 18 puntos + 6 puntos de participación. 
+4° y 5° puesto. 17 puntos + 4 puntos de participación. 
+6 y 7° puesto. 16 puntos + 4 puntos de participación. 
+ 
+Suscripción máxima del resultado: miércoles 4 de noviembre a las 4:50 p.m. 
+
+PÁGINA 5
+Entrega máxima del notebook. Medianoche 4 de noviembre. 
+ 
+Actividades del Hackatón 
+ 
+Parte 1 – Comprensión del Problema y Exploración de Datos (10%) 
+Actividad 1.1 – Comprensión del problema 
+Analicen el contexto del problema de evaluación crediticia y respondan: 
+1. ¿Por qué una clasificación incorrecta puede generar pérdidas para una 
+institución financiera? 
+2. ¿Qué consecuencias podría tener rechazar incorrectamente a un buen 
+cliente? 
+3. ¿Qué consecuencias podría tener aprobar incorrectamente a un 
+cliente de alto riesgo? 
+ 
+Actividad 1.2 – Exploración del Dataset 
+Realicen un análisis exploratorio del conjunto de datos. 
+ 
+Como mínimo: 
+● Número de instancias. 
+● Número de variables. 
+● Distribución de clases. 
+● Variables categóricas y numéricas. 
+● Valores faltantes. 
+● Correlaciones relevantes. 
+● Estadísticas descriptivas. 
+ 
+Visualizaciones sugeridas: 
+● Histograma de edades. 
+● Distribución de duración de créditos. 
+● Distribución de clases. 
+● Matriz de correlación. 
+Parte 2 – Desarrollo del Modelo Base (20%) 
+Actividad 2.1 – Preprocesamiento 
+Realicen todas las transformaciones necesarias: 
+● Tratamiento de valores faltantes. 
+● Codificación de variables categóricas. 
+● Escalamiento si corresponde. 
+● División Train/Test. 
+Actividad 2.2 – Entrenamiento 
+
+PÁGINA 6
+Entrenen al menos dos modelos diferentes: 
+● Random Forest 
+● XGBoost 
+● LightGBM 
+● CatBoost 
+● Gradient Boosting 
+Seleccionen el mejor modelo. 
+Actividad 2.3 – Evaluación 
+Reporten: 
+● Accuracy 
+● Precision 
+● Recall 
+● F1-score 
+● ROC-AUC 
+Presenten: 
+● Matriz de confusión. 
+● Curva ROC. 
+ 
+Parte 3 – Cuantificación de Incertidumbre (20%) 
+Actividad 3.1 – Obtención de Probabilidades 
+Utilicen el modelo seleccionado para generar probabilidades para cada 
+instancia del conjunto de prueba. 
+ 
+Actividad 3.2 – Cálculo de Entropía 
+Implementen la incertidumbre basada en entropía: 
+H(x)=−p log⁡(p)−(1−p) log⁡(1−p) 
+Calculen la incertidumbre para cada predicción. 
+ 
+Actividad 3.3 – Análisis de Incertidumbre 
+Generen: 
+● Histograma de incertidumbre. 
+● Boxplot de incertidumbre para aciertos y errores. 
+● Curva Accuracy vs Uncertainty. 
+ 
+Actividad 3.4 – Análisis Estadístico 
+Comparen: 
+● Incertidumbre promedio de predicciones correctas. 
+● Incertidumbre promedio de predicciones incorrectas. 
+Discutan: 
+
+PÁGINA 7
+¿La incertidumbre es realmente útil para identificar errores del 
+modelo? 
+ 
+Parte 4 – Diseño del Sistema Humano–IA (25%) 
+Actividad 4.1 – Definición de Umbrales 
+Diseñen una política basada en incertidumbre. 
+Ejemplo: 
+Incertidumbre 
+Acción 
+Baja 
+IA decide 
+Media 
+Analista Junior 
+Alta 
+Analista Senior 
+Los umbrales deben justificarse utilizando evidencia experimental. 
+ 
+Actividad 4.2 – Simulación de Analistas 
+Considere: 
+Analista 
+Precisión 
+Junior 
+70% 
+Senior 
+95% 
+Implemente la simulación. 
+ 
+import numpy as np 
+ 
+def simulate_human_decision(y_true, accuracy=0.7, random_state=42): 
+    rng = np.random.default_rng(random_state) 
+     
+    y_true = np.array(y_true) 
+     
+    # Decide si el humano acierta o falla en cada caso 
+    correct = rng.random(len(y_true)) < accuracy 
+     
+    # Si acierta: devuelve y_true 
+    # Si falla: devuelve la clase opuesta 
+    y_human = np.where(correct, y_true, 1 - y_true) 
+     
+    return y_human 
+
+PÁGINA 8
+ 
+y_junior = simulate_human_decision(y_test, accuracy=0.70, random_state=1) 
+y_senior = simulate_human_decision(y_test, accuracy=0.95, random_state=3) 
+ 
+ 
+ 
+Actividad 4.3 – Sistema Colaborativo 
+Construya un pipeline capaz de: 
+1. Calcular la incertidumbre. 
+2. Asignar responsable de decisión. 
+3. Obtener la decisión final. 
+4. Registrar quién tomó cada decisión. 
+ 
+ 
+def human_ai_policy(y_true, y_ai, uncertainty): 
+    final_decision = [] 
+    decision_maker = [] 
+ 
+    for true_label, ai_label, u in zip(y_true, y_ai, uncertainty): 
+ 
+        if u < UmbralA: #ustedes definen estos umbrales 
+            final_decision.append(ai_label) 
+            decision_maker.append("AI") 
+ 
+        elif u < UmbralB: #ustedes definen estos umbrales 
+            human_label = simulate_human_decision( [true_label],   accuracy=0.70)[0] 
+            final_decision.append(human_label) 
+            decision_maker.append("Junior") 
+ 
+        else: 
+            human_label = simulate_human_decision( [true_label],  accuracy=0.95)[0] 
+            final_decision.append(human_label) 
+            decision_maker.append("Senior") 
+ 
+    return np.array(final_decision), decision_maker 
+ 
+ 
+Actividad 4.4 – Evaluación 
+Compare: 
+● IA sola. 
+● Analista Junior. 
+● Analista Senior. 
+● Sistema Humano–IA. 
+Reporte: 
+
+PÁGINA 9
+● Accuracy 
+● Precision 
+● Recall 
+● F1-score 
+ 
+Parte 5 – Explicabilidad (15%) 
+Actividad 5.1 – Implementación de SHAP 
+Calcule explicaciones SHAP para el modelo seleccionado. 
+ 
+Actividad 5.2 – Casos de Estudio 
+Seleccione: 
+● 3 predicciones correctas con baja incertidumbre. 
+● 3 predicciones correctas con alta incertidumbre. 
+● 3 predicciones incorrectas. 
+ 
+Actividad 5.3 – Interpretación 
+Para cada caso: 
+1. ¿Qué variables tuvieron mayor impacto? 
+2. ¿La explicación es coherente? 
+3. ¿La explicación ayudaría a un analista humano? 
+4. ¿La explicación genera confianza o confusión? 
+ 
+Parte 6 – Cálculo del puntaje final HACS (10%) 
+Actividad 6.1 – Optimización de la Política 
+Modifique los umbrales de incertidumbre para maximizar el puntaje final. 
+ 
+Actividad 6.2 – Presentación de Resultados 
+Cada equipo deberá defender: 
+● Su modelo. 
+● Su estrategia de incertidumbre. 
+● Su política Humano–IA.p 
+● Los beneficios obtenidos respecto a una IA totalmente automática. 
+ 
+ 
+Entregables 
+Notebook (.ipynb) - Solo incluir el mejor resultado. 
+Debe incluir: 
+● Título del hackatón y nombres del equipo 
+● Código completo 
+
+PÁGINA 10
+● Visualizaciones 
+● Resultados 
+● Discusión de resultados 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Rúbrica de evaluación referencial 
+ 
+Criterio 
+Descripción 
+Exploración y comprensión 
+del dataset 
+Análisis exploratorio, identificación de 
+patrones, distribución de clases y 
+comprensión del problema crediticio. 
+Desarrollo y evaluación del 
+modelo base 
+Entrenamiento, comparación y selección 
+justificada de modelos de clasificación. 
+Implementación de 
+incertidumbre basada en 
+entropía 
+Cálculo correcto de la incertidumbre y 
+explicación de su significado. 
+Análisis de incertidumbre 
+Visualizaciones y análisis de la relación entre 
+incertidumbre y errores de predicción. 
+Diseño del sistema Humano–
+IA 
+Definición y justificación de la política de 
+colaboración basada en incertidumbre. 
+Simulación y evaluación de 
+analistas humanos 
+Implementación de la simulación y 
+comparación entre IA, humanos y sistema 
+colaborativo. 
+Explicabilidad y 
+conclusiones 
+Uso de SHAP, interpretación de resultados y 
+reflexión final fundamentada. 
+ 
+ 

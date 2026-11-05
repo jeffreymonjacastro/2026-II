@@ -1,0 +1,19 @@
+{
+  "kernel": "jeffreyamc/hack11-human-ai-credit-v1",
+  "version": 3,
+  "endpoint": "KernelsApiService.DownloadKernelOutput",
+  "remote_file": "__notebook__.ipynb",
+  "http_status": 200,
+  "downloaded_at_utc": "2026-11-04T20:57:04.141152+00:00",
+  "notebook": "hack11_v1_ejecutado.ipynb",
+  "sha256": "2f059e4f65994d3ffc2025c60ae7c41ae53b8975ce842792d1ace43df207c24a",
+  "bytes": 827674,
+  "cells": 39,
+  "code_cells": 19,
+  "executed_code_cells": 19,
+  "outputs": 46,
+  "errors": 0,
+  "html": "hack11_v1.html",
+  "html_sha256": "05085649ebbb5cc17e1cced2968ffaa1e1e302c0c7fd3b3dd891589a8fe94716",
+  "local_model_execution": false
+}

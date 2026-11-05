@@ -1,0 +1,21 @@
+{
+  "id": "jeffreyamc/hack11-human-ai-credit-v1",
+  "id_no": 142766498,
+  "title": "Hack11 Human AI Credit v1",
+  "code_file": "hack11-human-ai-credit-v1.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": [],
+  "dataset_sources": [
+    "jeffreyamc/hack11-german-credit-s13"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "model_sources": [],
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:de153e6d303881930c51286216393d56f56b26458d0661350305a1e8144eea01",
+  "machine_shape": "NvidiaTeslaT4"
+}

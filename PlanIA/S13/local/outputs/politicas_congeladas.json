@@ -1,0 +1,32 @@
+{
+  "Random Forest": {
+    "Modelo": "Random Forest",
+    "A": 0.6929624891822337,
+    "B": 0.6929624891822337,
+    "F1_IA": 0.5298013245033113,
+    "F1_colab_mean": 0.5567550256033533,
+    "Mejora": 0.026953701100042027,
+    "Prob_mejora": 1.0,
+    "Coverage": 0.95,
+    "Efficiency": 0.95,
+    "HACS": 0.7140530153620119,
+    "Junior": 0,
+    "Senior": 10,
+    "Elegible_validacion": true
+  },
+  "Logistic Regression": {
+    "Modelo": "Logistic Regression",
+    "A": 0.6895235386205215,
+    "B": 0.6895235386205215,
+    "F1_IA": 0.5,
+    "F1_colab_mean": 0.5752178162668449,
+    "Mejora": 0.07521781626684487,
+    "Prob_mejora": 1.0,
+    "Coverage": 0.9,
+    "Efficiency": 0.9,
+    "HACS": 0.705130689760107,
+    "Junior": 0,
+    "Senior": 20,
+    "Elegible_validacion": true
+  }
+}

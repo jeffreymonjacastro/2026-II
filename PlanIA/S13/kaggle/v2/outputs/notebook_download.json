@@ -1,0 +1,19 @@
+{
+  "kernel": "jeffreyamc/hack11-human-ai-credit-v2-good-credit",
+  "version": 1,
+  "endpoint": "KernelsApiService.DownloadKernelOutput",
+  "remote_file": "__notebook__.ipynb",
+  "http_status": 200,
+  "downloaded_at_utc": "2026-11-04T21:34:06.455281+00:00",
+  "notebook": "hack11_v2_ejecutado.ipynb",
+  "sha256": "1cc4e79121752720f2cde7853d98951445bd5b9e064b5aabe5d3799548201e8f",
+  "bytes": 833044,
+  "cells": 41,
+  "code_cells": 20,
+  "executed_code_cells": 20,
+  "outputs": 47,
+  "errors": 0,
+  "html": "hack11_v2.html",
+  "html_sha256": "c4152139be45d599885cb9cb688e8d5c6f8382b474677662b95f4b264e543bf7",
+  "local_model_execution": false
+}

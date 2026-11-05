@@ -1,0 +1,152 @@
+[
+  {
+    "name": "01_exploracion.png",
+    "bytes": 60370,
+    "sha256": "915446f1275c43d0b27df1408d44d1c1608bc244e440773c140c4b027903938d"
+  },
+  {
+    "name": "02_correlaciones.png",
+    "bytes": 113703,
+    "sha256": "0c803535e029b4eef8f5c2e7c3aeb16bd13afdc328cd81b3741f641b322972ff"
+  },
+  {
+    "name": "03_incertidumbre_validacion.png",
+    "bytes": 88929,
+    "sha256": "2df059bb6e5922206bc0a73c6591fb89c9b91957163f044c7c2079ed19fb71c3"
+  },
+  {
+    "name": "04_politicas_validacion.png",
+    "bytes": 46573,
+    "sha256": "d286c18beca2c30f30dedb1972a01bd8f52ddb34841038308fe3d11cbd69cf71"
+  },
+  {
+    "name": "05_evaluacion_prueba.png",
+    "bytes": 81872,
+    "sha256": "d5fbe41aa6aa2d64ac546b79ecbe6030fff2194da1dd1f21a95fb5e5fe2d4c43"
+  },
+  {
+    "name": "06_comparacion_sistemas.png",
+    "bytes": 35024,
+    "sha256": "070f6f8e6f5215d40a5e81237915ce56c01bbd2f75bae8ed1ed00c6d7f11e449"
+  },
+  {
+    "name": "07_incertidumbre_prueba.png",
+    "bytes": 86319,
+    "sha256": "045b9ee9eb3438d2a03250a91e9fa263e1616b2a7f7549153cf3120e47a080ac"
+  },
+  {
+    "name": "08_variabilidad_humana.png",
+    "bytes": 43005,
+    "sha256": "b4245f552f5ba56b96c845aa95ddd66ca37eaa919afa928976ca6ba508dafa11"
+  },
+  {
+    "name": "09_shap_global.png",
+    "bytes": 55304,
+    "sha256": "149fed1a217e135c4f9c79530c097896bc3c21eed39b72b5baa6d5021e94cc81"
+  },
+  {
+    "name": "10_shap_casos.png",
+    "bytes": 218809,
+    "sha256": "14b557f0a89b0e2f2d437d2d773a3f85ccd2394022526e3affc3f57f0a7b76ae"
+  },
+  {
+    "name": "bootstrap_mejora.csv",
+    "bytes": 15736,
+    "sha256": "12ca1b0f7c4e5082c4db5c77a7997c3ea23ca051cb76121b5b544eafe763ddd8"
+  },
+  {
+    "name": "busqueda_umbrales_validacion.csv",
+    "bytes": 64711,
+    "sha256": "0d337a018ed37d5ba7fb906f5adeb89cc7e5135b877bdf5a342944617c11e531"
+  },
+  {
+    "name": "casos_shap.csv",
+    "bytes": 1512,
+    "sha256": "7ba23300d7e92c9d974ebd3704e07f2b6b75ed16e528997df26fb87f787f4959"
+  },
+  {
+    "name": "comparacion_sistemas.csv",
+    "bytes": 522,
+    "sha256": "2d9441a502f2a223f055684898d86a36300099ff315f877e2accb23a1e66c5c9"
+  },
+  {
+    "name": "correlaciones.csv",
+    "bytes": 1360,
+    "sha256": "f0e52b842135741c1c907c230cc498b5b23e678c18e3d0aebf34fb1871bde344"
+  },
+  {
+    "name": "decisiones_prueba.csv",
+    "bytes": 29453,
+    "sha256": "ce58bb374c0696ab4b3e186c9ffb48497ec24c28749d201b122b3c9a2c11534e"
+  },
+  {
+    "name": "discusion_resultados.md",
+    "bytes": 1910,
+    "sha256": "f272f88ed987a6966aa8b97584fa4c314b9c273f3e613e32f46f5585214a8058"
+  },
+  {
+    "name": "estadistica_incertidumbre.csv",
+    "bytes": 245,
+    "sha256": "6a0befa48fe22acaafef312cc51bd97ff8b00a8f54c462d397cb9ae958a25acc"
+  },
+  {
+    "name": "incertidumbre_validacion.csv",
+    "bytes": 10105,
+    "sha256": "4716e50e64eef2b6691204e94b461ec72ce13bea973a3aba9cd77110d4aee9de"
+  },
+  {
+    "name": "modelo_seleccionado.joblib",
+    "bytes": 2559200,
+    "sha256": "a6eda315c0274e0712ba3b5596c709d4bd546cafec2877d22671ad934beff8ac"
+  },
+  {
+    "name": "modelos_prueba.csv",
+    "bytes": 398,
+    "sha256": "f2d3380a079612b7935ece6211d28934dd07b52508c2d12d06b5d0acdc271356"
+  },
+  {
+    "name": "modelos_validacion.csv",
+    "bytes": 448,
+    "sha256": "97f34c18b604016743b91a891d9cb85b3301031cff8c613bbd0a256635916e6c"
+  },
+  {
+    "name": "particiones.csv",
+    "bytes": 13706,
+    "sha256": "95812c8c5568cae22e53ac07665e633321e3a515213b751a5fda8331d0f94f42"
+  },
+  {
+    "name": "politicas_congeladas.csv",
+    "bytes": 407,
+    "sha256": "634e2ec9bd35b0af62e1a40ca960d379dcf94a1de08909dd4f430fb17df3b4b0"
+  },
+  {
+    "name": "politicas_congeladas.json",
+    "bytes": 814,
+    "sha256": "33e60c5da0f73369d4d6b56a88e038d0c9049a5b77e211f4a15fc45e619f1d37"
+  },
+  {
+    "name": "shap_importancia_global.csv",
+    "bytes": 675,
+    "sha256": "7479341cd09bc4e81d81f90ee43f7baee392f8417910319385f1e5488c62dcef"
+  },
+  {
+    "name": "shap_valores.csv",
+    "bytes": 267470,
+    "sha256": "9659868c0a5383a1c0b16beff2c2b40ea27ba9534eccd4880e994e9c5eb4e4c3"
+  },
+  {
+    "name": "simulaciones_prueba.csv",
+    "bytes": 78721,
+    "sha256": "32208bd106af6bd0849b3da9128c6f8bba9de1f902d1f598d47beb43c2886b42"
+  },
+  {
+    "name": "tabla_entrega.csv",
+    "bytes": 288,
+    "sha256": "14a08d24cd1042425754dd172ae14d4e37f7aee018b3dbf2c5e847640693e01b"
+  },
+  {
+    "name": "tabla_resultados.csv",
+    "bytes": 768,
+    "sha256": "abc1469f7823d5833fafcb68d948447576086595bb732710d060172d302caba5"
+  }
+]

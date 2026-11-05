@@ -1,0 +1,17 @@
+{
+  "selection_split": "validation",
+  "criterion": "mean_HACS",
+  "finalists": [
+    "Random Forest",
+    "CatBoost",
+    "XGBoost"
+  ],
+  "selected": "Random Forest",
+  "classification_thresholds": {
+    "XGBoost": 0.48,
+    "LightGBM": 0.32,
+    "CatBoost": 0.41000000000000003,
+    "Random Forest": 0.47,
+    "Logistic Regression": 0.48
+  }
+}

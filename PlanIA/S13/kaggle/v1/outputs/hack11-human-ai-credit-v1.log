@@ -1,0 +1,46 @@
+[{"stream_name":"stderr","time":8.823517975,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.823568851,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.823573905,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.823577324,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":9.532351302,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":9.53238722,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":9.532397196,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":9.532400958,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":16.337509009,"data":"Entorno: kaggle | Hardware: Tesla T4\n"}
+,{"stream_name":"stdout","time":16.337543694,"data":"Tesla T4 | Salida: /kaggle/working\n"}
+,{"stream_name":"stdout","time":18.417822393,"data":"Matrices transformadas: (600, 61) (200, 61) (200, 61)\n"}
+,{"stream_name":"stderr","time":28.713842724,"data":"/usr/local/lib/python3.13/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":28.713882423,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":28.713888162,"data":"\n"}
+,{"stream_name":"stderr","time":28.713892683,"data":"/usr/local/lib/python3.13/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":28.713898167,"data":"  warnings.warn(\n"}
+,{"stream_name":"stdout","time":28.905930117,"data":"Modelo seleccionado sin mirar prueba: CatBoost\n"}
+,{"stream_name":"stderr","time":31.181400572,"data":"/usr/local/lib/python3.13/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":31.181445765,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":31.181454068,"data":"\n"}
+,{"stream_name":"stderr","time":31.181458897,"data":"/usr/local/lib/python3.13/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\n"}
+,{"stream_name":"stderr","time":31.181464272,"data":"  warnings.warn(\n"}
+,{"stream_name":"stdout","time":37.66046833,"data":"IC bootstrap pareado 95% de ΔF1 (réplica 0): [0.204  0.3881]\n"}
+,{"stream_name":"stdout","time":38.354962795,"data":"Error máximo de aditividad SHAP: 4.440892098500626e-15 | Unidades: log-odds de mal crédito\n"}
+,{"stream_name":"stdout","time":40.625229078,"data":"Estado: complete | Etapa: done | Modelo: CatBoost\n"}
+,{"stream_name":"stdout","time":40.62526492,"data":"Artefactos: 30 | Directorio: /kaggle/working\n"}
+,{"stream_name":"stderr","time":46.854699017,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":46.85473853,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":47.053679338,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":47.053727328,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":47.9610421,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":48.095781731,"data":"[NbConvertApp] Writing 827160 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":51.224877001,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":52.082169522,"data":"[NbConvertApp] Support files will be in __results___files/\n"}
+,{"stream_name":"stderr","time":52.082224485,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":52.082532001,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":52.082815813,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":52.08305734,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":52.083323892,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":52.083593874,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":52.083794826,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":52.084013345,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":52.084240574,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":52.084469394,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":52.084960106,"data":"[NbConvertApp] Writing 523734 bytes to __results__.html\n"}
+]

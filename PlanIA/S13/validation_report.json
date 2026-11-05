@@ -1,0 +1,77 @@
+{
+  "local": {
+    "status": "passed",
+    "models": [
+      {
+        "model": "Random Forest",
+        "f1_ai": 0.5874125874125874,
+        "f1_collaborative": 0.5915492957746479,
+        "hacs": 0.7469295774647886
+      },
+      {
+        "model": "Logistic Regression",
+        "f1_ai": 0.6133333333333333,
+        "f1_collaborative": 0.6486486486486487,
+        "hacs": 0.7611891891891893
+      }
+    ],
+    "selected_model": "Random Forest",
+    "rows_per_model": 200,
+    "simulation_repetitions": 500,
+    "shap_cases": 9,
+    "figures": 10
+  },
+  "kaggle": {
+    "status": "passed",
+    "models": [
+      {
+        "model": "XGBoost",
+        "f1_ai": 0.5321100917431193,
+        "f1_collaborative": 0.8037383177570093,
+        "hacs": 0.7302429906542055
+      },
+      {
+        "model": "LightGBM",
+        "f1_ai": 0.509090909090909,
+        "f1_collaborative": 0.7522935779816514,
+        "hacs": 0.7053761467889909
+      },
+      {
+        "model": "CatBoost",
+        "f1_ai": 0.5945945945945946,
+        "f1_collaborative": 0.8849557522123894,
+        "hacs": 0.7349734513274336
+      }
+    ],
+    "selected_model": "CatBoost",
+    "rows_per_model": 200,
+    "simulation_repetitions": 500,
+    "shap_cases": 9,
+    "figures": 10
+  },
+  "notebooks": [
+    {
+      "path": "local\\hack11_local_v1.ipynb",
+      "cells": 39,
+      "executed_code_cells": 19,
+      "errors": 0
+    },
+    {
+      "path": "kaggle\\v1\\outputs\\hack11_v1_ejecutado.ipynb",
+      "cells": 39,
+      "executed_code_cells": 19,
+      "errors": 0
+    },
+    {
+      "path": "kaggle\\v1\\input\\hack11_v1.ipynb",
+      "cells": 39,
+      "executed_code_cells": 0,
+      "errors": 0
+    }
+  ],
+  "same_splits": true,
+  "remote_notebook_matches_source": true,
+  "shared_protocol_sources_match": true,
+  "remote_version": 3,
+  "dataset_private_and_verified": true
+}

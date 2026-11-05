@@ -1,0 +1,255 @@
+Python: C:\Users\jeffr\GitHub\2026-II\.venv\Scripts\python.exe
+Notebook: C:\Users\jeffr\GitHub\2026-II\PlanIA\S13\local\hack11_local_v1.ipynb
+Started: 2026-11-04 15:52:42
+CELL 0 START 15:52:46
+CELL 1 START 15:52:46
+CELL 2 START 15:52:46
+CELL 2 END 15:52:50
+C:\Users\jeffr\GitHub\2026-II\.venv\Lib\site-packages\tqdm\auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+
+CELL 3 START 15:52:50
+CELL 4 START 15:52:50
+CELL 4 END 15:52:50
+Entorno: local | Hardware: CPU local | Salida: C:\Users\jeffr\GitHub\2026-II\PlanIA\S13\local\outputs
+
+CELL 5 START 15:52:50
+CELL 6 START 15:52:50
+CELL 6 END 15:52:50
+                                                            Valor
+rows                                                         1000
+features                                                       20
+numeric                                                         7
+categorical                                                    13
+missing_cells                                                   0
+duplicate_rows                                                  0
+sha256          b21f3d81db8071257d5ff1deaeba1fd4303b62712e6fcc...
+class_0_good                                                  700
+class_1_bad                                                   300
+  checking  duration credit_history purpose  amount savings employment  \
+0      A11         6            A34     A43    1169     A65        A75   
+1      A12        48            A32     A43    5951     A61        A73   
+2      A14        12            A34     A46    2096     A61        A74   
+3      A11        42            A32     A42    7882     A61        A74   
+
+   installment_rate personal_status_sex guarantors  ...  property age  \
+0                 4                 A93       A101  ...      A121  67   
+1                 2                 A92       A101  ...      A121  22   
+2                 2                 A93       A101  ...      A121  49   
+3                 2                 A93       A103  ...      A122  45   
+
+   other_plans housing existing_credits   job dependents  telephone  \
+0         A143    A152                2  A173          1       A192   
+1         A143    A152                1  A173          1       A191   
+2         A143    A152                1  A172          2       A191   
+3         A143    A153                1  A173          2       A191   
+
+  foreign_worker original_class  
+0           A201              1  
+1           A201              2  
+2           A201              1  
+3           A201              1  
+
+[4 rows x 21 columns]
+       duration    amount  installment_rate  residence_since      age  \
+count   1000.00   1000.00           1000.00          1000.00  1000.00   
+mean      20.90   3271.26              2.97             2.84    35.55   
+std       12.06   2822.74              1.12             1.10    11.38   
+min        4.00    250.00              1.00             1.00    19.00   
+25%       12.00   1365.50              2.00             2.00    27.00   
+50%       18.00   2319.50              3.00             3.00    33.00   
+75%       24.00   3972.25              4.00             4.00    42.00   
+max       72.00  18424.00              4.00             4.00    75.00   
+
+       existing_credits  dependents  
+count           1000.00     1000.00  
+mean               1.41        1.16  
+std                0.58        0.36  
+min                1.00        1.00  
+25%                1.00        1.00  
+50%                1.00        1.00  
+75%                2.00        1.00  
+max                4.00        2.00  
+               variable  categorias
+0              checking           4
+1        credit_history           5
+2               purpose          10
+3               savings           5
+4            employment           5
+5   personal_status_sex           4
+6            guarantors           3
+7              property           4
+8           other_plans           3
+9               housing           3
+10                  job           4
+11            telephone           2
+12       foreign_worker           2
+CELL 7 START 15:52:50
+CELL 8 START 15:52:50
+CELL 8 END 15:52:52
+<Figure size 1300x380 with 3 Axes>
+<Figure size 900x700 with 2 Axes>
+                  bad_credit
+duration               0.215
+amount                 0.155
+age                   -0.091
+installment_rate       0.072
+existing_credits      -0.046
+dependents            -0.003
+residence_since        0.003
+CELL 9 START 15:52:52
+CELL 10 START 15:52:52
+CELL 10 END 15:52:52
+y           Bueno  Malo
+split                  
+test          140    60
+train         420   180
+validation    140    60
+Matrices transformadas: (600, 61) (200, 61) (200, 61)
+
+CELL 11 START 15:52:52
+CELL 12 START 15:52:52
+CELL 12 END 15:52:52
+CELL 13 START 15:52:52
+CELL 14 START 15:52:52
+CELL 14 END 15:52:53
+                Modelo  Accuracy  Precision  Recall      F1  F1_macro  \
+0        Random Forest     0.645     0.4396  0.6667  0.5298    0.6223   
+1  Logistic Regression     0.630     0.4205  0.6167  0.5000    0.6032   
+
+   ROC_AUC  Coste  Coste_por_caso  TN  FP  FN  TP   Brier  Segundos  
+0   0.7412    151           0.755  89  51  20  40  0.2007    0.8615  
+1   0.7218    166           0.830  89  51  23  37  0.2278    0.0335  
+Modelo seleccionado sin mirar prueba: Random Forest
+
+CELL 15 START 15:52:53
+CELL 16 START 15:52:53
+CELL 16 END 15:52:53
+   row_id  y   p_bad  entropy  correct
+0     254  0  0.3088   0.6181     True
+1     557  1  0.5012   0.6931     True
+2     185  0  0.1344   0.3946     True
+3     654  0  0.0896   0.3016     True
+4     646  0  0.6728   0.6322    False
+CELL 17 START 15:52:53
+CELL 18 START 15:52:53
+CELL 18 END 15:52:54
+<Figure size 1400x420 with 3 Axes>
+                          Valor
+split                validación
+mean_correct           0.601528
+mean_error             0.665383
+mann_whitney_p              0.0
+error_detection_auc    0.728136
+CELL 19 START 15:52:54
+CELL 20 START 15:52:54
+CELL 20 END 15:52:54
+CELL 21 START 15:52:54
+CELL 22 START 15:52:54
+CELL 22 END 15:52:55
+                Modelo       A       B   F1_IA  F1_colab_mean  Mejora  \
+0        Random Forest  0.6930  0.6930  0.5298         0.5568  0.0270   
+1  Logistic Regression  0.6895  0.6895  0.5000         0.5752  0.0752   
+
+   Prob_mejora  Coverage  Efficiency    HACS  Junior  Senior  \
+0          1.0      0.95        0.95  0.7141       0      10   
+1          1.0      0.90        0.90  0.7051       0      20   
+
+   Elegible_validacion  
+0                 True  
+1                 True  
+<IPython.core.display.Markdown object>
+<Figure size 900x450 with 1 Axes>
+CELL 23 START 15:52:55
+CELL 24 START 15:52:55
+CELL 24 END 15:52:55
+                Modelo  F1 - Sólo IA  F1 - IA + Human  Mejora    HACS  \
+0        Random Forest        0.5874           0.5915  0.0041  0.7469   
+1  Logistic Regression        0.6133           0.6486  0.0353  0.7612   
+
+   Coverage  Elegible_prueba  
+0      0.98             True  
+1      0.93             True  
+                Modelo  F1_colab_MC_mean  F1_colab_MC_p025  F1_colab_MC_p975  \
+0        Random Forest            0.5903            0.5816            0.5915   
+1  Logistic Regression            0.6447            0.6309            0.6486   
+
+   Prob_mejora_MC  
+0           0.836  
+1           1.000  
+     Sistema  Accuracy  Precision  Recall      F1  F1_macro  Coste
+0         IA     0.705     0.5060  0.7000  0.5874    0.6789    131
+1     Junior     0.690     0.4886  0.7167  0.5811    0.6675    130
+2     Senior     0.975     0.9365  0.9833  0.9593    0.9706      9
+3  Humano–IA     0.710     0.5122  0.7000  0.5915    0.6834    130
+CELL 25 START 15:52:55
+CELL 26 START 15:52:55
+CELL 26 END 15:52:58
+<Figure size 1400x400 with 3 Axes>
+<Figure size 900x450 with 1 Axes>
+<Figure size 1400x420 with 3 Axes>
+                        Valor
+split                  prueba
+mean_correct         0.595403
+mean_error           0.656768
+mann_whitney_p       0.000001
+error_detection_auc  0.717995
+CELL 27 START 15:52:58
+CELL 28 START 15:52:58
+CELL 28 END 15:53:03
+<Figure size 900x450 with 1 Axes>
+IC bootstrap pareado 95% de ΔF1 (réplica 0): [0.     0.0141]
+
+CELL 29 START 15:53:03
+CELL 30 START 15:53:03
+CELL 30 END 15:53:05
+<Figure size 900x500 with 1 Axes>
+Error máximo de aditividad SHAP: 8.881784197001252e-16 | Unidades: probabilidad de mal crédito
+
+CELL 31 START 15:53:05
+CELL 32 START 15:53:05
+CELL 32 END 15:53:07
+                      grupo  row_id  y_true  y_ai   p_bad  entropy responsable
+0  Correcta / baja entropía     234       0     0  0.0743   0.2646          IA
+1  Correcta / baja entropía     803       0     0  0.0913   0.3055          IA
+2  Correcta / baja entropía     933       0     0  0.0957   0.3156          IA
+3  Correcta / alta entropía      13       1     1  0.5020   0.6931      Senior
+4  Correcta / alta entropía      30       0     0  0.4916   0.6930      Senior
+5  Correcta / alta entropía     953       1     1  0.5095   0.6930      Senior
+6                Incorrecta     844       0     1  0.5040   0.6931      Senior
+7                Incorrecta     277       0     1  0.5104   0.6929          IA
+8                Incorrecta     779       0     1  0.5161   0.6926          IA
+<Figure size 1700x1200 with 9 Axes>
+CELL 33 START 15:53:07
+CELL 34 START 15:53:07
+CELL 34 END 15:53:07
+<IPython.core.display.Markdown object>
+<IPython.core.display.Markdown object>
+<IPython.core.display.Markdown object>
+<IPython.core.display.Markdown object>
+<IPython.core.display.Markdown object>
+<IPython.core.display.Markdown object>
+<IPython.core.display.Markdown object>
+<IPython.core.display.Markdown object>
+<IPython.core.display.Markdown object>
+CELL 35 START 15:53:07
+CELL 36 START 15:53:07
+CELL 36 END 15:53:07
+                  Grupo               Modelo  F1 - Sólo IA  F1 - IA + Human  \
+0  Equipo por completar        Random Forest        0.5874           0.5915   
+1  Equipo por completar  Logistic Regression        0.6133           0.6486   
+
+   Mejora    HACS  
+0  0.0041  0.7469  
+1  0.0353  0.7612  
+<IPython.core.display.Markdown object>
+1845
+CELL 37 START 15:53:07
+CELL 38 START 15:53:07
+CELL 38 END 15:53:07
+Estado: complete | Etapa: done | Modelo: Random Forest
+Artefactos: 30 | Directorio: C:\Users\jeffr\GitHub\2026-II\PlanIA\S13\local\outputs
+
+EXECUTION COMPLETE 2026-11-04 15:53:07
+Saved notebook: C:\Users\jeffr\GitHub\2026-II\PlanIA\S13\local\hack11_local_v1.ipynb
+Exported HTML: C:\Users\jeffr\GitHub\2026-II\PlanIA\S13\local\hack11_local_v1.html

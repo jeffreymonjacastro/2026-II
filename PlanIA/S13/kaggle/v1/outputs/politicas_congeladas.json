@@ -1,0 +1,47 @@
+{
+  "XGBoost": {
+    "Modelo": "XGBoost",
+    "A": 0.5607264342479534,
+    "B": 0.5607264342479534,
+    "F1_IA": 0.46153846153846156,
+    "F1_colab_mean": 0.8474805174170201,
+    "Mejora": 0.38594205587855857,
+    "Prob_mejora": 1.0,
+    "Coverage": 0.5,
+    "Efficiency": 0.5,
+    "HACS": 0.708488310450212,
+    "Junior": 0,
+    "Senior": 100,
+    "Elegible_validacion": true
+  },
+  "LightGBM": {
+    "Modelo": "LightGBM",
+    "A": 0.5915915358270405,
+    "B": 0.5915915358270405,
+    "F1_IA": 0.4423076923076923,
+    "F1_colab_mean": 0.8067328389645428,
+    "Mejora": 0.36442514665685055,
+    "Prob_mejora": 1.0,
+    "Coverage": 0.5,
+    "Efficiency": 0.5,
+    "HACS": 0.6840397033787257,
+    "Junior": 0,
+    "Senior": 100,
+    "Elegible_validacion": true
+  },
+  "CatBoost": {
+    "Modelo": "CatBoost",
+    "A": 0.5058079648104093,
+    "B": 0.5058079648104093,
+    "F1_IA": 0.46153846153846156,
+    "F1_colab_mean": 0.8634511312623013,
+    "Mejora": 0.40191266972383977,
+    "Prob_mejora": 1.0,
+    "Coverage": 0.45,
+    "Efficiency": 0.44999999999999996,
+    "HACS": 0.6980706787573807,
+    "Junior": 0,
+    "Senior": 110,
+    "Elegible_validacion": true
+  }
+}

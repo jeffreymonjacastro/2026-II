@@ -1,0 +1,63 @@
+{
+  "slug": "jeffreyamc/hack11-german-credit-s13",
+  "url": "https://www.kaggle.com/datasets/jeffreyamc/hack11-german-credit-s13",
+  "status": "ready",
+  "current_version_number": 1,
+  "is_private": true,
+  "privacy_evidence": "Kaggle create returned: Your private Dataset is being created. No --public flag used.",
+  "verified_at_utc": "2026-11-04T20:41:48.5670896Z",
+  "cli_version": "2.2.2",
+  "license": {
+    "name": "CC-BY-4.0",
+    "label": "Creative Commons Attribution 4.0 International",
+    "source_url": "https://archive.ics.uci.edu/dataset/144/statlog+german+credit+data",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "Hofmann, H. (1994). Statlog (German Credit Data) [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5NC77."
+  },
+  "source_directory": "PlanIA/S13/data",
+  "staging_directory": "PlanIA/S13/kaggle/dataset",
+  "remote_download_directory": "PlanIA/S13/kaggle/dataset_verification",
+  "files": [
+    {
+      "name": "german.data",
+      "bytes": 79793,
+      "sha256": "b21f3d81db8071257d5ff1deaeba1fd4303b62712e6fcc9715c7a86202cb5871",
+      "staged_sha256": "b21f3d81db8071257d5ff1deaeba1fd4303b62712e6fcc9715c7a86202cb5871",
+      "downloaded_sha256": "b21f3d81db8071257d5ff1deaeba1fd4303b62712e6fcc9715c7a86202cb5871",
+      "exact_match": true
+    },
+    {
+      "name": "german.data-numeric",
+      "bytes": 102000,
+      "sha256": "2752b044394958ab6dd193a0b56ca0f0b3a2d8bc7cb8c008e35a5e84bbec02f8",
+      "staged_sha256": "2752b044394958ab6dd193a0b56ca0f0b3a2d8bc7cb8c008e35a5e84bbec02f8",
+      "downloaded_sha256": "2752b044394958ab6dd193a0b56ca0f0b3a2d8bc7cb8c008e35a5e84bbec02f8",
+      "exact_match": true
+    },
+    {
+      "name": "german.doc",
+      "bytes": 4679,
+      "sha256": "69b92cb551111bc37098698288849c96f0fd87ce81a2e54451ff39aa1e53fe49",
+      "staged_sha256": "69b92cb551111bc37098698288849c96f0fd87ce81a2e54451ff39aa1e53fe49",
+      "downloaded_sha256": "69b92cb551111bc37098698288849c96f0fd87ce81a2e54451ff39aa1e53fe49",
+      "exact_match": true
+    },
+    {
+      "name": "readme.md",
+      "bytes": 4887,
+      "sha256": "3157b326a693649a71b415811a222ba16fad752525295a2746ffb0cbaf7588ff",
+      "staged_sha256": "3157b326a693649a71b415811a222ba16fad752525295a2746ffb0cbaf7588ff",
+      "downloaded_sha256": "3157b326a693649a71b415811a222ba16fad752525295a2746ffb0cbaf7588ff",
+      "exact_match": true
+    },
+    {
+      "name": "Index",
+      "bytes": 150,
+      "sha256": "30cd5a2ef694f379fd65e5835ffd0f8405d6c225c3711a8cc0c8e12f55501e91",
+      "staged_sha256": "30cd5a2ef694f379fd65e5835ffd0f8405d6c225c3711a8cc0c8e12f55501e91",
+      "downloaded_sha256": "30cd5a2ef694f379fd65e5835ffd0f8405d6c225c3711a8cc0c8e12f55501e91",
+      "exact_match": true
+    }
+  ],
+  "validation": "All five source, staging and Kaggle-downloaded SHA256 hashes match; remote file names and sizes match."
+}

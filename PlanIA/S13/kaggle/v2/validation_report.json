@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "positive_class": "good_credit",
+  "same_v1_splits": true,
+  "cv_training_only": true,
+  "five_candidate_families": true,
+  "three_selected_by_validation_hacs": true,
+  "executed_notebook_matches_source": true,
+  "remote_version": 1,
+  "code_cells": 20,
+  "cases_shap": 9,
+  "figures": 10,
+  "models": [
+    {
+      "model": "Random Forest",
+      "f1_ai_good": 0.8387096774193549,
+      "f1_collaborative_good": 0.8637873754152824,
+      "gain_pp": 2.5077697995927517,
+      "mean_gain_pp": 2.2495995236157498,
+      "hacs": 0.8862724252491695,
+      "coverage": 0.92,
+      "strict_gain_passed": true
+    },
+    {
+      "model": "CatBoost",
+      "f1_ai_good": 0.8486842105263158,
+      "f1_collaborative_good": 0.8805460750853242,
+      "gain_pp": 3.1861864559008413,
+      "mean_gain_pp": 3.146894197479179,
+      "hacs": 0.8883276450511947,
+      "coverage": 0.9,
+      "strict_gain_passed": true
+    },
+    {
+      "model": "XGBoost",
+      "f1_ai_good": 0.8191126279863481,
+      "f1_collaborative_good": 0.865979381443299,
+      "gain_pp": 4.6866753456950905,
+      "mean_gain_pp": 4.834686874158961,
+      "hacs": 0.8675876288659795,
+      "coverage": 0.87,
+      "strict_gain_passed": true
+    }
+  ],
+  "all_three_strict_gain_passed": true,
+  "best_v1_hacs_same_good_class": 0.8571162790697675,
+  "best_v2_hacs": 0.8883276450511947,
+  "selected_model": "Random Forest",
+  "hacs_improved_over_best_v1_same_class": true
+}

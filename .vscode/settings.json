@@ -1,5 +1,5 @@
 {
-    "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/RL/S8/build",
+    "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/RL/S14/build",
     "latex-workshop.latex.recipes": [
         {
             "name": "latexmk",

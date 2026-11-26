@@ -1,0 +1,17 @@
+{
+  "id": "jeffreyamc/plania-p2-sdxl-img2img-v2",
+  "title": "PlanIA P2 SDXL Img2Img v2",
+  "code_file": "sdxl_img2img.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "jeffreyamc/plania-p2-liam-input"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

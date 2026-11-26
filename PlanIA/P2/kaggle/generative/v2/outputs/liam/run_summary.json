@@ -1,0 +1,35 @@
+{
+  "status": "complete",
+  "stage": "done",
+  "model": "stabilityai/stable-diffusion-xl-base-1.0",
+  "revision": "462165984030d82259a11f4367a4eed129e94a7b",
+  "dtype": "float16",
+  "gpu": "Tesla T4",
+  "gpu_count": 2,
+  "vram_total_gib": 14.56,
+  "vram_peak_allocated_gib": 8.96,
+  "vram_peak_reserved_gib": 12.02,
+  "load_seconds": 38.87,
+  "generation_seconds": 15.65,
+  "versions": {
+    "torch": "2.11.0+cu130",
+    "diffusers": "0.35.2",
+    "transformers": "4.57.1",
+    "accelerate": "1.11.0"
+  },
+  "input_source": "/kaggle/input/plania-p2-liam-input/liam.jpeg",
+  "size_px": [
+    768,
+    1024
+  ],
+  "prompt": "A realistic 3D animated-film portrait of the same cat in the reference photo. Preserve its facial proportions, pale blue eyes, pink nose, cream-white fur and light orange markings around the eyes and ears. Keep the same pose and expression, with softly rendered fur and natural lighting.",
+  "strength": 0.5,
+  "num_inference_steps": 25,
+  "guidance_scale": 7.5,
+  "seed": 42,
+  "artifacts": [
+    "entrada.png",
+    "generada.png",
+    "run_summary.json"
+  ]
+}

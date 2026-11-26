@@ -1,0 +1,46 @@
+[{"stream_name":"stderr","time":8.369140387,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.369194049,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.369198179,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.369200594,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":8.975922557,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.975955874,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.975960927,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.97596486,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":30.720283471,"data":"\u001b[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\r\n"}
+,{"stream_name":"stdout","time":30.720311728,"data":"gradio-client 2.7.2 requires huggingface-hub\u003c3.0,\u003e=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.\r\n"}
+,{"stream_name":"stdout","time":30.720316575,"data":"gradio 6.30.0 requires huggingface-hub\u003c3.0,\u003e=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.\r\n"}
+,{"stream_name":"stdout","time":30.7203206,"data":"gradio 6.30.0 requires pillow\u003c13.0,\u003e=8.0, but you have pillow 13.0.0 which is incompatible.\u001b[0m\u001b[31m\r\n"}
+,{"stream_name":"stdout","time":31.024246264,"data":"\u001b[0mNote: you may need to restart the kernel to use updated packages.\n"}
+,{"stream_name":"stderr","time":70.943613707,"data":"WARNING: All log messages before absl::InitializeLog() is called are written to STDERR\n"}
+,{"stream_name":"stderr","time":70.943657183,"data":"I0000 00:00:1794003220.205560      23 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.\n"}
+,{"stream_name":"stderr","time":71.156470739,"data":"WARNING: All log messages before absl::InitializeLog() is called are written to STDERR\n"}
+,{"stream_name":"stderr","time":71.156492336,"data":"I0000 00:00:1794003220.205560      23 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.\n"}
+,{"stream_name":"stderr","time":71.156498095,"data":"\n"}
+,{"stream_name":"stderr","time":71.15650223,"data":"WARNING: All log messages before absl::InitializeLog() is called are written to STDERR\n"}
+,{"stream_name":"stderr","time":71.156507109,"data":"I0000 00:00:1794003220.205560      23 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.\n"}
+,{"stream_name":"stdout","time":79.025247241,"data":"GPU: Tesla T4 | VRAM visible para PyTorch: 14.56 GiB\n"}
+,{"stream_name":"stderr","time":116.076536155,"data":"`torch_dtype` is deprecated! Use `dtype` instead!\n"}
+,{"stream_name":"stderr","time":116.076574908,"data":"\n"}
+,{"stream_name":"stderr","time":116.076578958,"data":"`torch_dtype` is deprecated! Use `dtype` instead!\n"}
+,{"stream_name":"stdout","time":135.451963671,"data":"Generación: 16.46 s | Pico asignado: 8.96 GiB\n"}
+,{"stream_name":"stdout","time":135.451998537,"data":"Entrada a la izquierda y variación generada a la derecha.\n"}
+,{"stream_name":"stdout","time":188.044816766,"data":"SDXL: cuda:0 | Qwen: cuda:1 (Tesla T4)\n"}
+,{"stream_name":"stderr","time":188.193239746,"data":"The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\n"}
+,{"stream_name":"stderr","time":188.193322716,"data":"\n"}
+,{"stream_name":"stderr","time":188.193329535,"data":"The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\n"}
+,{"stream_name":"stdout","time":202.738872517,"data":"**Retrato generado**: La composición es simétrica y centrada, con el gato mirando directamente al espectador. La iluminación suave y difusa resalta la textura de su pelaje, mientras que la paleta cálida (blanco, crema, azul profundo) crea un ambiente acogedor. El estilo es digital, con una textura de pelo ultra suave y detalles realistas, aunque con un toque de idealización.\n"}
+,{"stream_name":"stdout","time":202.738904986,"data":"\n"}
+,{"stream_name":"stdout","time":202.738909102,"data":"**Comparación con la referencia**: Se conservan los ojos, la pose y la expresión del gato, pero el retrato generado muestra una piel más lisa, marcas más definidas y un fondo más limpio. No hay artefactos visibles, pero la imagen digital presenta una leve idealización de la textura del pelaje y una mayor claridad en los detalles faciales.\n"}
+,{"stream_name":"stdout","time":202.738913668,"data":"Análisis: 14.62 s | Pico asignado: 8.84 GiB\n"}
+,{"stream_name":"stderr","time":209.144859992,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":209.144890879,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":209.331195884,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":209.331220541,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":210.108765425,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":210.23844135,"data":"[NbConvertApp] Writing 843020 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":212.787047214,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":213.395338415,"data":"[NbConvertApp] Support files will be in __results___files/\n"}
+,{"stream_name":"stderr","time":213.395363636,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":213.395654531,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":213.39597129,"data":"[NbConvertApp] Writing 627301 bytes to __results__.html\n"}
+]

@@ -1,0 +1,36 @@
+{
+  "status": "complete",
+  "stage": "done",
+  "model": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+  "revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+  "dtype": "float16",
+  "gpu": "Tesla T4",
+  "gpu_count": 2,
+  "vram_total_gib": 14.56,
+  "vram_peak_allocated_gib": 3.18,
+  "vram_peak_reserved_gib": 3.46,
+  "load_seconds": 18.45,
+  "generation_seconds": 11.81,
+  "versions": {
+    "torch": "2.11.0+cu130",
+    "diffusers": "0.35.2",
+    "transformers": "4.57.1",
+    "accelerate": "1.11.0"
+  },
+  "input_source": "dibujo de ejemplo",
+  "size_px": [
+    512,
+    512
+  ],
+  "prompt": "A botanical watercolor painting of a pink cosmos flower, textured ivory paper, delicate brushwork",
+  "strength": 0.65,
+  "num_inference_steps": 25,
+  "guidance_scale": 7.5,
+  "seed": 42,
+  "safety_flagged": false,
+  "artifacts": [
+    "entrada.png",
+    "generada.png",
+    "run_summary.json"
+  ]
+}

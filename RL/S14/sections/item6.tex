@@ -1,0 +1,81 @@
+\section{Error compuesto en modelos del mundo, MBPO y Dreamer}
+
+\subsection*{a) Rollout real y simulado}
+
+Con la acción $u_t=0$ y el mismo estado inicial para ambos sistemas, las
+recurrencias son $s_{t+1}=1.2s_t$ y
+$\hat{s}_{t+1}=1.2\hat{s}_t+0.10$. Si
+$d_t=\hat{s}_t-s_t$ denota el error con signo, entonces
+\[
+    d_{t+1}=1.2d_t+0.10,
+    \qquad
+    d_t=0.10\sum_{j=0}^{t-1}1.2^j
+       =0.50(1.2^t-1).
+\]
+La suma se obtiene al expandir la recurrencia desde $d_0=0$. Como
+$d_t\geq 0$, el error absoluto $e_t$ coincide con $d_t$.
+
+\begin{center}
+    \begin{tabular}{cccc}
+        \toprule
+        Paso $t$ & Estado real $s_t$ & Estado simulado $\hat{s}_t$
+                 & Error $e_t$ \\
+        \midrule
+        1 & $1.200$ & $1.300$ & $0.100$ \\
+        2 & $1.440$ & $1.660$ & $0.220$ \\
+        3 & $1.728$ & $2.092$ & $0.364$ \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+El sesgo de cada transición se agrega al error previo multiplicado por
+$1.2$. Por ejemplo, $e_3=1.2(0.220)+0.10=0.364$.
+
+\subsection*{b) Rollouts cortos y ensambles en MBPO}
+
+MBPO toma estados iniciales de la memoria de experiencias reales. Desde
+cada uno ejecuta un rollout corto con acciones de la política actual y
+transiciones generadas por el modelo. Estos fragmentos complementan la
+experiencia real que recoge el agente y proporcionan datos para
+actualizar la política. Iniciar cada fragmento en un estado observado
+evita heredar el error de un rollout anterior. Limitar su longitud
+reduce el número de pasos en que las predicciones propias se
+retroalimentan y pueden llevar a regiones poco representadas en los
+datos~\cite[secc.~5]{janner2019}.
+
+MBPO entrena un ensamble de modelos probabilísticos sobre remuestras de
+las transiciones reales. Cada miembro predice una distribución para el
+estado siguiente y la recompensa. Al generar cada transición se elige
+un miembro al azar, por lo que las muestras reflejan tanto la dispersión
+de cada modelo como el desacuerdo entre modelos. Esto reduce la
+dependencia de una sola predicción, aunque un sesgo compartido por el
+ensamble puede persistir~\cite[secc.~5]{janner2019}.
+
+\subsection*{c) Predicción latente en el RSSM de Dreamer}
+
+El estado determinista $h_t=f_\phi(h_{t-1},z_{t-1},a_{t-1})$ resume el
+historial y condiciona dos distribuciones sobre la misma variable
+latente estocástica. Al entrenar el modelo del mundo con secuencias
+reales, el posterior $q_\phi(z_t\mid h_t,o_t)$ incorpora la observación
+$o_t$. El prior predictivo $p_\phi(\hat z_t\mid h_t)$ estima el latente
+antes de recibir $o_t$. El término
+\[
+    D_{\mathrm{KL}}\bigl(
+        q_\phi(z_t\mid h_t,o_t)\,\|\,p_\phi(\hat z_t\mid h_t)
+    \bigr)
+\]
+acerca las predicciones del prior a las representaciones inferidas con
+píxeles reales y favorece un espacio latente predecible a partir del
+historial~\cite[secc.~4]{hafner2020}.
+
+El Actor-Crítico parte de estados latentes inferidos de experiencias
+reales. En los pasos imaginados, el actor elige acciones usando el
+estado latente, la recurrencia calcula el siguiente $h_t$ y el prior
+genera $\hat z_t$. El modelo de recompensa predice la recompensa a
+partir de $(h_t,\hat z_t)$, y el crítico aprende a estimar retornos con
+esas recompensas. La divergencia KL conecta las representaciones
+aprendidas con el posterior y las que se generan con el prior. La
+reconstrucción de imágenes puede aportar una señal al entrenar el
+modelo del mundo. Durante los pasos imaginados del Actor-Crítico
+bastan la transición y la predicción de recompensa en el espacio
+latente~\cite[seccs.~3--4]{hafner2020}.

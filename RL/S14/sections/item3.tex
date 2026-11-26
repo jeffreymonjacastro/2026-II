@@ -1,0 +1,45 @@
+\section{Advantage Actor-Critic y regularización por entropía}
+
+\subsection*{a) El error TD como estimador de la ventaja}
+
+Supongamos $V_\phi=V^\pi$ y asignemos valor cero a los estados terminales. Por la ecuación de Bellman para $Q^\pi$~\cite[secc.~13.5]{sutton},
+\begin{align*}
+    \mathbb{E}[\delta_t\mid S_t=s,A_t=a]
+       &=\mathbb{E}[r_t+\gamma V^\pi(S_{t+1})\mid S_t=s,A_t=a]
+           -V^\pi(s)\\
+       &=Q^\pi(s,a)-V^\pi(s)
+         =\boxed{A^\pi(s,a)}.
+\end{align*}
+Así, una transición basta para obtener una estimación insesgada condicionada al estado y la acción cuando el crítico es exacto. Si $e=V_\phi-V^\pi$, el sesgo condicional con un crítico aproximado es $\gamma\mathbb{E}[e(S_{t+1})\mid s,a]-e(s)$.
+
+\subsection*{b) Cálculo de las pérdidas en A2C}
+
+\textbf{(i) Error TD.} El objetivo del crítico en esta transición es $1+0.99(4.80)=5.752$, de modo que
+\[
+    \boxed{\delta_0=5.752-4.20=1.552}.
+\]
+El resultado fue mejor de lo esperado por el crítico porque el objetivo TD supera su predicción en $s_0$.
+
+\textbf{(ii) Pérdida del actor.} Con $\ln(0.70)\approx-0.357$,
+\[
+    L_{\mathrm{actor}}
+      =-\ln(0.70)(1.552)\approx (0.357)(1.552)
+      =\boxed{0.554064}.
+\]
+Al minimizar esta pérdida con $\delta_0$ tratado como constante, el término del actor favorece aumentar la probabilidad de la acción ejecutada.
+
+\textbf{(iii) Crítico, entropía y pérdida total.}
+\begin{align*}
+    L_{\mathrm{critic}}
+      &=0.5(1.552)^2=1.204352,\\
+    H(\pi_\theta(\cdot\mid s_0))
+      &=-0.30\ln(0.30)-0.70\ln(0.70)\\
+      &\approx 0.30(1.204)+0.70(0.357)=0.6111,\\
+    L_{\mathrm{A2C}}
+      &\approx 0.554064+1.204352-0.01(0.6111)
+       =\boxed{1.752305}.
+\end{align*}
+
+\subsection*{c) Efecto de la entropía sobre la exploración}
+
+Con $c_e>0$, al aumentar $H$ disminuye el término $-c_e H$ de la pérdida. El regularizador favorece así que la política distribuya probabilidad entre varias acciones mientras el actor aprende de las ventajas. Si la entropía cae prematuramente a cero en un estado, la política se concentra en una sola acción. Las alternativas dejan de aparecer en las muestras y el agente puede quedar atrapado en un comportamiento subóptimo~\cite[secc.~4]{mnih2016}.

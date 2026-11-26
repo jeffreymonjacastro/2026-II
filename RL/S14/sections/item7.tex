@@ -1,0 +1,89 @@
+\section{Behavior Cloning y DAgger en el problema del acantilado}
+
+\subsection*{a) Ecuaciones de Bellman para el costo descontado}
+
+Denotemos por $S_\pi$ y $D_\pi$ los costos descontados esperados al
+comenzar en el camino seguro y en la zanja, respectivamente. Así,
+$J(\pi)=S_\pi$. Desde el camino seguro, ambas políticas satisfacen
+\[
+    S_\pi=(1-\epsilon)\gamma S_\pi
+          +\epsilon(1+\gamma D_\pi).
+\]
+El costo de caída $1$ se paga en el paso que lleva a la zanja.
+
+Con Behavior Cloning, la zanja es absorbente y cada transición desde
+ella cuesta $1$. Por tanto,
+\begin{align*}
+    D_{\mathrm{BC}} &= 1+\gamma D_{\mathrm{BC}}
+        =\frac{1}{1-\gamma}, \\
+    \bigl(1-\gamma(1-\epsilon)\bigr)S_{\mathrm{BC}}
+        &=\epsilon(1+\gamma D_{\mathrm{BC}})
+        =\frac{\epsilon}{1-\gamma}, \\
+    J(\pi_{\mathrm{BC}})&=
+        \boxed{\frac{\epsilon}{(1-\gamma)(1-\gamma+\gamma\epsilon)}}.
+\end{align*}
+
+Con DAgger, la recuperación lleva al camino seguro en una transición
+de costo cero. Luego,
+\begin{align*}
+    D_{\mathrm{DAgger}} &= \gamma S_{\mathrm{DAgger}}, \\
+    \bigl(1-\gamma(1-\epsilon)-\epsilon\gamma^2\bigr)S_{\mathrm{DAgger}}
+        &=\epsilon, \\
+    J(\pi_{\mathrm{DAgger}})&=
+        \boxed{\frac{\epsilon}{(1-\gamma)(1+\gamma\epsilon)}}.
+\end{align*}
+
+\subsection*{b) Comparación numérica}
+
+Para $\epsilon=0.05$ y $\gamma=0.90$, se obtiene
+\[
+    J(\pi_{\mathrm{BC}})=\frac{0.05}{0.1(0.145)}\approx 3.448,
+    \qquad
+    J(\pi_{\mathrm{DAgger}})=\frac{0.05}{0.1(1.045)}\approx 0.478.
+\]
+El factor de reducción es
+\[
+    \frac{J(\pi_{\mathrm{BC}})}{J(\pi_{\mathrm{DAgger}})}
+    =\frac{1.045}{0.145}\approx\boxed{7.21}.
+\]
+DAgger incurre en aproximadamente el 13,9\% del costo de BC,
+lo que equivale a una reducción del 86,1\%.
+
+\subsection*{c) Costo esperado en un horizonte finito}
+
+Numérese del $1$ al $T$ cada transición desde el estado inicial seguro.
+El experto permanece en el camino seguro y paga costo cero. Con BC,
+las demostraciones solo cubren ese estado. Una caída lleva al robot a
+un estado que el experto nunca visita desde el inicio y donde BC
+continúa pagando. En el paso $n$ se incurre en costo $1$ si ocurrió
+alguna caída en los primeros $n$ pasos, incluido el paso actual.
+Evitar la caída durante los $n$ pasos tiene probabilidad $(1-\epsilon)^n$. Por
+linealidad de la esperanza y la cota de la unión,
+\begin{align*}
+    J_T(\pi_{\mathrm{BC}})
+      &= \sum_{n=1}^{T}\bigl[1-(1-\epsilon)^n\bigr] \\
+      &\leq \sum_{n=1}^{T}\min\{1,n\epsilon\}
+      \leq \min\left\{T,\frac{\epsilon T(T+1)}{2}\right\}.
+\end{align*}
+Para $\epsilon T\ll 1$,
+$1-(1-\epsilon)^n=n\epsilon+O(n^2\epsilon^2)$, de donde
+$J_T(\pi_{\mathrm{BC}})=\epsilon T(T+1)/2+O(\epsilon^2T^3)$.
+El primer error puede afectar todos los pasos restantes, lo que
+produce la dependencia cuadrática $O(\epsilon T^2)$. Para $\epsilon$
+fijo y $T$ grande, el costo se acerca a $T$ en términos relativos,
+porque $T-J_T(\pi_{\mathrm{BC}})\leq (1-\epsilon)/\epsilon$.
+
+DAgger incorpora al conjunto de entrenamiento estados visitados por
+la política en ejecución, etiquetados con acciones del experto
+\cite[seccs.~2--4]{ross2011}. En este problema, aprende a salir de la
+zanja en el siguiente paso, con costo cero. Sea $p_n$ la probabilidad
+de estar en el camino seguro justo antes de la transición $n$.
+Entonces $p_1=1$ y $p_{n+1}=1-\epsilon p_n$, pues se empieza el paso
+siguiente en la zanja únicamente si se acaba de caer. Cada caída
+cuesta una unidad, por lo que
+\[
+    J_T(\pi_{\mathrm{DAgger}})=\epsilon\sum_{n=1}^T p_n
+         \leq \epsilon T.
+\]
+La cota es lineal porque cada error afecta el costo de una sola
+transición.

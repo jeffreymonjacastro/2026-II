@@ -1,0 +1,77 @@
+\section{Multimodalidad en Behavior Cloning y aprendizaje adversarial con GAIL}
+
+\subsection*{a) Predicción óptima bajo error cuadrático}
+
+Para el estado $s_0$, los giros $-2.0$ y $+2.0$ aparecen con igual
+frecuencia. La pérdida cuadrática condicionada a este estado es
+\[
+    L(\hat a)=\tfrac12(\hat a+2)^2+\tfrac12(\hat a-2)^2=\hat a^2+4,
+    \qquad \hat a=\pi_\theta(s_0).
+\]
+La condición $L'(\hat a)=2\hat a=0$ da $\hat a=\boxed{0}$ y
+$L''(\hat a)=2>0$ confirma que es el mínimo. La política determinista
+predice el giro medio de las demostraciones. Con giro cero, el robot
+continúa recto hacia el obstáculo y choca si mantiene el avance.
+
+\subsection*{b) Discriminador óptimo y divergencia entre ocupaciones}
+
+Sean $P=\rho_{\pi_\theta}$ y $Q=\rho_{\pi_{\mathrm{exp}}}$ las
+ocupaciones descontadas normalizadas. En el caso discreto se puede
+escribir
+\[
+    \rho_\pi(s,a)=(1-\gamma)\sum_{t=0}^{\infty}
+         \gamma^t\Pr_\pi(S_t=s,A_t=a).
+\]
+Cada ocupación tiene masa total uno. Para variables continuas, el
+argumento usa densidades respecto a una medida común, como $P+Q$.
+
+Fijada la política y con un discriminador sin restricciones de
+capacidad, la maximización se puede hacer punto a punto. Para
+$x=(s,a)$, escribamos $u=P(x)$ y $v=Q(x)$ para las masas o densidades.
+El término de entropía es constante respecto al discriminador. Si
+$d=D(x)$ y ambas ocupaciones son positivas en $x$, se maximiza
+$g(d)=u\ln d+v\ln(1-d)$, con
+\[
+    g'(d)=\frac{u}{d}-\frac{v}{1-d},
+    \qquad
+    g''(d)=-\frac{u}{d^2}-\frac{v}{(1-d)^2}<0.
+\]
+Al resolver $g'(d)=0$ resulta
+\[
+    \boxed{D^*(s,a)=
+        \frac{\rho_{\pi_\theta}(s,a)}
+        {\rho_{\pi_\theta}(s,a)+\rho_{\pi_{\mathrm{exp}}}(s,a)}}.
+\]
+La fórmula da $0$ o $1$ si solo una ocupación es positiva. Estos
+extremos se alcanzan como límites si $D$ tiene salida en $(0,1)$. Si
+ambas son cero, el objetivo es independiente de $D$ en ese par.
+
+Con $M=(P+Q)/2$, al sustituir $D^*$, los dos términos adversariales
+quedan
+\begin{align*}
+    \mathbb{E}_{P}\!\left[\ln\frac{P}{2M}\right]
+       +\mathbb{E}_{Q}\!\left[\ln\frac{Q}{2M}\right]
+    &=D_{\mathrm{KL}}(P\|M)+D_{\mathrm{KL}}(Q\|M)-2\ln 2 \\
+    &=2D_{\mathrm{JS}}(P,Q)-\ln 4.
+\end{align*}
+Así, el término adversarial favorece minimizar la divergencia de
+Jensen--Shannon entre la distribución conjunta de estados y acciones
+del agente y la del experto. Si $\lambda=0$ y la clase de políticas
+puede igualar $Q$, se alcanza $D_{\mathrm{JS}}=0$ y el discriminador
+vale $1/2$ en el soporte común. Con $\lambda>0$, la política minimiza
+$2D_{\mathrm{JS}}(P,Q)-\lambda H(\pi_\theta)$, salvo la constante
+aditiva, por lo que la entropía puede desplazar el óptimo respecto a la
+coincidencia exacta de las ocupaciones~\cite[seccs.~3--5]{ho2016}.
+
+\subsection*{c) Recompensa de imitación}
+
+Con la convención de que $D$ estima la probabilidad de que la muestra
+provenga del agente, las recompensas resultan
+\[
+    r_{\mathrm{GAIL}}(s_1,a_1)=-\ln(0.20)\approx 1.609,
+    \qquad
+    r_{\mathrm{GAIL}}(s_2,a_2)=-\ln(0.80)\approx 0.223.
+\]
+La transición $(s_1,a_1)$ recibe la mayor recompensa inmediata de
+imitación. Su valor de $D$ es menor, lo que indica que el
+discriminador la considera más parecida a una transición del experto.

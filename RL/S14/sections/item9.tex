@@ -1,0 +1,75 @@
+\section{Aprendizaje de Recompensas con Bradley--Terry y RLHF}
+
+\subsection*{a) Probabilidades, pérdidas y gradientes}
+
+Para un par etiquetado con una respuesta ganadora $y_w$ y una perdedora
+$y_l$, el modelo de Bradley--Terry predice la preferencia mediante la
+sigmoide de la diferencia de puntajes~\cite{bradley1952,christiano2017}.
+Si $z=r_\psi(x,y_w)-r_\psi(x,y_l)$, la probabilidad es $p=\sigma(z)$ y la
+pérdida para esa etiqueta es $\mathcal{L}_{\mathrm{RM}}=-\ln p$.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+    \toprule
+    Preferencia & $z$ & $p$ & $\mathcal{L}_{\mathrm{RM}}$ &
+    $\lvert \partial\mathcal{L}_{\mathrm{RM}}/\partial z\rvert$ \\
+    \midrule
+    $A\succ B$ & $2.0-0.5=1.5$ & $0.818$ & $0.201$ & $0.182$ \\
+    $A\succ C$ & $2.0-2.5=-0.5$ & $0.378$ & $0.973$ & $0.622$ \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+La tabla emplea las aproximaciones de probabilidad y logaritmo
+indicadas en el enunciado.
+
+Como $\sigma'(z)=\sigma(z)(1-\sigma(z))$, la derivada respecto del
+\emph{logit} de preferencia $z$ es
+\[
+    \frac{\partial\mathcal{L}_{\mathrm{RM}}}{\partial z}
+    =-\frac{\sigma'(z)}{\sigma(z)}
+    =\sigma(z)-1.
+\]
+Las derivadas respecto de los puntajes del ganador y del perdedor son
+$p-1$ y $1-p$, respectivamente. La comparación $A\succ C$ produce la
+mayor magnitud respecto del logit y de los puntajes porque la red predice
+que $C$ es más probable como ganador, en desacuerdo con la etiqueta
+humana. Para los parámetros de la red se tiene
+\[
+    \nabla_\psi \mathcal{L}_{\mathrm{RM}}
+    =(p-1)\bigl(\nabla_\psi r_\psi(x,y_w)-\nabla_\psi r_\psi(x,y_l)\bigr).
+\]
+La magnitud de este gradiente también depende de las derivadas de los
+puntajes respecto de $\psi$, que el enunciado no especifica.
+
+\subsection*{b) Invariancia ante traslaciones}
+
+Para cualquier $c\in\mathbb{R}$, definimos $r_{\psi'}(x,y)=r_\psi(x,y)+c$.
+Al sustituir en la probabilidad,
+\begin{align*}
+    P_{\psi'}(y_w\succ y_l\mid x)
+    &=\sigma\bigl((r_\psi(x,y_w)+c)-(r_\psi(x,y_l)+c)\bigr)\\
+    &=\sigma\bigl(r_\psi(x,y_w)-r_\psi(x,y_l)\bigr)
+    =P_\psi(y_w\succ y_l\mid x).
+\end{align*}
+Por tanto, las preferencias identifican diferencias de puntaje y dejan
+indeterminado su origen común.
+
+\subsection*{c) Recompensa regularizada de RLHF}
+
+Para $y_1$, el cociente entre la probabilidad de la política actual y
+la de la referencia SFT es $0.40/0.10=4$. La recompensa neta es
+\[
+    R_{\mathrm{RLHF}}(x,y_1)
+    =4.0-0.5\ln 4
+    \approx 4.0-0.693
+    =\boxed{3.307}.
+\]
+El promedio del logaritmo del cociente bajo $\pi_\theta(\cdot\mid x)$
+es $D_{\mathrm{KL}}(\pi_\theta\Vert\pi_{\mathrm{SFT}})$ para ese prompt.
+Con $\beta=0$ desaparece el
+costo por alejarse de la referencia. La política puede entonces
+concentrar probabilidad en respuestas que explotan errores del modelo
+de recompensa y reciben puntajes altos pese a ser poco preferidas por
+las personas. Este fenómeno se conoce como \emph{reward hacking} o
+sobreoptimización de la recompensa aprendida~\cite{ouyang2022}.

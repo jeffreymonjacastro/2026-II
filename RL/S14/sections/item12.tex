@@ -1,0 +1,92 @@
+\section{Meta-Reinforcement Learning con MAML y Reptile}
+
+\subsection*{a) Predicciones, pérdida y gradiente inicial}
+
+Con $(w,b)=(1,0)$ se obtiene $f_\theta(1)=1$ y $f_\theta(2)=2$.
+Los residuos $e_j=wx_j+b-y_j$ son $e_1=-2$ y $e_2=-3$, por lo que
+\[
+    L_{\mathcal{T}_1}(\theta)
+    =\frac{(-2)^2+(-3)^2}{2}=6.5.
+\]
+Al derivar el error cuadrático medio sobre las dos muestras,
+\begin{align*}
+    \frac{\partial L_{\mathcal{T}_1}}{\partial w}
+    &=\frac{2}{K}\sum_{j=1}^K e_j x_j
+      =(-2)(1)+(-3)(2)=-8,\\
+    \frac{\partial L_{\mathcal{T}_1}}{\partial b}
+    &=\frac{2}{K}\sum_{j=1}^K e_j
+      =-2-3=-5.
+\end{align*}
+
+\subsection*{b) Un paso de adaptación interna}
+
+Con $\alpha=0.1$, se actualiza la inicialización de MAML para la
+tarea $\mathcal{T}_1$~\cite{finn2017},
+\[
+    \theta'_1=(1,0)^\top-0.1(-8,-5)^\top
+    =\boxed{(1.8,\,0.5)^\top}.
+\]
+El modelo adaptado predice $f_{\theta'_1}(1)=2.3$ y
+$f_{\theta'_1}(2)=4.1$. En el mismo conjunto de soporte,
+\[
+    L_{\mathcal{T}_1}(\theta'_1)
+    =\frac{(2.3-3)^2+(4.1-5)^2}{2}
+    =\frac{0.49+0.81}{2}=\boxed{0.65}.
+\]
+El paso redujo en un 90 por ciento la pérdida sobre las muestras usadas
+para adaptar el modelo.
+
+\subsection*{c) Metagradiente, FOMAML y Reptile}
+
+Sea $L_i^{\mathrm{soporte}}$ la pérdida usada para la adaptación en
+la tarea $i$. Sea $L_i^{\mathrm{consulta}}$ la pérdida externa,
+evaluada tras la adaptación y generalmente sobre muestras
+distintas de la misma tarea. Para un paso interno,
+\[
+    \theta_i'=\theta-\alpha\nabla_\theta L_i^{\mathrm{soporte}}(\theta),
+    \qquad
+    \frac{\partial\theta_i'}{\partial\theta}
+    =I-\alpha\nabla_\theta^2 L_i^{\mathrm{soporte}}(\theta).
+\]
+Con gradientes como vectores columna, la regla de la cadena da
+\[
+    \nabla_\theta L_i^{\mathrm{consulta}}(\theta_i')
+    =\Bigl(I-\alpha\nabla_\theta^2 L_i^{\mathrm{soporte}}(\theta)\Bigr)^\top
+      \nabla_{\theta_i'}L_i^{\mathrm{consulta}}(\theta_i').
+\]
+La Hessiana aparece porque el gradiente del paso interno depende
+de $\theta$. En el regresor del enunciado, la Hessiana del
+soporte es $\begin{pmatrix}5&3\\3&2\end{pmatrix}$, obtenida al
+derivar de nuevo $\frac{1}{2}[(w+b-3)^2+(2w+b-5)^2]$. MAML
+puede evaluar la contribución de la Hessiana mediante un producto
+Hessiana-vector, sin formar la matriz completa~\cite{finn2017}.
+
+\textbf{FOMAML.}
+Aproxima el jacobiano de la adaptación por $I$. Usa
+$\nabla_{\theta_i'}L_i^{\mathrm{consulta}}(\theta_i')$
+para actualizar la meta-inicialización. Conserva el cálculo
+del gradiente sobre las muestras de consulta en los parámetros
+adaptados y omite la derivación a través de la
+adaptación~\cite{finn2017,nichol2018}.
+
+\textbf{Reptile.}
+Aplica uno o más pasos de gradiente de la tarea y desplaza la
+meta-inicialización hacia los parámetros resultantes
+mediante $\theta\leftarrow\theta+\epsilon(\theta_i'-\theta)$.
+Tras un único paso interno,
+\[
+    \theta+\epsilon(\theta_i'-\theta)
+    =\theta-\epsilon\alpha\nabla_\theta L_i^{\mathrm{soporte}}(\theta).
+\]
+En ese caso, Reptile equivale al descenso de gradiente
+sobre la pérdida de soporte de la tarea muestreada. Con
+varios pasos internos sobre distintos lotes de una tarea,
+el desplazamiento incorpora el efecto de la adaptación
+entre lotes~\cite{nichol2018}.
+
+Para $d$ parámetros, la combinación de vectores de la
+actualización externa cuesta $O(d)$ en ambos métodos
+una vez obtenidos el gradiente de consulta en FOMAML o
+los parámetros adaptados en Reptile. El costo total incluye
+evaluar los gradientes de primer orden y depende también del
+modelo, los datos y el número de pasos internos.

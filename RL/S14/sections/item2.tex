@@ -1,0 +1,41 @@
+\section{REINFORCE y reducción de varianza con línea base}
+
+\subsection*{a) Retornos futuros y ventajas}
+
+Con $\gamma=1$, el retorno futuro satisface $G_t=r_t+G_{t+1}$ con $G_3=0$. En REINFORCE con línea base, la ventaja muestral es $\widehat A_t=G_t-b(s_t)$~\cite[seccs.~13.3--13.4]{sutton}.
+\begin{center}
+    \begin{tabular}{ccccc}
+        \toprule
+        $t$ & $r_t$ & $G_t$ & $b(s_t)$ & $\widehat A_t$ \\
+        \midrule
+        $0$ & $0$ & $0+10=10$ & $6$ & $4$ \\
+        $1$ & $4$ & $4+6=10$ & $4$ & $6$ \\
+        $2$ & $6$ & $6+0=6$  & $2$ & $4$ \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\subsection*{b) Pérdida del actor y asignación de crédito}
+
+Con los logaritmos aproximados del enunciado,
+\begin{align*}
+    L_{\mathrm{actor}}^{(b)}
+       &\approx 4(0.693)+6(0.223)+4(0.693)
+         =\boxed{6.882},\\
+    L_{\mathrm{actor}}^{(0)}
+       &\approx 10(0.693)+10(0.223)+6(0.693)
+         =13.318.
+\end{align*}
+Con las ventajas tratadas como constantes, los pesos de $a_0$ y $a_1$ en la dirección de ascenso del actor pasan de $(10,\,10)$ a $(4,\,6)$. Así, $a_1$ recibe un peso $1.5$ veces el de $a_0$ porque supera por más la referencia de su propio estado. Cada peso multiplica a $\nabla_\theta\ln\pi_\theta(a_t\mid s_t)$. Si $b(s)$ aproxima el retorno típico del estado, la diferencia $G_t-b(s_t)$ mide cuánto mejor o peor salió esa decisión respecto de dicha referencia.
+
+\subsection*{c) Insesgadez de la línea base}
+
+Para un estado fijo $s$, $b(s)$ es constante respecto a la acción muestreada. Usando la normalización de la política,
+\begin{align*}
+    \mathbb{E}_{a\sim\pi_\theta(\cdot\mid s)}
+       \big[b(s)\nabla_\theta\ln\pi_\theta(a\mid s)\big]
+      &= b(s)\sum_a \pi_\theta(a\mid s)\nabla_\theta\ln\pi_\theta(a\mid s)\\
+      &= b(s)\sum_a\nabla_\theta\pi_\theta(a\mid s)\\
+      &= b(s)\nabla_\theta\sum_a\pi_\theta(a\mid s)=0.
+\end{align*}
+Al promediar también sobre los estados, se preserva el gradiente esperado. Una línea base bien elegida puede reducir la varianza al eliminar parte de la variabilidad del retorno explicada por el estado. Si la línea base comparte parámetros con el actor, se detiene su gradiente en la pérdida del actor para implementar exactamente este estimador.

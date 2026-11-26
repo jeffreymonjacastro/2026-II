@@ -1,0 +1,55 @@
+\section{Aprendizaje basado en modelos con Dyna-Q y Prioritized Sweeping}
+
+\subsection*{a) Aprendizaje directo y actualización del modelo}
+
+Cada actualización de Q-learning, real o simulada, aplica la regla
+\[
+    Q(s,a)\leftarrow Q(s,a)
+    +\alpha\bigl[r+\gamma\max_{a'}Q(s',a')-Q(s,a)\bigr].
+\]
+Para la transición real de $A$ a $B$ con recompensa $6.4$, el objetivo es
+$6.4+0.9(4.0)=10.0$. A partir de $Q(A,a_1)=0.0$, queda
+\[
+    Q(A,a_1)\leftarrow 0.0+0.5(10.0-0.0)=\boxed{5.0}.
+\]
+El modelo guarda el resultado observado
+$\operatorname{Model}(A,a_1)\leftarrow (R=6.4,S'=B)$.
+
+\subsection*{b) Dos pasos de planificación}
+
+En el primer paso se consulta $\operatorname{Model}(A,a_1)$ y se recupera
+la misma transición.
+El objetivo sigue siendo $10.0$, por lo que
+\[
+    Q(A,a_1)\leftarrow 5.0+0.5(10.0-5.0)=\boxed{7.5},
+    \qquad Q(C,a_2)=0.0.
+\]
+En el segundo paso se consulta $\operatorname{Model}(C,a_2)=(0,A)$.
+Se usa la tabla obtenida después del primer paso, de modo que
+\[
+    Q(C,a_2)\leftarrow 0.0+0.5\bigl[0+0.9\max_a Q(A,a)-0.0\bigr]
+    =0.45\max_a Q(A,a).
+\]
+El ejercicio solo proporciona $Q(A,a_1)$. Si $a_1$ maximiza el valor en
+$A$ después del primer paso, entonces
+$Q(C,a_2)=0.45(7.5)=\boxed{3.375}$. Si otra acción tiene un valor mayor,
+se usa ese valor en el máximo. Al terminar, $Q(A,a_1)=7.5$.
+
+\subsection*{c) Arquitectura y selección de actualizaciones}
+
+Dyna-Q intercala interacción y planificación. Cada transición real
+actualiza directamente la tabla $Q$ y aporta un dato al modelo. A
+continuación, la planificación consulta el modelo $k$ veces para generar
+transiciones simuladas. Ambas fuentes de experiencia actualizan la misma
+tabla con la regla de Q-learning. Los pasos simulados se realizan sin
+interactuar nuevamente con el entorno~\cite[seccs.~8.1--8.3]{sutton}.
+
+En un laberinto con recompensa solo en la meta, tras encontrarla por
+primera vez, el valor empieza a propagarse hacia los pares que pueden
+conducir a ella. Con muestreo uniforme se pueden gastar muchos pasos de
+planificación en pares cuyo valor apenas cambiaría. Prioritized Sweeping
+usa una cola de prioridades basada en la magnitud del error TD
+$\lvert r+\gamma\max_{a'}Q(s',a')-Q(s,a)\rvert$ que predice el modelo.
+Tras actualizar $(s,a)$, reconsidera la prioridad de los pares que
+conducen a $s$. Así propaga el valor hacia atrás desde la
+meta~\cite[secc.~8.4]{sutton}.

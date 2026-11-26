@@ -1,0 +1,43 @@
+\section{PPO, GAE y muestreo por importancia}
+
+\subsection*{a) Errores TD y ventajas generalizadas}
+
+Sea $\delta_t=r_t+\gamma V_\phi(s_{t+1})-V_\phi(s_t)$. Para calcular GAE hacia atrás, se inicia con $\widehat A_2^{\mathrm{GAE}}=0$ en el estado terminal y se usa $\gamma\lambda=0.90(0.80)=0.72$~\cite[secc.~3]{schulman2016}.
+\begin{align*}
+    \delta_1&=4.0+0.90(0)-2.0=2.0, &
+    \widehat A_1^{\mathrm{GAE}}&=2.0+0.72(0)=\boxed{2.0},\\
+    \delta_0&=1.0+0.90(2.0)-3.0=-0.2, &
+    \widehat A_0^{\mathrm{GAE}}&=-0.2+0.72(2.0)=\boxed{1.24}.
+\end{align*}
+En $t=0$, la ventaja incorpora el buen resultado posterior de $t=1$, que compensa el error TD inicial negativo.
+
+\subsection*{b) Ratios, objetivo recortado y gradiente}
+
+Denotemos por $\rho_t(\theta)=\pi_\theta(a_t\mid s_t)/\pi_{\theta_{\mathrm{old}}}(a_t\mid s_t)$ el ratio escrito $r_t(\theta)$ en el enunciado. El intervalo de recorte es $[0.80,1.20]$. Ambos valores de $\widehat A_t$ son positivos y permanecen fijos al diferenciar el objetivo~\cite[secc.~3]{schulman2017}.
+\begin{center}
+    \begin{tabular}{ccccc}
+        \toprule
+        $t$ & $\rho_t$ & $\rho_t\widehat A_t$ &
+        $\operatorname{clip}(\rho_t)\widehat A_t$ & $L_t^{\mathrm{CLIP}}$ \\
+        \midrule
+        $0$ & $0.35/0.50=0.70$ & $0.868$ & $0.992$ & $0.868$ \\
+        $1$ & $0.60/0.40=1.50$ & $3.000$ & $2.400$ & $2.400$ \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+Para una ventaja positiva, el mínimo selecciona $\widehat A_t\min(\rho_t,1.20)$. En $t=0$ sigue activa la rama $\rho_0\widehat A_0$, cuyo gradiente es $\widehat A_0\nabla_\theta\rho_0$. Al maximizarla se favorece recuperar la probabilidad perdida de una acción ventajosa. En $t=1$, el aumento de probabilidad ya supera el umbral del 20\% relativo, por lo que el objetivo de esta muestra es localmente constante y $\boxed{\nabla_\theta L_1^{\mathrm{CLIP}}=0}$. El recorte deja de premiar aumentos adicionales para esa muestra. Las demás muestras y los otros términos de pérdida aún pueden modificar la política.
+
+\subsection*{c) Por qué PPO puede reutilizar el lote}
+
+El término del actor de A2C se estima con estados y acciones recolectados bajo su política vigente. Tras una actualización del actor, las acciones del lote siguen distribuidas según $\pi_{\theta_{\mathrm{old}}}$. Volver a usar el estimador de A2C sin corrección ya corresponde a otra distribución de muestreo. La versión on-policy estándar recoge una nueva tanda tras actualizar sobre el lote, que puede contener muchas transiciones.
+
+Para un estado fijo, con soporte de la política nueva cubierto por la antigua, el muestreo por importancia da
+\begin{align*}
+    \mathbb{E}_{a\sim\pi_{\theta_{\mathrm{old}}}(\cdot\mid s)}
+       [\rho(\theta;s,a)f(s,a)]
+      &=\sum_a \pi_{\theta_{\mathrm{old}}}(a\mid s)
+            \frac{\pi_\theta(a\mid s)}
+                 {\pi_{\theta_{\mathrm{old}}}(a\mid s)} f(s,a)\\
+      &=\mathbb{E}_{a\sim\pi_\theta(\cdot\mid s)}[f(s,a)].
+\end{align*}
+PPO aplica este cociente a las ventajas del lote y limita con el recorte el incentivo a alejarse de la política de recolección. Puede así realizar varias épocas de minibatches con las probabilidades antiguas congeladas, antes de recolectar un nuevo lote. El cociente corrige la distribución de acciones condicionada al estado para el objetivo sin recorte. El objetivo recortado es un sustituto que usa los estados y las ventajas de la recolección, de modo que la identidad anterior por sí sola no proporciona una corrección de la ocupación de estados~\cite[seccs.~2--3 y 5]{schulman2017}.

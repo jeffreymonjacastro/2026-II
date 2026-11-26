@@ -1,0 +1,64 @@
+\section{Gradiente de la política en un MDP}
+
+\subsection*{a) Demostración del teorema}
+
+Sea $\pi_\theta(a\mid s)$ una política diferenciable y sea $\tau=(s_0,a_0,r_0,\ldots,s_T)$ una trayectoria hasta el primer estado terminal. Escribimos $p_\theta(\tau)$ para la probabilidad de la trayectoria que el enunciado denota por $\pi_\theta(\tau)$. Si la distribución inicial $\mu$ y la dinámica conjunta $p(s',r\mid s,a)$ son independientes de $\theta$, entonces
+\[
+    p_\theta(\tau)=\mu(s_0)\prod_{t=0}^{T-1}
+        \pi_\theta(a_t\mid s_t)\,p(s_{t+1},r_t\mid s_t,a_t).
+\]
+Para una trayectoria de probabilidad positiva, el logaritmo convierte el producto en una suma. Al derivarla, $\nabla_\theta\ln\mu(s_0)=0$ y $\nabla_\theta\ln p(s_{t+1},r_t\mid s_t,a_t)=0$, de modo que
+\[
+    \nabla_\theta\ln p_\theta(\tau)
+     =\sum_{t=0}^{T-1}\nabla_\theta\ln\pi_\theta(a_t\mid s_t).
+\]
+La misma razón anula $\nabla_\theta\ln P(s_{t+1}\mid s_t,a_t)$ cuando se factoriza la dinámica de estados por separado. Las transiciones siguen determinando qué trayectorias y recompensas entran en la esperanza.
+
+Sea $R(\tau)=\sum_{t=0}^{T-1}\gamma^t r_t$. Suponiendo soporte fijo e intercambio válido entre la derivada y la suma, la identidad $\nabla p=p\nabla\ln p$ da
+\begin{equation}
+    \nabla_\theta J(\theta)
+     =\sum_\tau R(\tau)\nabla_\theta p_\theta(\tau)
+     =\mathbb{E}_{\tau\sim p_\theta}\left[
+        R(\tau)\sum_{t=0}^{T-1}\nabla_\theta\ln\pi_\theta(A_t\mid S_t)
+       \right].
+\end{equation}
+Sea $H_t$ el historial hasta $S_t$, justo antes de elegir $A_t$. La esperanza condicional del gradiente logarítmico es cero porque
+\[
+    \mathbb{E}\big[\nabla_\theta\ln\pi_\theta(A_t\mid S_t)\mid H_t\big]
+      =\sum_a\nabla_\theta\pi_\theta(a\mid S_t)
+      =\nabla_\theta 1=0.
+\]
+Por lo tanto, el producto de ese gradiente con las recompensas anteriores a $t$, que ya están en $H_t$, tiene esperanza cero. Podemos reemplazar $R(\tau)$ en el término del paso $t$ por $\gamma^t G_t$, con $G_t=\sum_{j=t}^{T-1}\gamma^{j-t}r_j$. Por la propiedad de Markov, $\mathbb{E}[G_t\mid S_t=s,A_t=a]=Q^{\pi_\theta}(s,a)$.
+
+Definimos la ocupación descontada sin normalizar como
+\[
+    d_\gamma^{\pi_\theta}(s)
+       =\mathbb{E}_{\pi_\theta}\left[\sum_{t=0}^{T-1}
+             \gamma^t\mathbf{1}\{S_t=s\}\right],
+\]
+Al agrupar las visitas por estado y acción se obtiene el teorema del gradiente de la política en su forma episódica~\cite[seccs.~13.1--13.2]{sutton}.
+\begin{equation}
+    \boxed{\nabla_\theta J(\theta)
+      =\sum_s d_\gamma^{\pi_\theta}(s)
+             \sum_a Q^{\pi_\theta}(s,a)\nabla_\theta\pi_\theta(a\mid s)}
+\end{equation}
+
+\subsection*{b) Episodio con $k$ repeticiones de $a_1$}
+
+\textbf{(i) Probabilidad y retorno.}
+El episodio $\tau_k$ consta de $k$ acciones $a_1$ y una acción final $a_2$. Todas las transiciones dadas son deterministas. Para $k=0,1,\ldots$ se cumple
+\[
+    p_\theta(\tau_k)=\theta^k(1-\theta),
+    \qquad R(\tau_k)=k\cdot 1+0=k.
+\]
+
+\textbf{(ii) Gradiente logarítmico y estimador.}
+Como $\ln p_\theta(\tau_k)=k\ln\theta+\ln(1-\theta)$,
+\[
+    \frac{d}{d\theta}\ln p_\theta(\tau_k)
+       =\frac{k}{\theta}-\frac{1}{1-\theta},
+    \qquad
+    \boxed{\widehat{\nabla_\theta J}(\tau_k)
+       =\frac{k^2}{\theta}-\frac{k}{1-\theta}}.
+\]
+Como comprobación, $K$ cuenta los éxitos antes del primer fallo en una distribución geométrica. El retorno esperado es $J(\theta)=\mathbb{E}[K]=\theta/(1-\theta)$, por lo que $J'(\theta)=1/(1-\theta)^2$. Esta es también la esperanza del estimador, mediante $\mathbb{E}[K^2]=\theta(1+\theta)/(1-\theta)^2$.
